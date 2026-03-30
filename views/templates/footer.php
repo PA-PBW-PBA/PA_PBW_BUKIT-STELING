@@ -1,0 +1,87 @@
+<footer class="pt-5 pb-4 mt-5" style="background-color: #1B1B1B; color: #E5E7EB;">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 pe-lg-5">
+                    <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">Bukit Steling</h5>
+                    <p class="small text-secondary" style="line-height: 1.8;">
+                        Destinasi wisata alam yang menawarkan pemandangan menakjubkan Kota Samarinda dan hamparan Sungai Mahakam dari ketinggian. Dikelola dengan penuh dedikasi oleh Kelompok Sadar Wisata (POKDARWIS) setempat.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-3">Jelajahi</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="beranda.php" class="text-secondary text-decoration-none custom-hover">Beranda</a></li>
+                        <li class="mb-2"><a href="informasi.php" class="text-secondary text-decoration-none custom-hover">Fasilitas & Tiket</a></li>
+                        <li class="mb-2"><a href="galeri.php" class="text-secondary text-decoration-none custom-hover">Galeri Foto</a></li>
+                        <li class="mb-2"><a href="ulasan.php" class="text-secondary text-decoration-none custom-hover">Ulasan Pengunjung</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold text-white mb-3">Hubungi Pengelola</h6>
+                    <ul class="list-unstyled small text-secondary">
+                        <li class="mb-3 d-flex align-items-start gap-2">
+                            <i class="bi bi-geo-alt mt-1 text-primary-custom"></i> 
+                            <span>RT 32, Kelurahan Sungai Dama, Kecamatan Samarinda Ilir, Kota Samarinda</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center gap-2">
+                            <i class="bi bi-clock text-primary-custom"></i> 
+                            <span>Buka Setiap Hari (06.00 - 23.00 WITA)</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="bi bi-whatsapp text-primary-custom"></i> 
+                            <span>+62 812-3456-7890 (Bapak La Riamu)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25 my-4">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-secondary">
+                <p class="mb-0">&copy; <?php echo date("Y"); ?> POKDARWIS Bukit Steling. All rights reserved.</p>
+                <p class="mb-0 mt-2 mt-md-0">Dibuat untuk Proyek Akhir.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe-lightbox.umd.min.js"></script>
+
+    <script src="../../assets/js/script.js"></script>
+
+    <script>
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#pswp-gallery',
+            children: 'a[target="_blank"]',
+            pswpModule: PhotoSwipe 
+        });
+        lightbox.init();
+
+        function konfirmasiHapus(pesan) {
+            return confirm(pesan || "Apakah Anda yakin ingin menghapus data ini?");
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm', 'border-bottom');
+            } else {
+                nav.classList.remove('shadow-sm', 'border-bottom');
+            }
+        });
+    </script>
+
+    <footer class="bg-white border-top py-4 mt-auto">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 Puncak Steling Samarinda. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
