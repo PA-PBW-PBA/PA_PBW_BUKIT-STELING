@@ -54,12 +54,28 @@ $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tb_informasi LI
             while($f = mysqli_fetch_assoc($fasilitas)) :
             ?>
             <div class="col-md-3 col-6">
-                <div class="card card-custom overflow-hidden shadow-sm border-0 bg-white">
-                    <div class="ratio ratio-4x3">
-                        <img src="../../assets/img/fasilitas/<?php echo $f['file_gambar']; ?>" class="object-fit-cover" alt="img">
+                <div class="card card-custom overflow-hidden shadow-sm border-0 bg-white cursor-pointer" 
+                     data-bs-toggle="modal" 
+                     data-bs-target="#modalFasilitas<?php echo $f['id_fasilitas']; ?>">
+                    <div class="ratio ratio-4x3 overflow-hidden">
+                        <img src="../../assets/img/fasilitas/<?php echo $f['file_gambar']; ?>" class="object-fit-cover hover-zoom" alt="img">
                     </div>
                     <div class="card-body p-3 text-center">
                         <p class="mb-0 fw-bold small text-uppercase" style="letter-spacing: 0.5px;"><?php echo $f['nama_fasilitas']; ?></p>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modalFasilitas<?php echo $f['id_fasilitas']; ?>" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content rounded-4 border-0 overflow-hidden">
+                            <div class="modal-header border-0 pb-0">
+                                <h5 class="fw-bold mb-0"><?php echo $f['nama_fasilitas']; ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4 text-center">
+                                <img src="../../assets/img/fasilitas/<?php echo $f['file_gambar']; ?>" class="img-fluid rounded-4 shadow-sm" alt="Fasilitas">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

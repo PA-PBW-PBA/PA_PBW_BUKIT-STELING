@@ -10,12 +10,17 @@
 
                 <div class="col-lg-3 col-md-6">
                     <h6 class="fw-bold text-white mb-3">Jelajahi</h6>
-                    <ul class="list-unstyled small">
+                    <ul class="list-unstyled small mb-4">
                         <li class="mb-2"><a href="beranda.php" class="text-secondary text-decoration-none custom-hover">Beranda</a></li>
                         <li class="mb-2"><a href="informasi.php" class="text-secondary text-decoration-none custom-hover">Fasilitas & Tiket</a></li>
                         <li class="mb-2"><a href="galeri.php" class="text-secondary text-decoration-none custom-hover">Galeri Foto</a></li>
                         <li class="mb-2"><a href="ulasan.php" class="text-secondary text-decoration-none custom-hover">Ulasan Pengunjung</a></li>
                     </ul>
+                    <h6 class="fw-bold text-white mb-3">Ikuti Kami</h6>
+                    <a href="https://www.instagram.com/puncakstelingsamarinda" target="_blank" class="text-secondary text-decoration-none custom-hover d-flex align-items-center gap-2">
+                        <i class="bi bi-instagram fs-5"></i>
+                        <span>@puncakstelingsamarinda</span>
+                    </a>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
@@ -40,8 +45,6 @@
             <hr class="border-secondary opacity-25 my-4">
 
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-secondary">
-                <p class="mb-0">&copy; <?php echo date("Y"); ?> POKDARWIS Bukit Steling. All rights reserved.</p>
-                <p class="mb-0 mt-2 mt-md-0">Dibuat untuk Proyek Akhir.</p>
             </div>
         </div>
     </footer>
@@ -63,8 +66,23 @@
         });
         lightbox.init();
 
-        function konfirmasiHapus(pesan) {
-            return confirm(pesan || "Apakah Anda yakin ingin menghapus data ini?");
+        function konfirmasiHapus(event, url, pesan = "Apakah Anda yakin ingin menghapus data ini?") {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: pesan,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f43f5e',
+                cancelButtonColor: '#94a3b8',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
         }
 
         window.addEventListener('scroll', function() {

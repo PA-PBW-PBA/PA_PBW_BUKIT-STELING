@@ -69,72 +69,70 @@ $info = mysqli_fetch_assoc($query_info);
     <section class="py-5 bg-light">
         <div class="container py-5">
             <div class="text-center mb-5">
-                <h3 class="fw-bold">Fasilitas Wisata</h3>
-                <div class="bg-primary-custom mx-auto mb-3" style="width: 60px; height: 3px;"></div>
-                <p class="text-muted">Fasilitas penunjang kenyamanan pengunjung di kawasan Puncak Steling.</p>
+                <h6 class="text-primary-custom fw-bold text-uppercase small mb-2" style="letter-spacing: 2px;">POKDARWIS</h6>
+                <h3 class="fw-bold">Struktur Organisasi Steling</h3>
+                <div class="bg-primary-custom mx-auto" style="width: 60px; height: 3px;"></div>
             </div>
             
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-p-square-fill fs-1"></i>
+            <div class="row justify-content-center g-4">
+                <!-- Pembina & Penasehat -->
+                <div class="col-md-5">
+                    <div class="card card-custom border-0 shadow-sm p-4 h-100 bg-white text-center transition-all hover-up">
+                        <div class="mb-3 text-primary-custom opacity-75">
+                            <i class="bi bi-person-check-fill fs-1"></i>
                         </div>
-                        <h5 class="fw-bold small">Area Parkir</h5>
-                        <p class="small text-muted mb-0">Tersedia lahan parkir yang luas dan aman untuk kendaraan roda dua maupun roda empat.</p>
+                        <h6 class="text-muted small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Pembina</h6>
+                        <h5 class="fw-bold text-dark mb-0">Camat Samarinda Ilir</h5>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card card-custom border-0 shadow-sm p-4 h-100 bg-white text-center transition-all hover-up">
+                        <div class="mb-3 text-primary-custom opacity-75">
+                            <i class="bi bi-shield-check fs-1"></i>
+                        </div>
+                        <h6 class="text-muted small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Penasehat</h6>
+                        <h5 class="fw-bold text-dark mb-0">Lurah Sungai Dama</h5>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-house-heart-fill fs-1"></i>
+                <!-- Ketua -->
+                <div class="col-md-8 mt-4">
+                    <div class="card card-custom border-0 shadow-sm p-5 bg-primary-custom text-white text-center transition-all hover-up position-relative overflow-hidden">
+                        <div class="position-relative" style="z-index: 2;">
+                            <h6 class="text-uppercase small fw-bold mb-3 opacity-75" style="letter-spacing: 2px;">Ketua POKDARWIS</h6>
+                            <h3 class="fw-bold mb-1">La Riamu</h3>
+                            <p class="mb-0 opacity-75">Memimpin dan mengarahkan pengelolaan Puncak Steling.</p>
                         </div>
-                        <h5 class="fw-bold small">Gazebo & Area Santai</h5>
-                        <p class="small text-muted mb-0">Tersedia beberapa titik gazebo untuk beristirahat sambil menikmati angin sejuk.</p>
+                        <i class="bi bi-person-workspace position-absolute opacity-10" style="font-size: 8rem; right: -20px; bottom: -20px; z-index: 1;"></i>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-moisture fs-1"></i>
+                <!-- Sekretaris & Bendahara -->
+                <div class="col-md-5 mt-4">
+                    <div class="card card-custom border-0 shadow-sm p-4 h-100 bg-white text-center transition-all hover-up">
+                        <div class="mb-3 text-primary-custom opacity-75">
+                            <i class="bi bi-journal-text fs-1"></i>
                         </div>
-                        <h5 class="fw-bold small">Toilet Umum</h5>
-                        <p class="small text-muted mb-0">Fasilitas sanitasi yang bersih tersedia bagi pengunjung di area pendakian utama.</p>
+                        <h6 class="text-muted small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Sekretaris</h6>
+                        <h5 class="fw-bold text-dark mb-1">Hesni Kilo</h5>
+                        <p class="small text-muted mb-0">Administrasi & Kesekretariatan</p>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-cup-hot-fill fs-1"></i>
+                <div class="col-md-5 mt-4">
+                    <div class="card card-custom border-0 shadow-sm p-4 h-100 bg-white text-center transition-all hover-up">
+                        <div class="mb-3 text-primary-custom opacity-75">
+                            <i class="bi bi-wallet2 fs-1"></i>
                         </div>
-                        <h5 class="fw-bold small">Warung Kopi & Snack</h5>
-                        <p class="small text-muted mb-0">Warung lokal yang menyediakan minuman hangat dan makanan ringan.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-camera-fill fs-1"></i>
-                        </div>
-                        <h5 class="fw-bold small">Spot Foto Estetik</h5>
-                        <p class="small text-muted mb-0">Berbagai titik foto dengan latar Sungai Mahakam dan City Light Samarinda.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-custom p-4 border-0 shadow-sm h-100 bg-white text-center">
-                        <div class="mb-3 text-primary-custom">
-                            <i class="bi bi-moon-stars-fill fs-1"></i>
-                        </div>
-                        <h5 class="fw-bold small">Tempat Ibadah</h5>
-                        <p class="small text-muted mb-0">Tersedia area musholla sederhana untuk memudahkan ibadah pengunjung.</p>
+                        <h6 class="text-muted small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Bendahara</h6>
+                        <h5 class="fw-bold text-dark mb-1">Wa Ice</h5>
+                        <p class="small text-muted mb-0">Pengelolaan Keuangan & Anggaran</p>
                     </div>
                 </div>
             </div>
+
+            <style>
+                .hover-up:hover { transform: translateY(-10px); transition: 0.3s; box-shadow: 0 1rem 3rem rgba(0,0,0,.1) !important; }
+            </style>
 
             <div class="mt-5 p-4 rounded-4 bg-primary-custom text-white text-center shadow">
                 <div class="row align-items-center">

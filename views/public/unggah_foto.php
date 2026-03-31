@@ -28,15 +28,43 @@ if (isset($_POST['upload'])) {
                     VALUES ('$id_user', '$kategori', '$caption', '$nama_baru', 'pending')";
             
             if (mysqli_query($koneksi, $query)) {
-                echo "<script>alert('Berhasil! Foto Anda akan ditinjau admin.'); window.location='galeri.php';</script>";
+                echo "<script>
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Foto Anda telah diunggah dan akan ditinjau oleh admin.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location='galeri.php';
+                    });
+                </script>";
             } else {
-                echo "<script>alert('Gagal SQL: " . mysqli_error($koneksi) . "');</script>";
+                echo "<script>
+                    Swal.fire({
+                        title: 'Gagal!',
+                        text: 'Terjadi kesalahan sistem saat menyimpan data.',
+                        icon: 'error'
+                    });
+                </script>";
             }
         } else {
-            echo "<script>alert('Gagal memindahkan file ke folder uploads. Cek izin folder!');</script>";
+            echo "<script>
+                Swal.fire({
+                    title: 'Upload Gagal!',
+                    text: 'Gagal memindahkan file ke folder server. Periksa izin folder.',
+                    icon: 'error'
+                });
+            </script>";
         }
     } else {
-        echo "<script>alert('Format file tidak didukung! Gunakan JPG/PNG.');</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Format Tidak Sesuai!',
+                text: 'Hanya file gambar (JPG, PNG, WebP) yang diperbolehkan.',
+                icon: 'warning'
+            });
+        </script>";
     }
 }
 
