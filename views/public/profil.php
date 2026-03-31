@@ -13,15 +13,30 @@ $nama_user = $_SESSION['user'];
 if (isset($_GET['hapus_ulasan'])) {
     $id_ulasan_hapus = mysqli_real_escape_string($koneksi, $_GET['hapus_ulasan']);
     
-    // Keamanan: Hapus HANYA jika ID Pengunjung cocok dengan Session
     $sql_hapus = "DELETE FROM tb_ulasan WHERE id_ulasan = '$id_ulasan_hapus' AND id_pengunjung = '$id_user'";
     $eksekusi_hapus = mysqli_query($koneksi, $sql_hapus);
 
     if ($eksekusi_hapus) {
-        echo "<script>alert('Ulasan Anda telah dihapus.'); window.location='profil.php';</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Dihapus!',
+                text: 'Ulasan Anda telah berhasil dihapus.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location='profil.php';
+            });
+        </script>";
         exit;
     } else {
-        echo "<script>alert('Gagal menghapus: " . mysqli_error($koneksi) . "');</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Gagal!',
+                text: 'Terjadi kesalahan saat menghapus ulasan.',
+                icon: 'error'
+            });
+        </script>";
     }
 }
 
@@ -127,7 +142,7 @@ include '../templates/navbar_public.php';
                                         </div>
                                         <a href="profil.php?hapus_ulasan=<?php echo $u['id_ulasan']; ?>" 
                                         class="btn btn-outline-danger btn-sm rounded-pill px-3" 
-                                        onclick="return confirm('Hapus ulasan ini secara permanen?')">
+                                        onclick="konfirmasiHapus(event, this.href, 'Hapus ulasan ini secara permanen?')">
                                             <i class="bi bi-trash me-1"></i> Hapus
                                         </a>
                                     </div>

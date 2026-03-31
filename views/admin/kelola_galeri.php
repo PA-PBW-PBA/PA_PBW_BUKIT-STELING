@@ -10,15 +10,35 @@ if (isset($_GET['aksi'])) {
     $id = $_GET['id'];
     if ($_GET['aksi'] == 'setujui') {
         mysqli_query($koneksi, "UPDATE tb_galeri SET status = 'approved' WHERE id_galeri = '$id'");
-        echo "<script>alert('Foto disetujui!'); window.location='kelola_galeri.php';</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Disetujui!',
+                text: 'Foto kini tampil di galeri publik.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location='kelola_galeri.php';
+            });
+        </script>";
     } elseif ($_GET['aksi'] == 'hapus') {
-        // Ambil nama file untuk dihapus dari folder assets
+        
         $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT file_foto FROM tb_galeri WHERE id_galeri = '$id'"));
         $path = "../../assets/img/uploads/" . $data['file_foto'];
         if (file_exists($path)) { @unlink($path); }
         
         mysqli_query($koneksi, "DELETE FROM tb_galeri WHERE id_galeri = '$id'");
-        echo "<script>alert('Foto berhasil dihapus!'); window.location='kelola_galeri.php';</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Foto telah dihapus.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location='kelola_galeri.php';
+            });
+        </script>";
     }
 }
 
@@ -49,13 +69,18 @@ include '../templates/header.php';
                     ?>
                     <div class="col-md-4 col-lg-3">
                         <div class="card card-custom border-0 shadow-sm overflow-hidden h-100 bg-white">
-                            <img src="<?php echo $img_p; ?>" class="card-img-top object-fit-cover" style="height: 180px;">
+                            <div class="position-relative">
+                                <img src="<?php echo $img_p; ?>" class="card-img-top object-fit-cover" style="height: 180px;">
+                                <span class="position-absolute top-0 end-0 m-2 badge bg-primary-custom text-white shadow-sm"><?php echo $p['kategori']; ?></span>
+                            </div>
                             <div class="card-body p-3">
-                                <p class="small text-muted mb-1">Oleh: <b><?php echo $p['nama_lengkap']; ?></b></p>
-                                <p class="small mb-3 text-dark">"<?php echo $p['caption']; ?>"</p>
+                                <p class="small text-muted mb-2">Oleh: <span class="fw-bold text-dark"><?php echo $p['nama_lengkap']; ?></span></p>
+                                <div class="bg-light p-2 rounded-3 mb-3">
+                                    <p class="small mb-0 text-dark" style="line-height: 1.4;">"<?php echo $p['caption']; ?>"</p>
+                                </div>
                                 <div class="d-flex gap-2">
-                                    <a href="?aksi=setujui&id=<?php echo $p['id_galeri']; ?>" class="btn btn-success btn-sm w-100 rounded-pill">Setujui</a>
-                                    <a href="?aksi=hapus&id=<?php echo $p['id_galeri']; ?>" class="btn btn-outline-danger btn-sm w-100 rounded-pill" onclick="return confirm('Tolak dan hapus foto ini?')">Tolak</a>
+                                    <a href="?aksi=setujui&id=<?php echo $p['id_galeri']; ?>" class="btn btn-success btn-sm w-100 rounded-pill fw-bold">Setujui</a>
+                                    <a href="?aksi=hapus&id=<?php echo $p['id_galeri']; ?>" class="btn btn-outline-danger btn-sm w-100 rounded-pill fw-bold" onclick="konfirmasiHapus(event, this.href, 'Tolak dan hapus foto dari <?php echo $p['nama_lengkap']; ?>?')">Tolak</a>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +111,7 @@ include '../templates/header.php';
                             <div class="card-body p-3">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
                                     <span class="badge bg-light text-dark small" style="font-size: 0.65rem;"><?php echo $a['kategori']; ?></span>
-                                    <a href="?aksi=hapus&id=<?php echo $a['id_galeri']; ?>" class="text-danger" onclick="return confirm('Hapus foto yang sudah live ini?')">
+                                    <a href="?aksi=hapus&id=<?php echo $a['id_galeri']; ?>" class="text-danger" onclick="konfirmasiHapus(event, this.href, 'Hapus foto yang sudah live ini?')">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </div>

@@ -1,0 +1,220 @@
+<?php
+session_start();
+include '../../config/koneksi.php';
+
+if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../auth/login.php"); exit;
+}
+
+// PROSES TAMBAH FASILITAS
+if (isset($_POST['tambah'])) {
+    $nama = mysqli_real_escape_string($koneksi, $_POST['nama_fasilitas']);
+    
+    $foto = $_FILES['foto']['name'];
+    $tmp = $_FILES['foto']['tmp_name'];
+    $path = "../../assets/img/fasilitas/" . $foto;
+
+    if (move_uploaded_file($tmp, $path)) {
+        mysqli_query($koneksi, "INSERT INTO tb_fasilitas (nama_fasilitas, file_gambar) VALUES ('$nama', '$foto')");
+        echo "<script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Fasilitas baru telah ditambahkan.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location='kelola_fasilitas.php';
+            });
+        </script>";
+    }
+}
+
+// PROSES EDIT FASILITAS
+if (isset($_POST['edit'])) {
+    $id = $_POST['id_fasilitas'];
+    $nama = mysqli_real_escape_string($koneksi, $_POST['nama_fasilitas']);
+    $foto_lama = $_POST['foto_lama'];
+
+    if ($_FILES['foto']['name'] != "") {
+        $foto = $_FILES['foto']['name'];
+        $tmp = $_FILES['foto']['tmp_name'];
+        $path = "../../assets/img/fasilitas/" . $foto;
+        
+        // Hapus foto lama
+        if (file_exists("../../assets/img/fasilitas/" . $foto_lama)) {
+            @unlink("../../assets/img/fasilitas/" . $foto_lama);
+        }
+        
+        move_uploaded_file($tmp, $path);
+    } else {
+        $foto = $foto_lama;
+    }
+
+    mysqli_query($koneksi, "UPDATE tb_fasilitas SET nama_fasilitas = '$nama', file_gambar = '$foto' WHERE id_fasilitas = '$id'");
+    echo "<script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data fasilitas telah diperbarui.',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location='kelola_fasilitas.php';
+        });
+    </script>";
+}
+
+// PROSES HAPUS FASILITAS
+if (isset($_GET['hapus'])) {
+    $id = $_GET['hapus'];
+    $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT file_gambar FROM tb_fasilitas WHERE id_fasilitas = '$id'"));
+    
+    if ($data && file_exists("../../assets/img/fasilitas/" . $data['file_gambar'])) {
+        @unlink("../../assets/img/fasilitas/" . $data['file_gambar']);
+    }
+
+    mysqli_query($koneksi, "DELETE FROM tb_fasilitas WHERE id_fasilitas = '$id'");
+    echo "<script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Fasilitas telah dihapus.',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location='kelola_fasilitas.php';
+        });
+    </script>";
+}
+
+include '../templates/header.php';
+?>
+
+<div class="container-fluid px-0">
+    <div class="row g-0">
+        <?php include '../templates/sidebar_admin.php'; ?>
+
+        <div class="col-md-10 p-5 bg-light min-vh-100">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <div>
+                    <h3 class="fw-bold mb-1 text-dark">Manajemen Fasilitas</h3>
+                    <p class="text-muted">Kelola daftar fasilitas yang tersedia di Puncak Steling.</p>
+                </div>
+                <button class="btn btn-primary-custom rounded-pill px-4 shadow-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalTambah">
+                    <i class="bi bi-plus-lg me-2"></i> Tambah Fasilitas
+                </button>
+            </div>
+
+            <div class="card card-custom border-0 shadow-sm overflow-hidden bg-white">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4 py-3 border-0 small fw-bold text-muted text-uppercase">Gambar</th>
+                                <th class="py-3 border-0 small fw-bold text-muted text-uppercase">Nama Fasilitas</th>
+                                <th class="py-3 border-0 small fw-bold text-muted text-uppercase text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $q = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas ORDER BY id_fasilitas DESC");
+                            while($f = mysqli_fetch_assoc($q)) :
+                            ?>
+                            <tr>
+                                <td class="ps-4 py-3">
+                                    <img src="../../assets/img/fasilitas/<?php echo $f['file_gambar']; ?>" class="rounded-3 shadow-sm object-fit-cover" style="width: 80px; height: 60px;">
+                                </td>
+                                <td class="py-3">
+                                    <h6 class="fw-bold text-dark mb-0"><?php echo $f['nama_fasilitas']; ?></h6>
+                                </td>
+                                <td class="py-3 text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-primary-custom" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#modalEdit<?php echo $f['id_fasilitas']; ?>">
+                                            <i class="bi bi-pencil-square fs-6"></i>
+                                        </button>
+                                        <a href="?hapus=<?php echo $f['id_fasilitas']; ?>" 
+                                           class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-danger" 
+                                           onclick="konfirmasiHapus(event, this.href, 'Hapus fasilitas <?php echo $f['nama_fasilitas']; ?>?')">
+                                            <i class="bi bi-trash fs-6"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL TAMBAH -->
+<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+            <div class="modal-header border-0 p-4 pb-0">
+                <h5 class="fw-bold text-dark" id="modalTambahLabel">Tambah Fasilitas Baru</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
+                        <input type="text" name="nama_fasilitas" class="form-control" placeholder="Contoh: Musholla Baru" required>
+                    </div>
+                    <div class="mb-0">
+                        <label class="form-label small fw-bold text-muted">Gambar Fasilitas</label>
+                        <input type="file" name="foto" class="form-control" accept="image/*" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="tambah" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm">Tambah Sekarang</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDIT LOOP -->
+<?php
+$q_modal = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas");
+while($fm = mysqli_fetch_assoc($q_modal)) :
+?>
+<div class="modal fade" id="modalEdit<?php echo $fm['id_fasilitas']; ?>" tabindex="-1" aria-labelledby="modalEditLabel<?php echo $fm['id_fasilitas']; ?>" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+            <div class="modal-header border-0 p-4 pb-0">
+                <h5 class="fw-bold text-dark" id="modalEditLabel<?php echo $fm['id_fasilitas']; ?>">Edit Fasilitas</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <input type="hidden" name="id_fasilitas" value="<?php echo $fm['id_fasilitas']; ?>">
+                    <input type="hidden" name="foto_lama" value="<?php echo $fm['file_gambar']; ?>">
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
+                        <input type="text" name="nama_fasilitas" class="form-control" value="<?php echo $fm['nama_fasilitas']; ?>" required>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-muted">Ganti Gambar (Opsional)</label>
+                        <input type="file" name="foto" class="form-control" accept="image/*">
+                    </div>
+                    <p class="small text-muted italic mb-0">Kosongkan jika tidak ingin mengubah gambar.</p>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="edit" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endwhile; ?>
+
+<?php include '../templates/footer.php'; ?>

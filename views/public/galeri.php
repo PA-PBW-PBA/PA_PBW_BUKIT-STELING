@@ -37,7 +37,7 @@ include '../templates/navbar_public.php';
         </div>
 
         <transition-group name="fade-list" tag="div" class="row g-4">
-            <div class="col-md-4 col-sm-6" v-for="g in filteredGaleri" :key="g.id_galeri">
+            <div class="col-md-4 col-sm-6" v-for="g in paginatedGaleri" :key="g.id_galeri">
                 <div class="card card-custom h-100 bg-white border-0 shadow-sm overflow-hidden group">
                     <div class="ratio ratio-4x3 overflow-hidden cursor-pointer" 
                          data-bs-toggle="modal" 
@@ -76,6 +76,30 @@ include '../templates/navbar_public.php';
                 </div>
             </div>
         </transition-group>
+
+        <div class="d-flex justify-content-center mt-5" v-if="totalPages > 1">
+            <nav>
+                <ul class="pagination gap-2 border-0">
+                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                        <button class="page-link rounded-3 border-0 bg-light text-dark px-3 py-2 fw-bold shadow-none" @click="currentPage--">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                    </li>
+                    <li class="page-item" v-for="page in totalPages" :key="page">
+                        <button class="page-link rounded-3 border-0 px-3 py-2 fw-bold shadow-none" 
+                                :class="currentPage === page ? 'bg-primary-custom text-white shadow' : 'bg-light text-dark'"
+                                @click="currentPage = page">
+                            {{ page }}
+                        </button>
+                    </li>
+                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                        <button class="page-link rounded-3 border-0 bg-light text-dark px-3 py-2 fw-bold shadow-none" @click="currentPage++">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 

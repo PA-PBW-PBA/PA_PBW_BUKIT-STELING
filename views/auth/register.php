@@ -13,10 +13,20 @@ if (isset($_POST['register'])) {
         $error = "Email ini sudah terdaftar!";
     } else {
         $query = "INSERT INTO tb_pengunjung (nama_lengkap, email, password) VALUES ('$nama', '$email', '$password')";
-        
+
         if (mysqli_query($koneksi, $query)) {
-            echo "<script>alert('Akun berhasil dibuat! Silakan login.'); window.location='login.php';</script>";
-            exit;
+            echo "<script>
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Akun Anda telah dibuat. Silakan login.',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location='login.php';
+                });
+            </script>";
+        } else {
         } else {
             $error = "Terjadi kesalahan: " . mysqli_error($koneksi);
         }
@@ -33,6 +43,7 @@ if (isset($_POST['register'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100 py-5">

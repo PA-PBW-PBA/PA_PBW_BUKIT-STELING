@@ -34,7 +34,17 @@ $total_ulasan = $data_avg['total'];
                             <h1 class="display-4 fw-bold text-primary-custom mb-0"><?php echo $rata_rata ?: '0'; ?></h1>
                             <div>
                                 <div class="text-warning mb-1">
-                                    <?php for($i=1;$i<=5;$i++) echo ($i<=$rata_rata) ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star text-muted"></i>'; ?>
+                                    <?php 
+                                    for($i=1; $i<=5; $i++) {
+                                        if ($i <= $rata_rata) {
+                                            echo '<i class="bi bi-star-fill"></i>';
+                                        } else if ($i - 0.5 <= $rata_rata) {
+                                            echo '<i class="bi bi-star-half"></i>';
+                                        } else {
+                                            echo '<i class="bi bi-star text-muted"></i>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
                                 <p class="text-muted small mb-0">Berdasarkan <?php echo $total_ulasan; ?> ulasan</p>
                             </div>
@@ -86,10 +96,19 @@ $total_ulasan = $data_avg['total'];
             <div class="col-lg-8">
                 <div class="row g-4">
                     <?php
+                    
+                    $limit = 5; 
+                    $page = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+                    $start = ($page > 1) ? ($page * $limit) - $limit : 0;
+
+                    $total_query = mysqli_query($koneksi, "SELECT id_ulasan FROM tb_ulasan");
+                    $total_rows = mysqli_num_rows($total_query);
+                    $total_pages = ceil($total_rows / $limit);
+
                     $query_ulasan = mysqli_query($koneksi, "SELECT tb_ulasan.*, tb_pengunjung.nama_lengkap 
                                                         FROM tb_ulasan 
                                                         JOIN tb_pengunjung ON tb_ulasan.id_pengunjung = tb_pengunjung.id_pengunjung 
-                                                        ORDER BY id_ulasan DESC");
+                                                        ORDER BY id_ulasan DESC LIMIT $start, $limit");
                     
                     if(mysqli_num_rows($query_ulasan) > 0) :
                         while($u = mysqli_fetch_assoc($query_ulasan)) :
@@ -113,10 +132,31 @@ $total_ulasan = $data_avg['total'];
                             <p class="mb-0 text-dark" style="line-height: 1.7; font-style: italic;">"<?php echo $u['komentar']; ?>"</p>
                         </div>
                     </div>
-                    <?php 
-                        endwhile; 
-                    else : 
-                    ?>
+                    <?php endwhile; ?>
+
+                    <?php if ($total_pages > 1) : ?>
+                    <div class="col-12 mt-4">
+                        <nav class="d-flex justify-content-center">
+                            <ul class="pagination gap-2 border-0">
+                                <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
+                                    <a class="page-link rounded-3 border-0 bg-light text-dark px-3 py-2 fw-bold" href="?halaman=<?php echo $page - 1; ?>"><i class="bi bi-chevron-left"></i></a>
+                                </li>
+                                
+                                <?php for($i=1; $i<=$total_pages; $i++) : ?>
+                                <li class="page-item">
+                                    <a class="page-link rounded-3 border-0 px-3 py-2 fw-bold <?php echo ($page == $i) ? 'bg-primary-custom text-white shadow' : 'bg-light text-dark'; ?>" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                </li>
+                                <?php endfor; ?>
+
+                                <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
+                                    <a class="page-link rounded-3 border-0 bg-light text-dark px-3 py-2 fw-bold" href="?halaman=<?php echo $page + 1; ?>"><i class="bi bi-chevron-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php else : ?>
                     <div class="col-12 text-center py-5">
                         <p class="text-muted">Belum ada ulasan. Jadilah yang pertama memberi ulasan!</p>
                     </div>

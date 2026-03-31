@@ -11,7 +11,17 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM tb_ulasan WHERE id_ulasan = '$id'");
     if ($query_hapus) {
-        echo "<script>alert('Ulasan berhasil dihapus!'); window.location='kelola_ulasan.php';</script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Ulasan telah dihapus permanently.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location='kelola_ulasan.php';
+            });
+        </script>";
     }
 }
 
@@ -78,7 +88,7 @@ include '../templates/header.php';
                                 <td class="text-center">
                                     <a href="?hapus=<?php echo $u['id_ulasan']; ?>" 
                                     class="btn btn-outline-danger btn-sm rounded-pill px-3" 
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus ulasan ini?')">
+                                    onclick="konfirmasiHapus(event, this.href, 'Apakah Anda yakin ingin menghapus ulasan dari <?php echo $u['nama_lengkap']; ?>?')">
                                         <i class="bi bi-trash me-1"></i> Hapus
                                     </a>
                                 </td>
