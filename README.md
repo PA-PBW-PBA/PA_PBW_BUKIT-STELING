@@ -46,3 +46,19 @@ Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal den
 ---
 
 ## Tampilan _Website_
+
+- Halaman Beranda
+  > GAMBAR
+
+- Halaman Informasi
+  > GAMBAR
+
+- Halaman Galeri
+  > GAMBAR
+
+- Halaman Ulasan
+  > GAMBAR
+
+- Halaman Tentang
+  > GAMBAR
+
