@@ -41,3 +41,7 @@ Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal den
 ---
 
 ## Struktur Project
+
+---
+
+## Tampilan _Website_
