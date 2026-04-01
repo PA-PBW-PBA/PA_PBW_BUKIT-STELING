@@ -38,6 +38,7 @@ Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal den
 ![CSS](https://img.shields.io/badge/CSS-3-blue?style=for-the-badge&logo=css3)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
 ![Laragon](https://img.shields.io/badge/Laragon-Local%20Server-green?style=for-the-badge)
+
 ---
 
 ## Struktur Project
