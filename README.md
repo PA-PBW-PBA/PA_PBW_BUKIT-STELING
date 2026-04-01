@@ -48,25 +48,29 @@ Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal den
 - Mengakses website tanpa login
 - Melihat halaman beranda
 - Melihat informasi wisata (deskripsi, harga tiket, jam operasional)
+- Melihat fasilitas yang tersedia
 - Melihat struktur organisasi Puncak Steling
 - Melihat galeri foto
 - Melihat ulasan dari pengunjung
+- Tidak dapat menambahkan ulasan atau mengunggah foto
 
 ### ✮⋆˙ Pengunjung (Login) 
 
-- Registrasi Akun
+- Registrasi Akun (_Create_)
 - Login 
-- Menambahkan ulasan dan rating
-- Melihat ulasan dari pengguna lain
-- Mengunggah foto ke galeri
+- Menambahkan ulasan dan rating (_Create_)
+- Melihat ulasan dari pengguna lain (_Read_)
+- Mengunggah foto ke galeri (_Create_)
 
 
 ### ✮⋆˙ Admin
 
-- Login ke dashboard admin
-- Mengelola informasi wisata (tambah, edit, hapus)
-- Mengelola galeri (menyetujui dan menghapus foto)
-- Mengelola ulasan (melihat dan menghapus ulasan)
+- Login ke halaman admin
+- Melihat data pada dashboard (_Read_)
+- Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
+- Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
+- Mengelola data galeri (_Read_, _Delete_)
+- Mengelola data ulasan pengunjung (_Read_, _Delete_)
 
 
 
@@ -96,6 +100,18 @@ Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal den
   > GAMBAR
 
 - Halaman Dashboard Admin
+  > GAMBAR
+
+- Halaman Kelola Informasi Wisata (Admin)
+  > GAMBAR
+
+- Halaman Kelola Fasilitas
+  > GAMBAR
+
+- Halaman Manajemen Galeri
+  > GAMBAR
+
+- Halaman Manajemen Ulasan
   > GAMBAR
 
 ---
