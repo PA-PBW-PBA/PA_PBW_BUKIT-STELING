@@ -3,7 +3,8 @@
 <p align="center"><em>Nikmati Senja di Puncak Steling</em></p>
 
 <p align="center">
-  <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ef482a36-b9f3-4cfe-a938-723bdda7f3e6" />
+  <img width="1535" height="606" alt="Nikmati senja di Puncak Steling" src="https://github.com/user-attachments/assets/d1f620cb-03d4-41e1-a9f9-c48a7c6cdaf1" />
+
 </p>
 
 ### Kelompok Alakadarnya
