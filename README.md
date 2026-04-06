@@ -70,7 +70,7 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 - Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
 - Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
 - Mengelola data galeri (_Read_, _Delete_)
-- Mengelola data ulasan pengunjung (_Read_, _Delete_)
+- Mengelola data ulasan pengunjung 
 
 
 
