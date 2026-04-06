@@ -17,13 +17,12 @@
 
 ## Deskripsi Project
 
-Website Bukit Stelling Samarinda merupakan sebuah website yang dibuat untuk memberikan informasi tentang salah satu tempat wisata alam yang ada di Samarinda, yaitu Bukit Stelling. Website ini dibuat agar masyarakat bisa lebih mudah mendapatkan informasi mengenai tempat wisata tersebut tanpa harus datang langsung ke lokasi.
+Website Puncak Stelling Samarinda merupakan sebuah website yang dibuat untuk memberikan informasi tentang salah satu tempat wisata alam yang ada di Samarinda, yaitu Puncak Stelling. Website ini dibuat agar masyarakat bisa lebih mudah mendapatkan informasi mengenai tempat wisata tersebut tanpa harus datang langsung ke lokasi.
 
-Di dalam website ini terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Bukit Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
+Di dalam website ini terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Puncak Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
 
 Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
 
-Website ini dibuat menggunakan PHP dan MySQL, dan dijalankan di server lokal dengan bantuan Laragon.
 
 
 
