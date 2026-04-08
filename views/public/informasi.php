@@ -6,23 +6,23 @@ include '../templates/navbar_public.php';
 $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tb_informasi LIMIT 1"));
 ?>
 
-<div class="min-h-screen bg-white">
-    <section class="py-10 lg:py-14 border-b border-light" style="background-color: #F0FAF5;">
-        <div class="container py-4">
+<div class="min-vh-100 bg-white">
+    <section class="py-5 border-b border-light" style="background-color: #F0FAF5;">
+        <div class="container py-3">
             <nav class="d-flex align-items-center gap-2 mb-4 text-muted small">
-                <a href="beranda.php" class="text-decoration-none text-muted hover-primary">Home</a>
+                <a href="beranda.php" class="text-decoration-none text-muted">Home</a>
                 <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
                 <span class="text-dark fw-bold">Informasi</span>
             </nav>
-            <h1 class="display-5 fw-bold text-dark">Informasi Kunjungan</h1>
-            <p class="text-muted mt-2">Persiapkan perjalananmu ke Puncak Steling</p>
+            <h1 class="display-5 fw-bold text-dark mb-0">Informasi Kunjungan</h1>
+            <p class="text-muted mt-2 mb-0">Persiapkan perjalananmu ke Puncak Steling</p>
         </div>
     </section>
 
     <div class="container py-5">
         <div class="row g-4 mb-5">
             <div class="col-md-6">
-                <div class="card card-custom p-5 bg-white shadow-sm border-0">
+                <div class="card card-custom p-5 bg-white shadow-sm border-0 h-100">
                     <h6 class="text-muted text-uppercase fw-bold mb-4" style="font-size: 0.75rem; letter-spacing: 1px;">Tiket & Jam Operasional</h6>
                     <div class="mb-4">
                         <h1 class="fw-800 text-primary-custom mb-1">Rp <?php echo number_format($data['harga_tiket'], 0, ',', '.'); ?></h1>
@@ -47,7 +47,39 @@ $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tb_informasi LI
             </div>
         </div>
 
-        <h4 class="fw-bold mb-4">Fasilitas yang Tersedia</h4>
+        <div class="row gy-5 align-items-center mb-5">
+            <div class="col-lg-5">
+                <h6 class="text-primary-custom fw-bold text-uppercase small mb-3" style="letter-spacing: 2px;">Lokasi Objek Wisata</h6>
+                <h2 class="fw-bold text-dark mb-4">Titik Kumpul & Jalur Pendakian</h2>
+                <div class="d-flex gap-3 mb-3">
+                    <i class="bi bi-geo-alt-fill text-primary-custom fs-4"></i>
+                    <p class="text-muted mb-0">Selili, Kec. Samarinda Ilir, Kota Samarinda, Kalimantan Timur 75251</p>
+                </div>
+                <div class="d-flex gap-3 mb-4">
+                    <i class="bi bi-info-circle-fill text-primary-custom fs-4"></i>
+                    <p class="text-muted mb-0">Gunakan peta di samping untuk melihat ulasan, foto terbaru, dan detail lokasi langsung dari Google Maps.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Puncak+Steling+Samarinda&query_place_id=ChIJd8TuR1l_9i0RWUL2OPYPubI" target="_blank" class="btn btn-primary-custom rounded-pill px-5 py-3 fw-bold shadow">
+                    <i class="bi bi-cursor-fill me-2"></i> Buka di Aplikasi Maps
+                </a>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+                    <iframe 
+                        src="https://www.google.com/maps?q=-0.5093,117.1618&output=embed"" 
+                        width="100%" 
+                        height="500" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="fw-bold mb-4 pt-4">Fasilitas yang Tersedia</h4>
         <div class="row g-4">
             <?php
             $fasilitas = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas");

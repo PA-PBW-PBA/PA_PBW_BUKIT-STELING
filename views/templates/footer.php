@@ -1,6 +1,13 @@
-<footer class="pt-5 pb-4 mt-5" style="background-color: #1B1B1B; color: #E5E7EB;">
+<?php
+$is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
+?>
+
+<?php if (!$is_admin) : ?>
+<footer class="mt-auto" style="background-color: #1B1B1B; color: #E5E7EB; width: 100%; overflow-x: hidden;">
+    <div class="pt-5 pb-4">
         <div class="container">
             <div class="row gy-4">
+                
                 <div class="col-lg-5 col-md-12 pe-lg-5">
                     <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">Bukit Steling</h5>
                     <p class="small text-secondary" style="line-height: 1.8;">
@@ -18,7 +25,7 @@
                     </ul>
                     <h6 class="fw-bold text-white mb-3">Ikuti Kami</h6>
                     <a href="https://www.instagram.com/puncakstelingsamarinda" target="_blank" class="text-secondary text-decoration-none custom-hover d-flex align-items-center gap-2">
-                        <i class="bi bi-instagram fs-5"></i>
+                        <i class="bi bi-instagram fs-5 flex-shrink-0"></i>
                         <span>@puncakstelingsamarinda</span>
                     </a>
                 </div>
@@ -26,80 +33,67 @@
                 <div class="col-lg-4 col-md-6">
                     <h6 class="fw-bold text-white mb-3">Hubungi Pengelola</h6>
                     <ul class="list-unstyled small text-secondary">
-                        <li class="mb-3 d-flex align-items-start gap-2">
-                            <i class="bi bi-geo-alt mt-1 text-primary-custom"></i> 
+                        <li class="mb-3 d-flex align-items-start gap-3">
+                            <i class="bi bi-geo-alt mt-1 text-primary-custom flex-shrink-0 fs-6"></i> 
                             <span>RT 32, Kelurahan Sungai Dama, Kecamatan Samarinda Ilir, Kota Samarinda</span>
                         </li>
-                        <li class="mb-3 d-flex align-items-center gap-2">
-                            <i class="bi bi-clock text-primary-custom"></i> 
+                        <li class="mb-3 d-flex align-items-center gap-3">
+                            <i class="bi bi-clock text-primary-custom flex-shrink-0 fs-6"></i> 
                             <span>Buka Setiap Hari (06.00 - 23.00 WITA)</span>
                         </li>
-                        <li class="d-flex align-items-center gap-2">
-                            <i class="bi bi-whatsapp text-primary-custom"></i> 
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-whatsapp text-primary-custom flex-shrink-0 fs-6"></i> 
                             <span>+62 812-3456-7890 (Bapak La Riamu)</span>
                         </li>
                     </ul>
                 </div>
             </div>
-
-            <hr class="border-secondary opacity-25 my-4">
-
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-secondary">
-            </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div class="py-3" style="background-color: #111111; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container text-center">
+            <p class="text-secondary small mb-0">&copy; 2026 Puncak Steling Samarinda. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+<?php endif; ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe-lightbox.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe-lightbox.umd.min.js"></script>
+<script src="../../assets/js/script.js"></script>
 
-    <script src="../../assets/js/script.js"></script>
-
-    <script>
+<script>
+    if (document.querySelector('#pswp-gallery')) {
         const lightbox = new PhotoSwipeLightbox({
             gallery: '#pswp-gallery',
             children: 'a[target="_blank"]',
             pswpModule: PhotoSwipe 
         });
         lightbox.init();
+    }
 
-        function konfirmasiHapus(event, url, pesan = "Apakah Anda yakin ingin menghapus data ini?") {
-            event.preventDefault();
-            Swal.fire({
-                title: 'Konfirmasi Hapus',
-                text: pesan,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#f43f5e',
-                cancelButtonColor: '#94a3b8',
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Batal',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = url;
-                }
-            });
-        }
-
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-sm', 'border-bottom');
-            } else {
-                nav.classList.remove('shadow-sm', 'border-bottom');
+    function konfirmasiHapus(event, url, pesan = "Apakah Anda yakin ingin menghapus data ini?") {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: pesan,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#f43f5e',
+            cancelButtonColor: '#94a3b8',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
             }
         });
-    </script>
-
-    <footer class="bg-white border-top py-4 mt-auto">
-        <div class="container text-center">
-            <p class="text-muted small mb-0">&copy; 2026 Puncak Steling Samarinda. All rights reserved.</p>
-        </div>
-    </footer>
+    }
+</script>
 
 </body>
 </html>

@@ -7,9 +7,16 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
-$total_ulasan = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_ulasan FROM tb_ulasan"));
-$foto_pending = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_galeri FROM tb_galeri WHERE status = 'pending'"));
-$total_user = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_pengunjung FROM tb_pengunjung"));
+$query_rating = mysqli_query($koneksi, "SELECT AVG(rating) as rata_rata FROM tb_ulasan");
+$data_rating = mysqli_fetch_assoc($query_rating);
+$rating_final = number_format($data_rating['rata_rata'], 1);
+
+$total_approved = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_galeri FROM tb_galeri WHERE status = 'approved'"));
+
+$bulan_ini = date('m');
+$tahun_ini = date('Y');
+$query_user_baru = mysqli_query($koneksi, "SELECT id_pengunjung FROM tb_pengunjung WHERE MONTH(created_at) = '$bulan_ini' AND YEAR(created_at) = '$tahun_ini'");
+$user_baru = mysqli_num_rows($query_user_baru);
 
 include '../templates/header.php';
 ?>
@@ -22,49 +29,48 @@ include '../templates/header.php';
             <div class="d-flex justify-content-between align-items-center mb-5">
                 <div>
                     <h2 class="fw-bold text-dark mb-1">Dashboard Utama</h2>
-                    <p class="text-muted mb-0">Halo <b>Admin</b>, berikut adalah ringkasan aktivitas Puncak Steling hari ini.</p>
+                    <p class="text-muted mb-0">Halo <b>Admin</b>, berikut adalah ringkasan performa Puncak Steling periode ini.</p>
                 </div>
             </div>
 
             <div class="row g-4 mb-5">
                 <div class="col-md-4">
-                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="bg-primary-custom bg-opacity-10 p-3 rounded-4">
-                                <i class="bi bi-chat-dots-fill text-light fs-3"></i>
-                            </div>
-                            <div>
-                                <h3 class="fw-bold mb-0"><?php echo $total_ulasan; ?></h3>
-                                <p class="text-muted small mb-0">Total Ulasan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100">
+                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100 hover-up">
                         <div class="d-flex align-items-center gap-3">
                             <div class="bg-warning bg-opacity-10 p-3 rounded-4">
-                                <i class="bi bi-hourglass-split text-warning fs-3"></i>
+                                <i class="bi bi-star-fill text-warning fs-3"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold mb-0 text-warning"><?php echo $foto_pending; ?></h3>
-                                <p class="text-muted small mb-0">Menunggu Moderasi</p>
+                                <h3 class="fw-bold mb-0"><?php echo $rating_final; ?> / 5.0</h3>
+                                <p class="text-muted small mb-0">Indeks Kepuasan</p>
                             </div>
                         </div>
-                        <a href="kelola_galeri.php" class="stretched-link"></a>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100">
+                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100 hover-up">
                         <div class="d-flex align-items-center gap-3">
-                            <div class="bg-info bg-opacity-10 p-3 rounded-4">
-                                <i class="bi bi-people-fill text-info fs-3"></i>
+                            <div class="bg-success bg-opacity-10 p-3 rounded-4">
+                                <i class="bi bi-camera-fill text-success fs-3"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold mb-0 text-info"><?php echo $total_user; ?></h3>
-                                <p class="text-muted small mb-0">Akun Terdaftar</p>
+                                <h3 class="fw-bold mb-0 text-success"><?php echo $total_approved; ?></h3>
+                                <p class="text-muted small mb-0">Koleksi Foto Publik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100 hover-up">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-info bg-opacity-10 p-3 rounded-4">
+                                <i class="bi bi-graph-up-arrow text-info fs-3"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0 text-info">+<?php echo $user_baru; ?></h3>
+                                <p class="text-muted small mb-0">User Baru (Bulan Ini)</p>
                             </div>
                         </div>
                     </div>
@@ -86,20 +92,27 @@ include '../templates/header.php';
                     <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100">
                         <h6 class="fw-bold mb-3 border-bottom pb-2">Bantuan Admin</h6>
                         <ul class="list-unstyled small text-muted">
-                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Foto status 'pending' tidak akan muncul di website.</li>
-                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Ulasan dengan kata-kata kasar bisa dihapus permanen.</li>
-                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Selalu pratinjau website setelah mengubah info tiket.</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Rating tinggi meningkatkan visibilitas wisata.</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Foto publik adalah aset promosi gratis terbaik.</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Pantau user baru untuk melihat tren popularitas.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 <style>
-    .hover-up:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; transition: 0.3s; }
+    .hover-up:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; 
+        transition: all 0.3s ease; 
+    }
+    .bg-primary-custom {
+        background-color: var(--primary) !important;
+    }
+    .text-primary-custom {
+        color: var(--primary) !important;
+    }
 </style>
-
-<?php include '../templates/footer.php'; ?>

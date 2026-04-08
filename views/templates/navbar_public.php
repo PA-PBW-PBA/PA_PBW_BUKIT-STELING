@@ -22,16 +22,26 @@ if (session_status() === PHP_SESSION_NONE) {
             </ul>
 
             <div class="d-flex align-items-center gap-3">
-                <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'pengunjung') : ?>
+                <?php if (isset($_SESSION['login'])) : ?>
                     <div class="dropdown">
                         <a class="btn btn-primary-custom rounded-pill px-4 dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle"></i> 
-                            <span><?php echo explode(' ', $_SESSION['user'])[0]; ?></span>
+                            <span>
+                                <?php 
+                                    $nama = explode(' ', $_SESSION['user'])[0]; 
+                                    echo ($_SESSION['role'] === 'admin') ? $nama . " (Admin)" : $nama;
+                                ?>
+                            </span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 mt-3 py-2">
-                            <li><a class="dropdown-item py-2" href="profil.php"><i class="bi bi-person-badge me-2"></i> Profil Saya</a></li>
+                            <?php if ($_SESSION['role'] === 'admin') : ?>
+                                <li><a class="dropdown-item py-2 fw-bold text-primary-custom" href="../admin/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard Admin</a></li>
+                            <?php else : ?>
+                                <li><a class="dropdown-item py-2 fw-bold text-primary-custom" href="profil.php"><i class="bi bi-person-badge me-2"></i> Profil Saya</a></li>
+                            <?php endif; ?>
+                            
                             <li><hr class="dropdown-divider mx-2"></li>
-                            <li><a class="dropdown-item py-2 text-danger" href="../auth/logout.php"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a></li>
+                            <li><a class="dropdown-item py-2 text-danger fw-bold" href="../auth/logout.php"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a></li>
                         </ul>
                     </div>
                 <?php else : ?>

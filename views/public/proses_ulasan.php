@@ -7,6 +7,11 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'pengunjung') {
+    echo "<script>alert('Admin tidak diizinkan mengirim ulasan!'); window.location='ulasan.php';</script>";
+    exit;
+}
+
 if (isset($_POST['kirim'])) {
     $id_user = $_SESSION['id'];
     $rating = $_POST['rating'];
