@@ -2,7 +2,6 @@
 session_start();
 include '../../config/koneksi.php'; 
 
-// Ambil data dari database untuk Vue
 $query = mysqli_query($koneksi, "SELECT tb_galeri.*, tb_pengunjung.nama_lengkap FROM tb_galeri JOIN tb_pengunjung ON tb_galeri.id_pengunjung = tb_pengunjung.id_pengunjung WHERE status = 'approved' ORDER BY id_galeri DESC");
 $data_galeri = [];
 while($row = mysqli_fetch_assoc($query)) { 
@@ -14,10 +13,15 @@ include '../templates/navbar_public.php';
 ?>
 
 <div id="app-galeri" class="min-vh-100 bg-white">
-    <section class="py-5" style="background-color: #F0FAF5; border-bottom: 1px solid #e2e8f0;">
+    <section class="py-5 border-b border-light" style="background-color: #F0FAF5;">
         <div class="container py-3">
+            <nav class="d-flex align-items-center gap-2 mb-4 text-muted small">
+                <a href="beranda.php" class="text-decoration-none text-muted">Home</a>
+                <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
+                <span class="text-dark fw-bold">Galeri</span>
+            </nav>
             <h1 class="display-5 fw-bold text-dark mb-0">Galeri Puncak Steling</h1>
-            <p class="text-muted mt-2 mb-0">Keindahan Samarinda dalam genggaman reaktif.</p>
+            <p class="text-muted mt-2 mb-0">Keindahan Samarinda dalam setiap jepretan.</p>
         </div>
     </section>
 
@@ -31,9 +35,19 @@ include '../templates/navbar_public.php';
                 </button>
             </div>
             
-            <a href="unggah_foto.php" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
-                <i class="bi bi-upload"></i> <span class="fw-bold small text-uppercase">Upload Foto</span>
-            </a>
+            <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'pengunjung') : ?>
+                <a href="unggah_foto.php" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-upload"></i> <span class="fw-bold small text-uppercase">Upload Foto</span>
+                </a>
+            <?php elseif (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') : ?>
+                <a href="../admin/kelola_galeri.php" class="btn btn-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-gear-fill"></i> <span class="fw-bold small text-uppercase">Kelola Galeri</span>
+                </a>
+            <?php else : ?>
+                <a href="javascript:void(0)" onclick="alertLogin()" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-lock-fill"></i> <span class="fw-bold small text-uppercase">Upload Foto</span>
+                </a>
+            <?php endif; ?>
         </div>
 
         <transition-group name="fade-list" tag="div" class="row g-4">
@@ -103,15 +117,38 @@ include '../templates/navbar_public.php';
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Menyediakan data untuk Vue
     window.dataGaleri = <?php echo json_encode($data_galeri); ?>;
+
+    function alertLogin() {
+        Swal.fire({
+            title: 'Akses Terbatas',
+            text: "Silakan login sebagai pengunjung terlebih dahulu untuk mengunggah foto momen kamu.",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: 'var(--primary) !important',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Masuk Sekarang',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../auth/login.php';
+            }
+        })
+    }
 </script>
 
 <style>
 .fade-list-enter-active, .fade-list-leave-active { transition: all 0.4s ease; }
 .fade-list-enter-from, .fade-list-leave-to { opacity: 0; transform: translateY(20px); }
 .fade-list-move { transition: transform 0.4s ease; }
+.btn-outline-primary-custom { color: var(--primary) !important; border-color: var(--primary) !important; }
+.btn-outline-primary-custom:hover { background-color: var(--primary) !important; color: white !important; }
+.text-primary-custom { color: var(--primary) !important; }
+.border-primary-custom { border-color: var(--primary) !important; }
+.bg-primary-custom { background-color: var(--primary) !important; }
 </style>
 
 <?php include '../templates/footer.php'; ?>

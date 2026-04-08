@@ -6,20 +6,47 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../auth/login.php"); exit;
 }
 
-// PROSES TAMBAH FASILITAS
+// Fungsi bantu untuk konversi ke WebP
+function convertToWebp($source, $destination, $quality = 80) {
+    $info = getimagesize($source);
+    $mime = $info['mime'];
+
+    switch ($mime) {
+        case 'image/jpeg':
+            $image = imagecreatefromjpeg($source);
+            break;
+        case 'image/png':
+            $image = imagecreatefrompng($source);
+            imagepalettetotruecolor($image);
+            imagealphablending($image, true);
+            imagesavealpha($image, true);
+            break;
+        case 'image/webp':
+            $image = imagecreatefromwebp($source);
+            break;
+        default:
+            return false;
+    }
+
+    $result = imagewebp($image, $destination, $quality);
+    imagedestroy($image);
+    return $result;
+}
+
 if (isset($_POST['tambah'])) {
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama_fasilitas']);
-    
-    $foto = $_FILES['foto']['name'];
     $tmp = $_FILES['foto']['tmp_name'];
-    $path = "../../assets/img/fasilitas/" . $foto;
+    
+    // Nama file baru dengan ekstensi .webp
+    $nama_baru = time() . "_" . uniqid() . ".webp";
+    $path = "../../assets/img/fasilitas/" . $nama_baru;
 
-    if (move_uploaded_file($tmp, $path)) {
-        mysqli_query($koneksi, "INSERT INTO tb_fasilitas (nama_fasilitas, file_gambar) VALUES ('$nama', '$foto')");
+    if (convertToWebp($tmp, $path)) {
+        mysqli_query($koneksi, "INSERT INTO tb_fasilitas (nama_fasilitas, file_gambar) VALUES ('$nama', '$nama_baru')");
         echo "<script>
             Swal.fire({
                 title: 'Berhasil!',
-                text: 'Fasilitas baru telah ditambahkan.',
+                text: 'Fasilitas baru telah ditambahkan (Format WebP).',
                 icon: 'success',
                 timer: 2000,
                 showConfirmButton: false
@@ -30,23 +57,24 @@ if (isset($_POST['tambah'])) {
     }
 }
 
-// PROSES EDIT FASILITAS
 if (isset($_POST['edit'])) {
     $id = $_POST['id_fasilitas'];
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama_fasilitas']);
     $foto_lama = $_POST['foto_lama'];
 
     if ($_FILES['foto']['name'] != "") {
-        $foto = $_FILES['foto']['name'];
         $tmp = $_FILES['foto']['tmp_name'];
-        $path = "../../assets/img/fasilitas/" . $foto;
+        $nama_baru = time() . "_" . uniqid() . ".webp";
+        $path = "../../assets/img/fasilitas/" . $nama_baru;
         
-        // Hapus foto lama
-        if (file_exists("../../assets/img/fasilitas/" . $foto_lama)) {
-            @unlink("../../assets/img/fasilitas/" . $foto_lama);
+        if (convertToWebp($tmp, $path)) {
+            if (file_exists("../../assets/img/fasilitas/" . $foto_lama)) {
+                @unlink("../../assets/img/fasilitas/" . $foto_lama);
+            }
+            $foto = $nama_baru;
+        } else {
+            $foto = $foto_lama;
         }
-        
-        move_uploaded_file($tmp, $path);
     } else {
         $foto = $foto_lama;
     }
@@ -65,7 +93,6 @@ if (isset($_POST['edit'])) {
     </script>";
 }
 
-// PROSES HAPUS FASILITAS
 if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT file_gambar FROM tb_fasilitas WHERE id_fasilitas = '$id'"));
@@ -152,7 +179,6 @@ include '../templates/header.php';
     </div>
 </div>
 
-<!-- MODAL TAMBAH -->
 <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
@@ -164,11 +190,12 @@ include '../templates/header.php';
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" class="form-control" placeholder="Contoh: Musholla Baru" required>
+                        <input type="text" name="nama_fasilitas" class="form-control shadow-none" placeholder="Contoh: Musholla Baru" required>
                     </div>
                     <div class="mb-0">
                         <label class="form-label small fw-bold text-muted">Gambar Fasilitas</label>
-                        <input type="file" name="foto" class="form-control" accept="image/*" required>
+                        <input type="file" name="foto" class="form-control shadow-none" accept="image/png, image/jpeg, image/jpg" required>
+                        <p class="small text-muted mb-0 mt-1 italic">JPG/PNG akan dikompres otomatis ke WebP.</p>
                     </div>
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
@@ -180,7 +207,6 @@ include '../templates/header.php';
     </div>
 </div>
 
-<!-- MODAL EDIT LOOP -->
 <?php
 $q_modal = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas");
 while($fm = mysqli_fetch_assoc($q_modal)) :
@@ -199,11 +225,11 @@ while($fm = mysqli_fetch_assoc($q_modal)) :
                     
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" class="form-control" value="<?php echo $fm['nama_fasilitas']; ?>" required>
+                        <input type="text" name="nama_fasilitas" class="form-control shadow-none" value="<?php echo $fm['nama_fasilitas']; ?>" required>
                     </div>
                     <div class="mb-2">
                         <label class="form-label small fw-bold text-muted">Ganti Gambar (Opsional)</label>
-                        <input type="file" name="foto" class="form-control" accept="image/*">
+                        <input type="file" name="foto" class="form-control shadow-none" accept="image/png, image/jpeg, image/jpg">
                     </div>
                     <p class="small text-muted italic mb-0">Kosongkan jika tidak ingin mengubah gambar.</p>
                 </div>

@@ -40,7 +40,6 @@ if (isset($_GET['hapus_ulasan'])) {
     }
 }
 
-// 3. Ambil Statistik
 $count_foto = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_galeri FROM tb_galeri WHERE id_pengunjung = '$id_user'"));
 $count_ulasan = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_ulasan FROM tb_ulasan WHERE id_pengunjung = '$id_user'"));
 
@@ -142,11 +141,21 @@ include '../templates/navbar_public.php';
                                         </div>
                                         <a href="profil.php?hapus_ulasan=<?php echo $u['id_ulasan']; ?>" 
                                         class="btn btn-outline-danger btn-sm rounded-pill px-3" 
-                                        onclick="konfirmasiHapus(event, this.href, 'Hapus ulasan ini secara permanen?')">
+                                        onclick="return confirm('Hapus ulasan ini secara permanen?')">
                                             <i class="bi bi-trash me-1"></i> Hapus
                                         </a>
                                     </div>
-                                    <p class="mb-0 text-dark">"<?php echo $u['komentar']; ?>"</p>
+                                    <p class="mb-2 text-dark">"<?php echo $u['komentar']; ?>"</p>
+                                    
+                                    <?php if(!empty($u['balasan_admin'])) : ?>
+                                        <div class="mt-3 p-3 rounded-4 border-start border-4 border-primary-custom" style="background-color: #F0FAF5;">
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <i class="bi bi-patch-check-fill text-primary-custom"></i>
+                                                <small class="fw-bold text-dark">Tanggapan Pengelola</small>
+                                            </div>
+                                            <p class="mb-0 small text-dark opacity-75"><?php echo $u['balasan_admin']; ?></p>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <?php endwhile; else: ?>
@@ -162,5 +171,13 @@ include '../templates/navbar_public.php';
         </div>
     </div>
 </div>
+
+<style>
+    .border-primary-custom { border-color: var(--primary) !important; }
+    .text-primary-custom { color: var(--primary) !important; }
+    .bg-primary-custom { background-color: var(--primary) !important; }
+    .nav-pills .nav-link.active { background-color: var(--primary) !important; }
+    .nav-pills .nav-link { color: #6c757d; }
+</style>
 
 <?php include '../templates/footer.php'; ?>

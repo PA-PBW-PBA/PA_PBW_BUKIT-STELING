@@ -9,14 +9,15 @@ $info = mysqli_fetch_assoc($query_info);
 ?>
 
 <div class="min-vh-100 bg-white">
-    <section class="py-5 text-center" style="background-color: #F0FAF5; border-bottom: 1px solid #E2E8F0;">
-        <div class="container py-5">
-            <h1 class="display-4 fw-bold text-dark mb-3">Tentang Puncak Steling</h1>
-            <nav class="d-flex justify-content-center gap-2 small text-muted">
-                <a href="beranda.php" class="text-decoration-none text-muted hover-primary">Beranda</a>
-                <span>/</span>
+    <section class="py-5 border-b border-light" style="background-color: #F0FAF5;">
+        <div class="container py-3">
+            <nav class="d-flex align-items-center gap-2 mb-4 text-muted small">
+                <a href="beranda.php" class="text-decoration-none text-muted">Home</a>
+                <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
                 <span class="text-dark fw-bold">Tentang Kami</span>
             </nav>
+            <h1 class="display-5 fw-bold text-dark mb-0">Tentang Puncak Steling</h1>
+            <p class="text-muted mt-2 mb-0">Mengenal lebih dekat destinasi wisata alam Kota Samarinda</p>
         </div>
     </section>
 
@@ -25,7 +26,7 @@ $info = mysqli_fetch_assoc($query_info);
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="position-relative">
-                        <img src="../../assets/img/fasilitas/spot_foto.jpg" class="img-fluid rounded-4 shadow-lg w-100" alt="Puncak Steling View" onerror="this.src='https://via.placeholder.com/800x600?text=Indahnya+Puncak+Steling'">
+                        <img src="../../assets/img/fasilitas/Puncak Steling.JPG" class="img-fluid rounded-4 shadow-lg w-100" alt="Puncak Steling View" onerror="this.src='https://via.placeholder.com/800x600?text=Indahnya+Puncak+Steling'">
                         <div class="position-absolute bottom-0 start-0 bg-primary-custom text-white p-4 rounded-end-4 d-none d-md-block" style="margin-bottom: -20px;">
                             <h4 class="fw-bold mb-0">150+ mdpl</h4>
                             <p class="small mb-0">Ketinggian dari permukaan laut</p>
