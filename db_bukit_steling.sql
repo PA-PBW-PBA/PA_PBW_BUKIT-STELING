@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2026 at 02:48 PM
+-- Generation Time: Apr 10, 2026 at 05:59 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -66,7 +66,7 @@ INSERT INTO `tb_fasilitas` (`id_fasilitas`, `nama_fasilitas`, `icon`, `file_gamb
 (4, 'Spot Foto', 'camera', '1775321683_69d142530f56c.webp'),
 (5, 'Musholla', 'moon-stars', '1775321727_69d1427f60a02.webp'),
 (6, 'Area Santai', 'tree', '1775321718_69d142765a583.webp'),
-(7, 'Charging Station', NULL, '1775321761_69d142a17c641.webp');
+(7, 'Tempat Charge Handphone', NULL, '1775321761_69d142a17c641.webp');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,9 @@ INSERT INTO `tb_galeri` (`id_galeri`, `id_pengunjung`, `kategori`, `caption`, `f
 (9, 5, 'Malam Hari', 'ya\r\n', '1775100224_5.jpg', 'approved', '2026-04-02 03:23:44'),
 (10, 2, 'Pagi Hari', '=', '1775320282_2.webp', 'approved', '2026-04-04 16:31:22'),
 (11, 1, 'Sore & Sunset', 's', '1775320665_1.webp', 'approved', '2026-04-04 16:37:45'),
-(12, 7, 'Sore & Sunset', 'z', '1775322232_7.webp', 'approved', '2026-04-04 17:03:52');
+(12, 7, 'Sore & Sunset', 'z', '1775322232_7.webp', 'approved', '2026-04-04 17:03:52'),
+(13, 1, 'Sore & Sunset', 'uSDhOHDy9q3487n837-483C4U092802-938N0C384989C90842', '1775812044_1.webp', 'approved', '2026-04-10 09:07:24'),
+(14, 1, 'Malam Hari', 'S', '1775843176_1.webp', 'approved', '2026-04-10 17:46:17');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,32 @@ CREATE TABLE `tb_informasi` (
 --
 
 INSERT INTO `tb_informasi` (`id_info`, `harga_tiket`, `jam_buka`, `jam_tutup`, `deskripsi`, `tata_tertib`) VALUES
-(1, 15000, '10:00:00', '03:00:00', 'Puncak Steling Samarinda merupakan destinasi wisata alam yang menawarkan pemandangan Kota Samarinda dari ketinggian.', NULL);
+(1, 10000, '14:22:00', '03:00:00', 'Puncak Steling Samarinda merupakan destinasi wisata alam yang menawarkan pemandangan Kota Samarinda dari ketinggian.', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_like`
+--
+
+CREATE TABLE `tb_like` (
+  `id_like` int NOT NULL,
+  `id_galeri` int NOT NULL,
+  `id_pengunjung` int NOT NULL,
+  `tanggal_like` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_like`
+--
+
+INSERT INTO `tb_like` (`id_like`, `id_galeri`, `id_pengunjung`, `tanggal_like`) VALUES
+(2, 13, 1, '2026-04-10 12:15:45'),
+(6, 12, 1, '2026-04-10 12:15:48'),
+(7, 12, 2, '2026-04-10 12:16:05'),
+(8, 11, 1, '2026-04-10 14:58:54'),
+(9, 9, 1, '2026-04-10 15:13:51'),
+(10, 13, 2, '2026-04-10 17:35:31');
 
 -- --------------------------------------------------------
 
@@ -149,7 +176,8 @@ INSERT INTO `tb_pengunjung` (`id_pengunjung`, `nama_lengkap`, `email`, `password
 (7, 'lau sape', '123@gmail.com', '123', '2026-04-04 17:00:25'),
 (8, 'r', '111@gmail.com', '1', '2026-04-04 17:09:30'),
 (9, '121222', '1@r.com', 'wwwwwwwwwww', '2026-04-04 17:16:11'),
-(10, 'BigMO', 'mo@outlook.com', '123', '2026-04-08 14:04:51');
+(10, 'BigMO', 'mo@outlook.com', '123', '2026-04-08 14:04:51'),
+(11, 'eko wijaya', 'eko@gmail.com', '12345678', '2026-04-10 08:23:05');
 
 -- --------------------------------------------------------
 
@@ -175,12 +203,12 @@ INSERT INTO `tb_ulasan` (`id_ulasan`, `id_pengunjung`, `rating`, `komentar`, `ba
 (4, 1, 5, 'gacor gacor', NULL, '2026-03-29 16:00:00'),
 (6, 1, 4, 'tes', NULL, '2026-03-29 16:00:00'),
 (7, 1, 5, 'hdue', NULL, '2026-03-29 16:00:00'),
-(8, 1, 5, 'dea', NULL, '2026-03-29 16:00:00'),
-(9, 1, 5, 'dsfcksefjklesjafkjwediekwjckejcnjdcj;EIHashfjlsllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll', NULL, '2026-03-29 16:00:00'),
-(10, 1, 5, 'tes', '😁😁😁😁', '2026-04-01 16:08:40'),
 (11, 2, 5, 'yo', 'jhuhuhuihlijoljoljj', '2026-04-01 16:22:03'),
 (12, 4, 1, 'jelek jir', 'haters', '2026-04-01 23:37:19'),
-(13, 2, 4, 'w', 'asddddddddddddddddd', '2026-04-04 16:45:44');
+(16, 1, 5, 'ASDASDAD', NULL, '2026-04-10 10:13:38'),
+(17, 1, 5, 'ADADADADADASD', NULL, '2026-04-10 10:13:44'),
+(18, 1, 5, 'ADADADADADADA', NULL, '2026-04-10 10:13:50'),
+(19, 1, 5, 'ASDADADADADDA', NULL, '2026-04-10 10:13:56');
 
 --
 -- Indexes for dumped tables
@@ -211,6 +239,14 @@ ALTER TABLE `tb_galeri`
 --
 ALTER TABLE `tb_informasi`
   ADD PRIMARY KEY (`id_info`);
+
+--
+-- Indexes for table `tb_like`
+--
+ALTER TABLE `tb_like`
+  ADD PRIMARY KEY (`id_like`),
+  ADD KEY `id_galeri` (`id_galeri`),
+  ADD KEY `id_pengunjung` (`id_pengunjung`);
 
 --
 -- Indexes for table `tb_pengunjung`
@@ -246,7 +282,7 @@ ALTER TABLE `tb_fasilitas`
 -- AUTO_INCREMENT for table `tb_galeri`
 --
 ALTER TABLE `tb_galeri`
-  MODIFY `id_galeri` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_galeri` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tb_informasi`
@@ -255,16 +291,22 @@ ALTER TABLE `tb_informasi`
   MODIFY `id_info` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `tb_like`
+--
+ALTER TABLE `tb_like`
+  MODIFY `id_like` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `tb_pengunjung`
 --
 ALTER TABLE `tb_pengunjung`
-  MODIFY `id_pengunjung` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pengunjung` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tb_ulasan`
 --
 ALTER TABLE `tb_ulasan`
-  MODIFY `id_ulasan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_ulasan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
@@ -275,6 +317,13 @@ ALTER TABLE `tb_ulasan`
 --
 ALTER TABLE `tb_galeri`
   ADD CONSTRAINT `tb_galeri_ibfk_1` FOREIGN KEY (`id_pengunjung`) REFERENCES `tb_pengunjung` (`id_pengunjung`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `tb_like`
+--
+ALTER TABLE `tb_like`
+  ADD CONSTRAINT `tb_like_ibfk_1` FOREIGN KEY (`id_galeri`) REFERENCES `tb_galeri` (`id_galeri`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tb_like_ibfk_2` FOREIGN KEY (`id_pengunjung`) REFERENCES `tb_pengunjung` (`id_pengunjung`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tb_ulasan`
