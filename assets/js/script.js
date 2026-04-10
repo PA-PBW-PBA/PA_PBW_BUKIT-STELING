@@ -19,6 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href.length === 0) return;
+            const targetId = href.slice(1);
+            const target = document.getElementById(targetId) || document.querySelector(`[name="${targetId}"]`);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, '', `#${targetId}`);
+            }
+        });
+    });
+
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
     const eyeIcon = document.getElementById('eyeIcon');
@@ -114,5 +128,6 @@ if (document.getElementById('app-galeri')) {
             const totalPages = computed(() => Math.ceil(filteredGaleri.value.length / itemsPerPage.value));
             return { categories, activeCategory, paginatedGaleri, currentPage, totalPages };
         }
-    }).mount('#app-galeri');
+    });
+    galleryApp.mount('#app-galeri');
 }
