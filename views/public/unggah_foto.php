@@ -1,6 +1,6 @@
-<?php
+<?php 
 session_start();
-include '../../config/koneksi.php';
+include '../../config/koneksi.php'; 
 
 if (!isset($_SESSION['login'])) {
     header("Location: ../auth/login.php");
@@ -16,7 +16,7 @@ if (isset($_POST['upload'])) {
                 title: 'Akses Dibatasi!',
                 text: 'Admin tidak diizinkan mengunggah foto dari sini.',
                 icon: 'warning',
-                confirmButtonColor: '#10b981'
+                confirmButtonColor: '#79AE6F'
             }).then(() => {
                 window.location='galeri.php';
             });
@@ -33,7 +33,8 @@ if (isset($_POST['upload'])) {
         $nama_baru = time() . "_" . $id_user . ".webp";
         $folder_tujuan = "../../assets/img/uploads/" . $nama_baru;
 
-        $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+        $allowed = ['jpg', 'jpeg', 'png']; 
+        
         if (in_array($ekstensi, $allowed)) {
             if ($ekstensi == 'jpg' || $ekstensi == 'jpeg') {
                 $image = imagecreatefromjpeg($tmp_file);
@@ -42,10 +43,9 @@ if (isset($_POST['upload'])) {
                 imagepalettetotruecolor($image);
                 imagealphablending($image, true);
                 imagesavealpha($image, true);
-            } elseif ($ekstensi == 'webp') {
-                $image = imagecreatefromwebp($tmp_file);
             }
 
+            // Kompresi ke WebP untuk performa website yang lebih cepat
             if (imagewebp($image, $folder_tujuan, 60)) {
                 imagedestroy($image);
                 $query = "INSERT INTO tb_galeri (id_pengunjung, kategori, caption, file_foto, status) 
@@ -69,7 +69,7 @@ if (isset($_POST['upload'])) {
                 $pesan_swal = "Swal.fire({ title: 'Gagal!', text: 'Gagal memproses kompresi gambar.', icon: 'error' });";
             }
         } else {
-            $pesan_swal = "Swal.fire({ title: 'Format Salah!', text: 'Hanya mendukung JPG, PNG, dan WebP.', icon: 'warning' });";
+            $pesan_swal = "Swal.fire({ title: 'Format Salah!', text: 'Hanya mendukung format JPG, JPEG, dan PNG.', icon: 'warning' });";
         }
     }
 }
@@ -78,58 +78,79 @@ include '../templates/header.php';
 include '../templates/navbar_public.php';
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-<div class="min-h-screen bg-white">
-    <section class="py-10" style="background-color: #F0FAF5;">
-        <div class="container py-4">
-            <nav class="d-flex align-items-center gap-2 mb-3 text-muted small">
-                <a href="beranda.php" class="text-decoration-none text-muted">Home</a>
-                <i class="bi bi-chevron-right"></i>
-                <a href="galeri.php" class="text-decoration-none text-muted">Galeri</a>
-                <i class="bi bi-chevron-right"></i>
-                <span class="text-dark fw-bold">Unggah</span>
+<div id="app-upload" class="min-vh-100 bg-white overflow-hidden">
+    <section class="py-5 border-b border-light bg-light-green animate__animated animate__fadeIn">
+        <div class="container py-3">
+            <nav class="breadcrumb-custom mb-4">
+                <a href="beranda.php" class="breadcrumb-link">Home</a>
+                <i class="bi bi-chevron-right breadcrumb-separator"></i>
+                <a href="galeri.php" class="breadcrumb-link">Galeri</a>
+                <i class="bi bi-chevron-right breadcrumb-separator"></i>
+                <span class="breadcrumb-current">Unggah</span>
             </nav>
-            <h2 class="fw-bold mb-0">Unggah Momen Steling</h2>
+            <h1 class="display-5 fw-bold text-dark mb-0 animate__animated animate__fadeInDown">Unggah Momen Steling</h1>
+            <p class="text-muted mt-2 mb-0 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">Bagikan jepretan terbaikmu kepada pengunjung lainnya</p>
         </div>
     </section>
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card card-custom border shadow-sm p-4">
+            <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <div class="card card-custom border-0 shadow p-4 p-md-5 bg-white">
                     <?php if ($_SESSION['role'] === 'pengunjung') : ?>
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label class="form-label fw-bold small">Pilih Foto (JPG/PNG)</label>
-                                <input type="file" name="foto" class="form-control rounded-3" accept="image/png, image/jpeg" required>
-                                <div class="form-text text-muted" style="font-size: 0.75rem;">
-                                    </i> Format foto yang didukung adalah <b>JPG, PNG, WebP</b>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-dark small mb-2">Pilih Foto Terbaikmu</label>
+                                <div class="input-group shadow-sm-custom">
+                                    <input type="file" name="foto" @change="previewImage" id="inputFoto" class="form-control rounded-3 border-0 bg-light py-2" accept="image/png, image/jpeg" required>
+                                </div>
+                                <div class="form-text text-muted x-small mt-2">
+                                    <i class="bi bi-info-circle me-1"></i> Mendukung format <b>JPG, JPEG, PNG</b>.
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold small">Kategori Waktu</label>
-                                <select name="kategori" class="form-select rounded-3" required>
-                                    <option value="" disabled selected>Pilih Waktu...</option>
-                                    <option value="Pagi Hari">Pagi Hari</option>
-                                    <option value="Sore & Sunset">Sore & Sunset</option>
-                                    <option value="Malam Hari">Malam Hari</option>
+
+                            <transition name="fade">
+                                <div v-if="imagePreview" class="mb-4 text-center">
+                                    <div class="position-relative d-inline-block animate__animated animate__zoomIn animate__faster">
+                                        <img :src="imagePreview" class="img-thumbnail rounded-4 shadow-sm border-0" style="max-height: 300px; object-fit: contain;">
+                                        <button type="button" @click="removeImage" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 rounded-circle shadow">
+                                            <i class="bi bi-x fs-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </transition>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-dark small mb-2">Waktu Pengambilan Foto</label>
+                                <select name="kategori" class="form-select rounded-3 border-0 bg-light py-2 shadow-sm-custom" required>
+                                    <option value="" disabled selected>Pilih Kategori Waktu...</option>
+                                    <option value="Pagi Hari">Pagi Hari (Sunrise & Embun)</option>
+                                    <option value="Sore & Sunset">Sore & Sunset (Senja)</option>
+                                    <option value="Malam Hari">Malam Hari (City Light)</option>
                                 </select>
                             </div>
+
                             <div class="mb-4">
-                                <label class="form-label fw-bold small">Keterangan</label>
-                                <textarea name="caption" class="form-control rounded-3" rows="3" placeholder="Tuliskan cerita singkat momen ini..." required></textarea>
+                                <label class="form-label fw-bold text-dark small d-flex justify-content-between mb-2">
+                                    <span>Keterangan Foto</span>
+                                    <span class="x-small" :class="caption.length >= 50 ? 'text-danger fw-bold' : 'text-muted'">{{ caption.length }}/50</span>
+                                </label>
+                                <textarea name="caption" v-model="caption" class="form-control rounded-3 border-0 bg-light py-2 shadow-sm-custom" rows="3" placeholder="Tuliskan cerita singkat tentang foto ini..." maxlength="50" required></textarea>
                             </div>
-                            <button type="submit" name="upload" class="btn btn-primary-custom w-100 rounded-pill py-2 fw-bold shadow-sm">
-                                <i class="bi bi-cloud-arrow-up-fill me-2"></i> Unggah Sekarang
+
+                            <button type="submit" name="upload" class="btn btn-primary-custom w-100 rounded-pill py-3 fw-bold shadow hover-scale" :disabled="caption.length > 50">
+                                <i class="bi bi-cloud-arrow-up-fill me-2"></i> Kirim untuk Moderasi
                             </button>
                         </form>
                     <?php else : ?>
                         <div class="text-center py-4">
-                            <i class="bi bi-shield-lock fs-1 text-danger mb-3"></i>
-                            <h6 class="fw-bold text-danger">Akses Dibatasi</h6>
-                            <p class="small text-muted mb-4">Hanya akun pengunjung yang dapat berbagi momen di galeri.</p>
-                            <a href="../admin/kelola_galeri.php" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 small fw-bold">Ke Moderator Panel</a>
+                            <div class="mb-3 text-danger opacity-50"><i class="bi bi-shield-lock icon-xl"></i></div>
+                            <h5 class="fw-bold text-dark">Akses Terbatas</h5>
+                            <p class="text-muted small mb-4">Hanya pengunjung yang dapat mengunggah momen ke galeri publik.</p>
+                            <a href="../admin/kelola_galeri.php" class="btn btn-primary-custom rounded-pill px-5 py-2 fw-bold shadow">Kelola Galeri</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -138,6 +159,43 @@ include '../templates/navbar_public.php';
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                caption: '',
+                imagePreview: null
+            }
+        },
+        methods: {
+            previewImage(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                    if (!allowedTypes.includes(file.type)) {
+                        Swal.fire({ 
+                            title: 'Format Salah!', 
+                            text: 'Gunakan format gambar JPG, JPEG, atau PNG.', 
+                            icon: 'warning',
+                            confirmButtonColor: '#79AE6F'
+                        });
+                        this.removeImage();
+                        return;
+                    }
+                    this.imagePreview = URL.createObjectURL(file);
+                }
+            },
+            removeImage() {
+                this.imagePreview = null;
+                const input = document.getElementById('inputFoto');
+                if (input) input.value = '';
+            }
+        }
+    }).mount('#app-upload');
+</script>
+
 <?php if (!empty($pesan_swal)) : ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -145,5 +203,13 @@ include '../templates/navbar_public.php';
         });
     </script>
 <?php endif; ?>
+
+<style>
+    /* Transisi sederhana untuk preview gambar */
+    .fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+    .fade-enter-from, .fade-leave-to { opacity: 0; }
+    
+    .shadow-sm-custom { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+</style>
 
 <?php include '../templates/footer.php'; ?>

@@ -3,14 +3,14 @@ $is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
 ?>
 
 <?php if (!$is_admin) : ?>
-<footer class="mt-auto" style="background-color: #1B1B1B; color: #E5E7EB; width: 100%; overflow-x: hidden;">
+<footer class="mt-auto footer-dark overflow-x-hidden w-100\">
     <div class="pt-5 pb-4">
         <div class="container">
             <div class="row gy-4">
                 
                 <div class="col-lg-5 col-md-12 pe-lg-5">
                     <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">Bukit Steling</h5>
-                    <p class="small text-secondary" style="line-height: 1.8;">
+                    <p class="small text-secondary text-relaxed">
                         Destinasi wisata alam yang menawarkan pemandangan menakjubkan Kota Samarinda dan hamparan Sungai Mahakam dari ketinggian. Dikelola dengan penuh dedikasi oleh Kelompok Sadar Wisata (POKDARWIS) setempat.
                     </p>
                 </div>
@@ -43,7 +43,9 @@ $is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
                         </li>
                         <li class="d-flex align-items-center gap-3">
                             <i class="bi bi-whatsapp text-primary-custom flex-shrink-0 fs-6"></i> 
-                            <span>+62 812-3456-7890 (Bapak La Riamu)</span>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="text-secondary text-decoration-none custom-hover">
+                                <span>+62 812-3456-7890 (Bapak La Riamu)</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +53,7 @@ $is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
         </div>
     </div>
 
-    <div class="py-3" style="background-color: #111111; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="py-3 footer-darker border-top-subtle">
         <div class="container text-center">
             <p class="text-secondary small mb-0">&copy; 2026 Puncak Steling Samarinda. All rights reserved.</p>
         </div>

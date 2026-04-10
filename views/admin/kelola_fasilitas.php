@@ -6,7 +6,6 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../auth/login.php"); exit;
 }
 
-// Fungsi bantu untuk konversi ke WebP
 function convertToWebp($source, $destination, $quality = 80) {
     $info = getimagesize($source);
     $mime = $info['mime'];
@@ -37,7 +36,6 @@ if (isset($_POST['tambah'])) {
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama_fasilitas']);
     $tmp = $_FILES['foto']['tmp_name'];
     
-    // Nama file baru dengan ekstensi .webp
     $nama_baru = time() . "_" . uniqid() . ".webp";
     $path = "../../assets/img/fasilitas/" . $nama_baru;
 
@@ -118,37 +116,40 @@ if (isset($_GET['hapus'])) {
 include '../templates/header.php';
 ?>
 
-<div class="container-fluid px-0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app-fasilitas" class="container-fluid px-0">
     <div class="row g-0">
         <?php include '../templates/sidebar_admin.php'; ?>
 
         <div class="col-md-10 p-5 bg-light min-vh-100">
-            <div class="d-flex justify-content-between align-items-center mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-5 animate__animated animate__fadeInDown">
                 <div>
                     <h3 class="fw-bold mb-1 text-dark">Manajemen Fasilitas</h3>
                     <p class="text-muted">Kelola daftar fasilitas yang tersedia di Puncak Steling.</p>
                 </div>
-                <button class="btn btn-primary-custom rounded-pill px-4 shadow-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalTambah">
+                <button class="btn btn-primary-custom rounded-pill px-4 shadow-sm fw-bold hover-scale" data-bs-toggle="modal" data-bs-target="#modalTambah">
                     <i class="bi bi-plus-lg me-2"></i> Tambah Fasilitas
                 </button>
             </div>
 
-            <div class="card card-custom border-0 shadow-sm overflow-hidden bg-white">
+            <div class="card card-custom border-0 shadow-sm overflow-hidden bg-white animate__animated animate__fadeInUp">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-light">
+                        <header class="bg-light">
                             <tr>
                                 <th class="ps-4 py-3 border-0 small fw-bold text-muted text-uppercase">Gambar</th>
                                 <th class="py-3 border-0 small fw-bold text-muted text-uppercase">Nama Fasilitas</th>
                                 <th class="py-3 border-0 small fw-bold text-muted text-uppercase text-center">Aksi</th>
                             </tr>
-                        </thead>
+                        </header>
                         <tbody>
                             <?php
                             $q = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas ORDER BY id_fasilitas DESC");
                             while($f = mysqli_fetch_assoc($q)) :
                             ?>
-                            <tr>
+                            <tr class="transition-row">
                                 <td class="ps-4 py-3">
                                     <img src="../../assets/img/fasilitas/<?php echo $f['file_gambar']; ?>" class="rounded-3 shadow-sm object-fit-cover" style="width: 80px; height: 60px;">
                                 </td>
@@ -157,13 +158,13 @@ include '../templates/header.php';
                                 </td>
                                 <td class="py-3 text-center">
                                     <div class="d-flex justify-content-center gap-2">
-                                        <button class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-primary-custom" 
+                                        <button class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-primary-custom hover-btn" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#modalEdit<?php echo $f['id_fasilitas']; ?>">
                                             <i class="bi bi-pencil-square fs-6"></i>
                                         </button>
                                         <a href="?hapus=<?php echo $f['id_fasilitas']; ?>" 
-                                           class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-danger" 
+                                           class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-danger hover-btn" 
                                            onclick="konfirmasiHapus(event, this.href, 'Hapus fasilitas <?php echo $f['nama_fasilitas']; ?>?')">
                                             <i class="bi bi-trash fs-6"></i>
                                         </a>
@@ -190,17 +191,17 @@ include '../templates/header.php';
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" class="form-control shadow-none" placeholder="Contoh: Musholla Baru" required>
+                        <input type="text" name="nama_fasilitas" class="form-control shadow-none focus-ring" placeholder="Contoh: Musholla Baru" required>
                     </div>
                     <div class="mb-0">
                         <label class="form-label small fw-bold text-muted">Gambar Fasilitas</label>
-                        <input type="file" name="foto" class="form-control shadow-none" accept="image/png, image/jpeg, image/jpg" required>
+                        <input type="file" name="foto" class="form-control shadow-none focus-ring" accept="image/png, image/jpeg, image/jpg" required>
                         <p class="small text-muted mb-0 mt-1 italic">JPG/PNG akan dikompres otomatis ke WebP.</p>
                     </div>
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
                     <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="tambah" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm">Tambah Sekarang</button>
+                    <button type="submit" name="tambah" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm hover-scale">Tambah Sekarang</button>
                 </div>
             </form>
         </div>
@@ -225,22 +226,48 @@ while($fm = mysqli_fetch_assoc($q_modal)) :
                     
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" class="form-control shadow-none" value="<?php echo $fm['nama_fasilitas']; ?>" required>
+                        <input type="text" name="nama_fasilitas" class="form-control shadow-none focus-ring" value="<?php echo $fm['nama_fasilitas']; ?>" required>
                     </div>
                     <div class="mb-2">
                         <label class="form-label small fw-bold text-muted">Ganti Gambar (Opsional)</label>
-                        <input type="file" name="foto" class="form-control shadow-none" accept="image/png, image/jpeg, image/jpg">
+                        <input type="file" name="foto" class="form-control shadow-none focus-ring" accept="image/png, image/jpeg, image/jpg">
                     </div>
                     <p class="small text-muted italic mb-0">Kosongkan jika tidak ingin mengubah gambar.</p>
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
                     <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="edit" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm">Simpan Perubahan</button>
+                    <button type="submit" name="edit" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm hover-scale">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <?php endwhile; ?>
+
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                mounted: true
+            }
+        }
+    }).mount('#app-fasilitas');
+</script>
+
+<style>
+    /* Styling interaksi tombol dan input */
+    .hover-scale { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .hover-scale:hover { transform: scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important; }
+    
+    .hover-btn { transition: all 0.2s; }
+    .hover-btn:hover { background-color: var(--primary) !important; color: white !important; }
+    .hover-btn.text-danger:hover { background-color: #dc3545 !important; color: white !important; }
+    
+    .transition-row { transition: background-color 0.2s ease; }
+    .transition-row:hover { background-color: #f8f9fa; }
+    
+    .focus-ring:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 0.25rem rgba(121, 174, 111, 0.25) !important; }
+</style>
 
 <?php include '../templates/footer.php'; ?>

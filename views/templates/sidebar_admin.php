@@ -3,13 +3,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<nav class="navbar navbar-expand-lg d-md-none p-3 shadow-sm sticky-top" style="background-color: #0f172a; z-index: 1040;">
+<nav class="navbar navbar-expand-lg d-md-none p-3 shadow-sm sticky-top sidebar-admin-dark z-1040">
     <div class="container-fluid">
         <div class="d-flex align-items-center gap-2 text-white">
-            <div class="bg-primary-custom rounded-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
+            <div class="bg-primary-custom rounded-2 d-flex align-items-center justify-content-center shadow-sm sidebar-icon-sm">
                 <i class="bi bi-mountain text-white"></i>
             </div>
-            <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 0.9rem;">STELING ADMIN</h6>
+            <h6 class="mb-0 fw-bold sidebar-brand-size">STELING ADMIN</h6>
         </div>
         <button class="navbar-toggler border-0 text-white p-0" type="button" id="sidebarToggleBtn">
             <i class="bi bi-list fs-1"></i>
@@ -17,10 +17,10 @@
     </div>
 </nav>
 
-<div class="offcanvas offcanvas-start d-md-none border-0" tabindex="-1" id="adminSidebarMobile" style="background-color: #0f172a; width: 280px; z-index: 1050;">
+<div class="offcanvas offcanvas-start d-md-none border-0 sidebar-offcanvas-width sidebar-admin-dark z-1050" tabindex="-1" id="adminSidebarMobile">
     <div class="offcanvas-header border-bottom border-secondary border-opacity-25 p-4">
         <div class="d-flex align-items-center gap-3">
-            <div class="bg-primary-custom rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 35px; height: 35px;">
+            <div class="bg-primary-custom rounded-3 d-flex align-items-center justify-content-center shadow-sm sidebar-icon-md">
                 <i class="bi bi-mountain text-white"></i>
             </div>
             <h5 class="offcanvas-title text-white fw-bold mb-0">Menu Admin</h5>
@@ -29,12 +29,12 @@
     </div>
     <div class="offcanvas-body p-4 custom-scrollbar">
         <div class="mb-4">
-            <a href="../public/beranda.php" class="btn w-100 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 text-decoration-none text-white border border-secondary border-opacity-25" style="background: rgba(255,255,255,0.05);">
-                <i class="bi bi-arrow-up-right-square"></i> <span style="font-size: 0.8rem; font-weight: 600;">Lihat Website</span>
+            <a href="../public/beranda.php" class="btn w-100 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 text-decoration-none text-white border border-secondary border-opacity-25 sidebar-btn-glass">
+                <i class="bi bi-arrow-up-right-square"></i> <span class="font-link-sm">Lihat Website</span>
             </a>
         </div>
         <ul class="nav flex-column gap-1">
-            <li class="nav-item small fw-bold mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.4);">MAIN NAVIGATION</li>
+            <li class="nav-item small fw-bold mb-2 ps-2 sidebar-nav-label">MAIN NAVIGATION</li>
             <li class="nav-item">
                 <a class="nav-link admin-nav-link <?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
                     <i class="bi bi-grid-1x2"></i> Dashboard
@@ -65,9 +65,9 @@
                     <i class="bi bi-chat-square-text"></i> Kelola Ulasan
                 </a>
             </li>
-            <li class="nav-item small fw-bold mt-4 mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.4);">SISTEM</li>
+            <li class="nav-item small fw-bold mt-4 mb-2 ps-2 sidebar-nav-label">SISTEM</li>
             <li class="nav-item">
-                <a class="nav-link logout-btn px-3 py-2 rounded-3 d-flex align-items-center gap-3" onclick="handleLogout()" style="cursor: pointer;">
+                <a class="nav-link logout-btn px-3 py-2 rounded-3 d-flex align-items-center gap-3 cursor-pointer" onclick="handleLogout()">
                     <i class="bi bi-box-arrow-right"></i> Logout
                 </a>
             </li>
@@ -75,27 +75,27 @@
     </div>
 </div>
 
-<div class="col-md-2 d-none d-md-block p-0 shadow-lg" style="background-color: #0f172a; border-right: 1px solid rgba(255,255,255,0.05);">
-    <div class="sticky-top overflow-y-auto custom-scrollbar" style="height: 100vh; background-color: #0f172a;">
-        <div class="p-4 d-flex flex-column" style="min-height: 100%;">
+<div class="col-md-2 d-none d-md-block p-0 shadow-lg sidebar-admin-dark sidebar-border-right">
+    <div class="sticky-top overflow-y-auto custom-scrollbar sidebar-admin-full">
+        <div class="p-4 d-flex flex-column sidebar-nav-min">
             <div class="mb-4 d-flex align-items-center gap-3 mt-2">
-                <div class="bg-primary-custom rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px;">
+                <div class="bg-primary-custom rounded-3 d-flex align-items-center justify-content-center shadow-sm sidebar-icon-lg">
                     <i class="bi bi-mountain text-white fs-5"></i>
                 </div>
                 <div>
-                    <h6 class="text-white fw-bold mb-0" style="letter-spacing: 0.5px;">STELING</h6>
-                    <span class="fw-medium" style="font-size: 0.65rem; text-transform: uppercase; color: rgba(255,255,255,0.4);">Admin Panel</span>
+                    <h6 class="text-white fw-bold mb-0 ls-tight">STELING</h6>
+                    <span class="fw-medium sidebar-xxs-label">Admin Panel</span>
                 </div>
             </div>
 
             <div class="mb-4">
-                <a href="../public/beranda.php" class="btn w-100 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 text-decoration-none text-white border border-secondary border-opacity-25" style="background: rgba(255,255,255,0.05);">
-                    <i class="bi bi-arrow-up-right-square"></i> <span style="font-size: 0.8rem; font-weight: 600;">Lihat Website</span>
+                <a href="../public/beranda.php" class="btn w-100 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 text-decoration-none text-white border border-secondary border-opacity-25 sidebar-btn-glass">
+                    <i class="bi bi-arrow-up-right-square"></i> <span class="font-link-sm">Lihat Website</span>
                 </a>
             </div>
 
             <ul class="nav flex-column gap-1 pb-2">
-                <li class="nav-item small fw-bold mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.4);">MAIN NAVIGATION</li>
+                <li class="nav-item small fw-bold mb-2 ps-2 sidebar-nav-label">MAIN NAVIGATION</li>
                 <li class="nav-item">
                     <a class="nav-link admin-nav-link <?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
                         <i class="bi bi-grid-1x2"></i> Dashboard
@@ -126,9 +126,9 @@
                         <i class="bi bi-chat-square-text"></i> Kelola Ulasan
                     </a>
                 </li>
-                <li class="nav-item small fw-bold mt-4 mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.4);">SISTEM</li>
+                <li class="nav-item small fw-bold mt-4 mb-2 ps-2 sidebar-nav-label">SISTEM</li>
                 <li class="nav-item">
-                    <a class="nav-link logout-btn px-3 py-2 rounded-3 d-flex align-items-center gap-3" onclick="handleLogout()" style="cursor: pointer;">
+                    <a class="nav-link logout-btn px-3 py-2 rounded-3 d-flex align-items-center gap-3 cursor-pointer" onclick="handleLogout()">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </a>
                 </li>
