@@ -79,7 +79,7 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 ## Tampilan _Website_
 
 ### ✧˖°. Halaman Beranda
-  > <img width="1905" height="941" alt="image" src="https://github.com/user-attachments/assets/a37d1721-0753-438a-8393-e584086b3279" />
+  > <img width="1905" height="941" alt="Screenshot 2026-04-11 093459" src="https://github.com/user-attachments/assets/ec58eae7-24ea-43fc-9227-4970cc33479c" />
   > Halaman beranda adalah halaman pertama yang muncul saat website dibuka. Di halaman ini, pengguna bisa langsung melihat tampilan utama website serta menu navigasi di bagian atas yang memudahkan pengguna pindah ke halaman lain. Selain itu, tersedia juga tombol yang membantu pengguna untuk mulai menjelajahi fitur atau melihat informasi yang tersedia di dalam website steling ini.
 
 
