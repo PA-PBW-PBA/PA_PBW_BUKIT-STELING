@@ -115,32 +115,32 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 
 ### ✧˖°. Halaman Dashboard Admin
-  > <img width="1913" height="889" alt="image" src="https://github.com/user-attachments/assets/589cc9fc-fa0e-474a-9a65-227520cbd28f" />
+  > <img width="1910" height="887" alt="image" src="https://github.com/user-attachments/assets/43e2796a-568d-4704-b3ee-0c6b4f643e65" />
   > Halaman dashboard admin merupakan halaman utama yang ditampilkan setelah admin login ke dalam website. Di halaman ini, admin bisa melihat ringkasan informasi seperti rating, jumlah foto, dan jumlah pengguna baru. Selain itu, admin juga bisa langsung mengakses fitur untuk mengelola data yang ada. Di dashboard ini, admin bisa memantau kondisi sistem dengan lebih mudah.
 
 
 ### ✧˖°. Halaman Analisis Wisata
-  > <img width="1912" height="877" alt="image" src="https://github.com/user-attachments/assets/14bb3347-bedb-47dd-9d7c-ab07a005a8fe" />
+  > <img width="1908" height="880" alt="image" src="https://github.com/user-attachments/assets/c7d56f55-a51e-4502-9975-5f3b3cf49ed9" />
   > Halaman ini merupakan halaman yang menampilkan data dan statistik terkait Puncak Steling. Admin bisa melihat grafik jumlah pengunjung serta distribusi kepuasan berdasarkan ulasan yang ada. Nah, data ini ditampilkan dalam bentuk grafik agar lebih mudah dipahami untuk melihat perkembangan dan performa wisata dengan lebih jelas.
 
   
 ### ✧˖°. Halaman Kelola Informasi Wisata (Admin)
-  > <img width="1911" height="896" alt="image" src="https://github.com/user-attachments/assets/3f69fa74-32fa-4368-9835-3a88555770f5" />
+  > <img width="1908" height="865" alt="image" src="https://github.com/user-attachments/assets/4cc709ca-ef03-4084-a9e2-e8084073babd" />
   > Halaman kelola informasi wisata digunakan oleh admin untuk mengatur data informasi steling. Di halaman ini, admin bisa mengubah harga tiket serta jam buka dan tutup. Setelah itu, admin menyimpan perubahan yang sudah dilakukan.
 
 
 ### ✧˖°. Halaman Manajemen Fasilitas
-  > <img width="1910" height="938" alt="image" src="https://github.com/user-attachments/assets/9e0d24e4-214a-48b7-a148-d64d9c779b88" />
+  > <img width="1911" height="926" alt="image" src="https://github.com/user-attachments/assets/aac0c220-0c13-4d74-ae30-5813df37ad92" />
   > Halaman kelola fasilitas digunakan oleh admin untuk mengatur fasilitas yang tersedia di puncak steling. Di halaman ini, admin bisa menambah, mengubah, dan menghapus fasilitas yang ditampilkan di website. Selain itu, admin juga dapat melihat daftar fasilitas yang sudah ada.
 
 
 ### ✧˖°. Halaman Manajemen Galeri
-  > <img width="1902" height="895" alt="image" src="https://github.com/user-attachments/assets/579954c4-ca59-4172-97cc-3ec9fdf269a9" />
+  > <img width="1911" height="945" alt="image" src="https://github.com/user-attachments/assets/0ad1cd92-6529-4e32-a5f8-c4d8de374899" />
   > Halaman manajemen galeri digunakan oleh admin untuk mengelola foto yang diunggah oleh pengunjung. Admin bisa melihat antrean foto yang masih menunggu persetujuan. Lalu, Admin menyetujui foto agar ditampilkan di galeri atau menghapus foto jika tidak sesuai. Selain itu, admin juga dapat melihat daftar foto yang sudah dipublikasikan.
 
 
 ### ✧˖°. Halaman Manajemen Ulasan
-  > <img width="1900" height="945" alt="image" src="https://github.com/user-attachments/assets/e9f80d56-ea18-495d-9304-f48d9d2ebee3" />
+  > <img width="1910" height="944" alt="image" src="https://github.com/user-attachments/assets/35d11cce-5a6b-4965-bc26-3c5a48267cdf" />
   > Halaman manajemen ulasan ini digunakan oleh admin untuk mengelola komentar dari pengunjung. Admin bisa melihat daftar ulasan yang masuk beserta rating dan komentar yang diberikan. Di sini admin bisa membalas ulasan pengunjung, melihat status ulasan, serta menghapus ulasan yang tidak sesuai atau melanggar aturan (kelewatan).
 
 
