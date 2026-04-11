@@ -94,22 +94,23 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
   
 ### ✧˖°. Halaman Informasi Wisata
-  > <img width="1794" height="2271" alt="image" src="https://github.com/user-attachments/assets/f21ac645-468c-45b2-a34f-c3f4e3cfd1ad" />
+  > <img width="1794" height="2271" alt="image" src="https://github.com/user-attachments/assets/8741865b-b306-46a0-92db-1c246cb40370" />
   > Halaman informasi wisata merupakan halaman yang menampilkan informasi lengkap terkait tempat wisata yang tersedia. Halaman ini bisa diakses oleh semua pengunjung, baik yang sudah memiliki akun maupun yang belum. Pengguna bisa melihat informasi seperti harga tiket, lokasi, deskripsi, serta fasilitas yang tersedia. Di dalam fitur ini, pengunjung jadi bisa mengetahui informasi wisata secara lebih jelas sebelum berkunjung.
 
 
 ### ✧˖°. Halaman Galeri
-  > <img width="1794" height="2421" alt="image" src="https://github.com/user-attachments/assets/5c6b2cca-57e4-4a5a-bac4-b26de6ff7230" />
+  > <img width="1794" height="2421" alt="image" src="https://github.com/user-attachments/assets/4ced6238-d7ce-467c-8cd6-1451a40209a0" />
+
   > Halaman galeri merupakan halaman yang menampilkan kumpulan foto atau dokumentasi dari Puncak Steling. Halaman ini bisa diakses oleh semua pengunjung. Pengguna bisa melihat berbagai foto yang telah diunggah serta filter tampilan berdasarkan kategori yang tersedia. Disini, pengunjung jadi bisa melihat suasana dan kondisi Puncak Steling secara lebih jelas.
 
 
 ### ✧˖°. Halaman Ulasan
-  > <img width="1794" height="1728" alt="image" src="https://github.com/user-attachments/assets/03468ede-fd82-4c33-8ea2-f71d8930752a" />
+  > <img width="1794" height="1728" alt="image" src="https://github.com/user-attachments/assets/79e96b25-b643-4506-ba54-4c8312e2dec3" />
   > Halaman ulasan merupakan halaman yang menampilkan penilaian dan komentar dari pengunjung Puncak Steling. Halaman ini bisa diakses oleh semua pengunjung, namun untuk memberikan ulasan, pengguna harus melakukan login terlebih dahulu.
 
 
 ### ✧˖°. Halaman Tentang
-  > <img width="1794" height="2225" alt="image" src="https://github.com/user-attachments/assets/34ec1f24-588d-4a92-8e2c-e6283f252eae" />
+  > <img width="1794" height="2225" alt="image" src="https://github.com/user-attachments/assets/7eda034b-9cd3-40d7-b9b4-e69233bd1c66" />
   > Halaman tentang merupakan halaman yang menampilkan informasi umum mengenai Puncak Steling. Pengunjung bisa melihat deskripsi, lokasi, serta informasi lain yang berkaitan dengan tempat wisata ini. Selain itu, pengunjung juga bisa melihat struktur organisasi pengelola Puncak Steling.
 
 
