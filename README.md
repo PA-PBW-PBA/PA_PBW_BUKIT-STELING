@@ -145,11 +145,11 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 
 ### ✧˖°. Upload Foto (Pengunjung)
-  > <img width="1893" height="939" alt="image" src="https://github.com/user-attachments/assets/df69cbb6-7263-4822-a36a-50c856e2f8a3" />
+  > <img width="1887" height="938" alt="image" src="https://github.com/user-attachments/assets/94680496-4c98-42ba-899f-0bb8dea968be" />
   > Halaman ini digunakan oleh pengunjung untuk membagikan foto ke galeri Puncak Steling. Pengguna bisa mengunggah foto yang dimiliki, namun foto tersebut tidak langsung ditampilkan. Foto akan masuk ke antrean terlebih dahulu untuk ditinjau oleh admin. Jika sudah disetujui, barulah foto akan muncul di galeri.
 
 ### ✧˖°. Ulasan Pengunjung (Pengunjung)
-  > <img width="1903" height="939" alt="image" src="https://github.com/user-attachments/assets/28108f53-b2cd-4e74-ae75-31f4e5743fca" />
+  > <img width="1909" height="942" alt="image" src="https://github.com/user-attachments/assets/cc6b388b-7aa5-4c68-bbaf-d7b893a6d920" />
   > Halaman ini digunakan oleh pengunjung untuk melihat dan memberikan ulasan terkait Puncak Steling. Pengunjung bisa melihat berbagai ulasan yang sudah ada, lengkap dengan rating dan komentar. Selain itu, pengguna yang sudah login juga bisa menuliskan ulasan mereka sendiri untuk dibagikan kepada pengunjung lainnya.
 
 
