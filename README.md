@@ -84,12 +84,12 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 
 ### ✧˖°. Halaman Login
-  > <img width="1895" height="943" alt="image" src="https://github.com/user-attachments/assets/e00474c6-ff50-48a0-b843-172c3d835872" />
+  > <img width="1895" height="943" alt="Screenshot 2026-04-11 093532" src="https://github.com/user-attachments/assets/7d6884f2-ed8f-40c3-b19f-df8e65a3821e" />
   > Halaman login digunakan pengguna untuk masuk ke dalam website menggunakan akun yang sudah terdaftar. Disini, pengguna diminta memasukkan email serta password. Setelah data dimasukkan dengan benar, pengguna bisa langsung masuk ke website dan mengakses fitur sesuai dengan perannya, seperti admin atau pengunjung.
 
 
 ### ✧˖°. Halaman Register
-  > <img width="1897" height="942" alt="image" src="https://github.com/user-attachments/assets/90bce8af-92be-4dcf-b140-c47fc7818e30" />
+  > <img width="1897" height="942" alt="Screenshot 2026-04-11 093554" src="https://github.com/user-attachments/assets/04bb8d18-3153-40e7-b905-6bc2f8468f66" />
   > Halaman register merupakan halaman yang digunakan untuk membuat akun baru. Pengguna yang ingin mengakses fitur dalam website perlu mendaftar terlebih dahulu dengan mengisi data seperti nama, email, dan password. Setelah itu, pengguna dapat menekan tombol daftar untuk menyelesaikan proses pendaftaran.
 
   
