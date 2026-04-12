@@ -1,24 +1,20 @@
 <?php
+/**
+ * views/admin/dashboard.php
+ * Halaman dashboard admin — hanya berisi tampilan HTML
+ * Semua logika ditangani oleh AdminController
+ */
+
 session_start();
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-include '../../config/koneksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../controllers/AdminController.php';
 
-if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../auth/login.php");
-    exit;
-}
+$controller = new AdminController($koneksi);
+$data       = $controller->dashboard();
 
-$query_rating = mysqli_query($koneksi, "SELECT AVG(rating) as rata_rata FROM tb_ulasan");
-$data_rating = mysqli_fetch_assoc($query_rating);
-$rating_final = number_format($data_rating['rata_rata'] ?? 0, 1);
-
-$total_approved = mysqli_num_rows(mysqli_query($koneksi, "SELECT id_galeri FROM tb_galeri WHERE status = 'approved'"));
-
-$bulan_ini = date('m');
-$tahun_ini = date('Y');
-$query_user_baru = mysqli_query($koneksi, "SELECT id_pengunjung FROM tb_pengunjung WHERE MONTH(created_at) = '$bulan_ini' AND YEAR(created_at) = '$tahun_ini'");
-$user_baru = mysqli_num_rows($query_user_baru);
+$rating_final = $data['rating_final'];
+$total_foto   = $data['total_foto'];
+$user_baru    = $data['user_baru'];
 
 include '../templates/header.php';
 ?>
@@ -33,13 +29,15 @@ include '../templates/header.php';
             <div class="d-flex justify-content-between align-items-center mb-5 animate__animated animate__fadeIn">
                 <div>
                     <h2 class="fw-bold text-dark mb-1">Dashboard Utama</h2>
-                    <p class="text-muted mb-0">Halo <b>Admin</b>, berikut adalah ringkasan performa Puncak Steling periode ini.</p>
+                    <p class="text-muted mb-0">Halo <b><?php echo htmlspecialchars($_SESSION['user']); ?></b>, berikut ringkasan performa Puncak Steling.</p>
                 </div>
             </div>
 
+            <!-- Kartu Statistik -->
             <div class="row g-4 mb-5">
                 <div class="col-md-4" v-for="(stat, index) in stats" :key="index">
-                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100 hover-up animate__animated animate__zoomIn" :style="{ 'animation-delay': (index * 150) + 'ms' }">
+                    <div class="card card-custom border-0 shadow-sm p-4 bg-white h-100 hover-up animate__animated animate__zoomIn"
+                         :style="{ 'animation-delay': (index * 150) + 'ms' }">
                         <div class="d-flex align-items-center gap-3">
                             <div :class="['p-3 rounded-4', stat.bg]">
                                 <i :class="['bi fs-3', stat.icon, stat.text]"></i>
@@ -53,6 +51,7 @@ include '../templates/header.php';
                 </div>
             </div>
 
+            <!-- Banner & Tips -->
             <div class="row">
                 <div class="col-md-8 animate__animated animate__fadeInLeft">
                     <div class="card card-custom border-0 shadow-sm p-5 bg-primary-custom text-white mb-4 overflow-hidden position-relative">
@@ -79,25 +78,25 @@ include '../templates/header.php';
     </div>
 </div>
 
+<style>
+    .hover-up:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; transition: all 0.3s ease; }
+    .bg-primary-custom { background-color: var(--primary) !important; }
+    .text-primary-custom { color: var(--primary) !important; }
+</style>
+
 <script>
     const { createApp } = Vue;
     createApp({
         data() {
             return {
                 stats: [
-                    { label: 'Indeks Kepuasan', value: '<?= $rating_final ?> / 5.0', icon: 'bi-star-fill', bg: 'bg-warning bg-opacity-10', text: 'text-warning' },
-                    { label: 'Koleksi Foto Publik', value: '<?= $total_approved ?>', icon: 'bi-camera-fill', bg: 'bg-success bg-opacity-10', text: 'text-success' },
-                    { label: 'User Baru (Bulan Ini)', value: '+<?= $user_baru ?>', icon: 'bi-graph-up-arrow', bg: 'bg-info bg-opacity-10', text: 'text-info' }
+                    { label: 'Indeks Kepuasan',     value: '<?= $rating_final ?> / 5.0', icon: 'bi-star-fill',    bg: 'bg-warning bg-opacity-10', text: 'text-warning' },
+                    { label: 'Koleksi Foto Publik', value: '<?= $total_foto ?>',          icon: 'bi-camera-fill',  bg: 'bg-success bg-opacity-10', text: 'text-success' },
+                    { label: 'User Baru (Bulan Ini)', value: '+<?= $user_baru ?>',        icon: 'bi-graph-up-arrow', bg: 'bg-info bg-opacity-10',  text: 'text-info'    }
                 ]
             }
         }
     }).mount('#app-dashboard');
 </script>
-
-<style>
-    .hover-up:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; transition: all 0.3s ease; }
-    .bg-primary-custom { background-color: var(--primary) !important; }
-    .text-primary-custom { color: var(--primary) !important; }
-</style>
 
 <?php include '../templates/footer.php'; ?>

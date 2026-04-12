@@ -36,53 +36,74 @@ include '../templates/navbar_public.php';
     </section>
 
     <div class="container py-4 py-md-5">
-        <div class="d-flex flex-column flex-xl-row justify-content-between gap-3 mb-4 mb-md-5 animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
-            
-            <div class="d-flex flex-column flex-md-row gap-3 overflow-hidden w-100">
-                <div class="d-flex bg-white shadow-sm p-1 rounded-pill overflow-auto hide-scrollbar border">
-                    <button v-for="cat in categories" :key="cat" @click="activeCategory = cat; currentPage = 1"
-                        class="btn rounded-pill px-4 py-2 small transition-all fw-bold text-nowrap border-0"
-                        :class="activeCategory === cat ? 'btn-primary-custom text-white shadow' : 'text-muted hover-bg'">
+
+        <div class="filter-bar rounded-4 mb-4 mb-md-5 animate__animated animate__fadeInUp" style="animation-delay: 0.15s;">
+
+            <div class="filter-row">
+                <span class="filter-label">
+                    <i class="bi bi-camera2 me-1 opacity-50"></i> Momen
+                </span>
+                <div class="d-flex gap-2 overflow-auto hide-scrollbar flex-grow-1 py-2" style="margin-top: -4px; margin-bottom: -4px;">
+                    <button v-for="cat in categories" :key="cat"
+                        @click="activeCategory = cat; currentPage = 1"
+                        class="filter-btn text-nowrap flex-shrink-0"
+                        :class="activeCategory === cat ? 'filter-btn-active' : 'filter-btn-idle'">
+                        <transition name="icon-pop" mode="out-in">
+                            <i class="bi me-1" :key="activeCategory === cat"
+                               :class="activeCategory === cat ? 'bi-check-circle-fill' : catIcon(cat)"></i>
+                        </transition>
                         {{ cat }}
                     </button>
                 </div>
-                
-                <div class="d-flex bg-white shadow-sm p-1 rounded-pill overflow-auto hide-scrollbar border">
-                    <button type="button" class="btn rounded-pill px-4 py-2 small fw-bold transition-all text-nowrap border-0 hover-bg"
-                        :class="sortBy === 'newest' ? 'btn-primary-custom text-white shadow' : 'text-muted'"
+                <span class="filter-count-badge ms-2 flex-shrink-0">
+                    {{ filteredGaleri.length }} foto
+                </span>
+            </div>
+
+            <div class="filter-divider"></div>
+
+            <div class="filter-row">
+                <span class="filter-label">
+                    <i class="bi bi-sort-down me-1 opacity-50"></i> Urutkan
+                </span>
+                <div class="d-flex gap-2 overflow-auto hide-scrollbar py-2" style="margin-top: -4px; margin-bottom: -4px;">
+                    <button type="button"
+                        class="filter-btn text-nowrap flex-shrink-0"
+                        :class="sortBy === 'newest' ? 'filter-btn-active' : 'filter-btn-idle'"
                         @click="sortBy = 'newest'; currentPage = 1">
                         <i class="bi bi-clock-history me-1"></i> Terbaru
                     </button>
-                    <button type="button" class="btn rounded-pill px-4 py-2 small fw-bold transition-all text-nowrap border-0 hover-bg"
-                        :class="sortBy === 'oldest' ? 'btn-primary-custom text-white shadow' : 'text-muted'"
+                    <button type="button"
+                        class="filter-btn text-nowrap flex-shrink-0"
+                        :class="sortBy === 'oldest' ? 'filter-btn-active' : 'filter-btn-idle'"
                         @click="sortBy = 'oldest'; currentPage = 1">
                         <i class="bi bi-calendar2-week me-1"></i> Terlama
                     </button>
-                    <button type="button" class="btn rounded-pill px-4 py-2 small fw-bold transition-all text-nowrap border-0 hover-bg"
-                        :class="sortBy === 'liked' ? 'btn-primary-custom text-white shadow' : 'text-muted'"
+                    <button type="button"
+                        class="filter-btn text-nowrap flex-shrink-0"
+                        :class="sortBy === 'liked' ? 'filter-btn-active' : 'filter-btn-idle'"
                         @click="sortBy = 'liked'; currentPage = 1">
                         <i class="bi bi-heart-fill me-1"></i> Paling Disukai
                     </button>
                 </div>
+                <div class="flex-shrink-0 ms-auto">
+                    <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'pengunjung') : ?>
+                        <a href="unggah_foto.php" class="btn-upload d-inline-flex align-items-center gap-2 text-nowrap">
+                            <i class="bi bi-cloud-arrow-up-fill"></i> Upload Foto
+                        </a>
+                    <?php elseif (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') : ?>
+                        <a href="../admin/kelola_galeri.php" class="btn-upload btn-upload-solid d-inline-flex align-items-center gap-2 text-nowrap">
+                            <i class="bi bi-gear-fill"></i> Kelola Galeri
+                        </a>
+                    <?php else : ?>
+                        <a href="javascript:void(0)" onclick="alertLogin()" class="btn-upload d-inline-flex align-items-center gap-2 text-nowrap">
+                            <i class="bi bi-lock-fill"></i> Upload Foto
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
-            
-            <div class="flex-shrink-0 d-grid d-xl-block mt-2 mt-xl-0">
-                <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'pengunjung') : ?>
-                    <a href="unggah_foto.php" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center gap-2 hover-scale w-100">
-                        <i class="bi bi-upload"></i> <span class="fw-bold small text-uppercase text-nowrap">Upload Foto</span>
-                    </a>
-                <?php elseif (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') : ?>
-                    <a href="../admin/kelola_galeri.php" class="btn btn-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center gap-2 text-white hover-scale w-100">
-                        <i class="bi bi-gear-fill"></i> <span class="fw-bold small text-uppercase text-nowrap">Kelola Galeri</span>
-                    </a>
-                <?php else : ?>
-                    <a href="javascript:void(0)" onclick="alertLogin()" class="btn btn-outline-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center justify-content-center gap-2 hover-scale w-100">
-                        <i class="bi bi-lock-fill"></i> <span class="fw-bold small text-uppercase text-nowrap">Upload Foto</span>
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
 
+        </div>
         <transition-group name="fade-list" tag="div" class="row g-3 g-md-4 position-relative min-h-300px">
             <div class="col-6 col-md-4" v-for="g in paginatedGaleri" :key="g.id_galeri">
                 <div class="card card-custom h-100 bg-white border-0 shadow-sm overflow-hidden group position-relative hover-up animate__animated animate__fadeInUp">
@@ -189,6 +210,10 @@ include '../templates/navbar_public.php';
             }
         },
         methods: {
+            catIcon(cat) {
+                const icons = { "Semua Momen": "bi-grid-3x3-gap", "Pagi Hari": "bi-sunrise", "Sore & Sunset": "bi-sunset", "Malam Hari": "bi-moon-stars" };
+                return icons[cat] || "bi-image";
+            },
             async toggleLike(foto) {
                 if (!this.isLoggedIn) {
                     alertLogin();
@@ -258,13 +283,110 @@ include '../templates/navbar_public.php';
     .img-hover-zoom:hover { transform: scale(1.08); }
     
     .hover-bg { transition: background-color 0.2s ease; }
-    .hover-bg:hover:not(.btn-primary-custom) { background-color: #f1f3f5 !important; }
+    .hover-bg:not(.btn-primary-custom):hover { background-color: #f1f3f5 !important; }
 
     .cursor-pointer { cursor: pointer; }
     .btn-like-trigger { background: none; border: none; padding: 0; outline: none; }
     
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+        background: linear-gradient(135deg, #f8fdf7 0%, #f0f7ee 100%);
+        border: 1.5px solid #d4ead0;
+        padding: 12px 20px;
+    }
+    .filter-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px 0; /* Memberikan ruang sedikit lebih besar antar baris */
+    }
+    .filter-divider {
+        height: 1px;
+        background: linear-gradient(to right, transparent, #c8e0c4, transparent);
+        margin: 2px 0;
+    }
+    .filter-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 72px;
+        flex-shrink: 0;
+    }
+    .filter-btn {
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 50px;
+        border: 1.5px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        line-height: 1.4;
+    }
+    .filter-btn-idle {
+        background: #fff;
+        color: #6c757d;
+        border-color: #e0e0e0;
+    }
+    .filter-btn-idle:hover {
+        background: #fff;
+        border-color: #79AE6F;
+        color: #79AE6F;
+        transform: translateY(-2px); /* Disesuaikan agar tetap aman */
+        box-shadow: 0 4px 10px rgba(121,174,111,0.15);
+    }
+    .filter-btn-active {
+        background: #79AE6F;
+        color: #fff;
+        border-color: #79AE6F;
+        box-shadow: 0 4px 12px rgba(121,174,111,0.35);
+        transform: translateY(-2px); /* Disesuaikan agar tetap aman */
+    }
+    .filter-count-badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #79AE6F;
+        background: rgba(121,174,111,0.12);
+        border: 1px solid rgba(121,174,111,0.25);
+        padding: 3px 10px;
+        border-radius: 50px;
+        white-space: nowrap;
+    }
+    .btn-upload {
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 7px 18px;
+        border-radius: 50px;
+        border: 1.5px solid #79AE6F;
+        color: #79AE6F;
+        background: transparent;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        letter-spacing: 0.03em;
+    }
+    .btn-upload:hover {
+        background: #79AE6F;
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(121,174,111,0.3);
+        transform: translateY(-1px);
+    }
+    .btn-upload-solid {
+        background: #79AE6F;
+        color: #fff;
+    }
+    .btn-upload-solid:hover {
+        background: #6a9d61;
+        border-color: #6a9d61;
+        color: #fff;
+    }
+    .icon-pop-enter-active { transition: all 0.2s ease; }
+    .icon-pop-leave-active { transition: all 0.15s ease; }
+    .icon-pop-enter-from   { opacity: 0; transform: scale(0.5) rotate(-30deg); }
+    .icon-pop-leave-to     { opacity: 0; transform: scale(0.5) rotate(30deg); }
 </style>
 
 <?php include '../templates/footer.php'; ?>

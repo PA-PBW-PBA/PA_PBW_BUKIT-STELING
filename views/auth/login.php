@@ -1,95 +1,35 @@
 <?php
+/**
+ * views/auth/login.php
+ * Halaman login — hanya berisi tampilan HTML
+ * Semua logika ditangani oleh AuthController
+ */
+
 session_start();
-include '../../config/koneksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 
-if (isset($_SESSION['login'])) {
-    if ($_SESSION['role'] === 'admin') {
-        header("Location: ../admin/dashboard.php");
-    } else {
-        header("Location: ../public/beranda.php");
-    }
-    exit;
-}
+$controller = new AuthController($koneksi);
+$data       = $controller->login();
 
-$query_slider = mysqli_query($koneksi, "SELECT file_foto FROM tb_galeri WHERE status = 'approved' ORDER BY RAND() LIMIT 10");
-$slider_photos = [];
-while ($row = mysqli_fetch_assoc($query_slider)) {
-    $slider_photos[] = "../../assets/img/uploads/" . $row['file_foto'];
-}
-
-if (empty($slider_photos)) {
-    $slider_photos[] = "../../assets/img/fasilitas/Puncak Steling.JPG";
-}
-
-$alert_script = "";
-
-if (isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-    $password = $_POST['password'];
-
-    $query_admin = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE email = '$email' AND password = '$password'");
-    $data_admin = mysqli_fetch_assoc($query_admin);
-
-    if (mysqli_num_rows($query_admin) > 0) {
-        session_regenerate_id(true);
-        $_SESSION['login'] = true;
-        $_SESSION['user'] = $data_admin['nama_lengkap'];
-        $_SESSION['role'] = 'admin';
-        $_SESSION['id'] = $data_admin['id_admin'];
-        
-        $alert_script = "
-            Swal.fire({
-                title: 'Login Berhasil!',
-                text: 'Selamat datang kembali, Admin.',
-                icon: 'success',
-                timer: 2000,
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href='../admin/dashboard.php';
-            });
-        ";
-    } else {
-        $query_user = mysqli_query($koneksi, "SELECT * FROM tb_pengunjung WHERE email = '$email' AND password = '$password'");
-        $data_user = mysqli_fetch_assoc($query_user);
-
-        if (mysqli_num_rows($query_user) > 0) {
-            session_regenerate_id(true);
-            $_SESSION['login'] = true;
-            $_SESSION['user'] = $data_user['nama_lengkap'];
-            $_SESSION['role'] = 'pengunjung';
-            $_SESSION['id'] = $data_user['id_pengunjung'];
-            
-            $alert_script = "
-                Swal.fire({
-                    title: 'Login Berhasil!',
-                    text: 'Selamat menikmati layanan Puncak Steling.',
-                    icon: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
-                }).then(() => {
-                    window.location.href='../public/beranda.php';
-                });
-            ";
-        } else {
-            $error = "Email atau Password salah!";
-        }
-    }
-}
+// Ambil data dari controller untuk dipakai di view
+$slider_photos = $data['slider_photos'];
+$alert_script  = $data['alert_script'];
+$error         = $data['error'];
 
 include '../templates/header.php';
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div id="app-login" class="container-fluid vh-100 d-flex align-items-center justify-content-center hero-gradient position-relative overflow-hidden p-0">
     <div class="row g-0 w-100 h-100">
+
+        <!-- Kolom kiri: Slider foto -->
         <div class="col-md-6 d-none d-md-block position-relative order-md-1 overflow-hidden">
             <transition name="slide-fade">
                 <img :key="currentIdx" :src="photos[currentIdx]" class="img-fluid h-100 w-100 object-fit-cover position-absolute top-0 start-0">
             </transition>
-            
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end p-5 modal-gradient" style="z-index: 5;">
                 <div class="text-white animate__animated animate__fadeInLeft">
                     <h2 class="fw-bold mb-2">Puncak Steling</h2>
@@ -98,6 +38,7 @@ include '../templates/header.php';
             </div>
         </div>
 
+        <!-- Kolom kanan: Form login -->
         <div class="col-md-6 p-4 p-md-5 bg-white d-flex flex-column justify-content-center animate__animated animate__fadeIn">
             <div class="mb-4 animate__animated animate__fadeInDown" style="animation-delay: 0.1s;">
                 <a href="../public/beranda.php" class="text-decoration-none text-muted fw-semibold small d-inline-flex align-items-center gap-2 hover-scale">
@@ -110,10 +51,10 @@ include '../templates/header.php';
                 <p class="text-muted small">Silakan masuk menggunakan akun terdaftar kamu.</p>
             </div>
 
-            <?php if (isset($error)) : ?>
+            <?php if (!empty($error)) : ?>
                 <div class="alert alert-danger py-2 px-3 small border-0 rounded-3 d-flex align-items-center gap-2 mb-4 animate__animated animate__shakeX">
                     <i class="bi bi-exclamation-circle-fill"></i>
-                    <div><?php echo $error; ?></div>
+                    <div><?php echo htmlspecialchars($error); ?></div>
                 </div>
             <?php endif; ?>
 
@@ -146,24 +87,15 @@ include '../templates/header.php';
                 <p class="small text-muted mb-0">Belum punya akun? <a href="register.php" class="text-primary-custom fw-bold text-decoration-none">Daftar sebagai Pengunjung</a></p>
             </div>
         </div>
+
     </div>
 </div>
 
 <style>
-    .slide-fade-enter-active {
-        transition: all 0.8s ease-out;
-    }
-    .slide-fade-leave-active {
-        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-    }
-    .slide-fade-enter-from {
-        transform: translateX(50px);
-        opacity: 0;
-    }
-    .slide-fade-leave-to {
-        transform: translateX(-50px);
-        opacity: 0;
-    }
+    .slide-fade-enter-active { transition: all 0.8s ease-out; }
+    .slide-fade-leave-active { transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1); }
+    .slide-fade-enter-from   { transform: translateX(50px); opacity: 0; }
+    .slide-fade-leave-to     { transform: translateX(-50px); opacity: 0; }
     .hover-scale { transition: transform 0.2s ease; }
     .hover-scale:hover { transform: translateX(-5px); }
 </style>

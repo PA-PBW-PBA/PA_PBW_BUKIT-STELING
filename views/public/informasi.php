@@ -83,7 +83,15 @@ $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tb_informasi LI
             </div>
         </div>
 
-        <h4 class="fw-bold mb-4 pt-4 animate__animated animate__fadeInUp" style="animation-delay: 0.7s;">Fasilitas yang Tersedia</h4>
+        <div class="d-flex justify-content-between align-items-center mb-4 pt-4 animate__animated animate__fadeInUp" style="animation-delay: 0.7s;">
+            <h4 class="fw-bold mb-0">Fasilitas yang Tersedia</h4>
+            <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') : ?>
+                <a href="../admin/kelola_fasilitas.php" class="btn btn-primary-custom rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2 text-white hover-scale">
+                    <i class="bi bi-gear-fill"></i>
+                    <span class="fw-bold small text-uppercase text-nowrap">Kelola Fasilitas</span>
+                </a>
+            <?php endif; ?>
+        </div>
         <div class="row g-4">
             <?php
             $fasilitas = mysqli_query($koneksi, "SELECT * FROM tb_fasilitas");

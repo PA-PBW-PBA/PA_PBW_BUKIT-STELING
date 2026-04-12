@@ -41,9 +41,14 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 ---
 
+
+## Nilai Tambah
+
+---
+
 ## Fitur Utama
 
-### ✮⋆˙ Pengguna Eksternal 
+### ✮⋆˙ Pengguna 
 
 - Mengakses website tanpa login
 - Melihat halaman beranda
@@ -51,16 +56,15 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 - Melihat fasilitas yang tersedia
 - Melihat struktur organisasi Puncak Steling
 - Melihat galeri foto
-- Melihat ulasan dari pengunjung
-- Tidak dapat menambahkan ulasan atau mengunggah foto
+- Melihat ulasan dari pengunjung lain
 
-### ✮⋆˙ Pengunjung (Login) 
+### ✮⋆˙ Fitur Tambahan Pengunjung (Setelah Login)
 
-- Registrasi Akun (_Create_)
-- Login 
+- Registrasi Akun 
+- Login ke dalam sistem
 - Menambahkan ulasan dan rating (_Create_)
-- Melihat ulasan dari pengguna lain (_Read_)
 - Mengunggah foto ke galeri (_Create_)
+- Melihat profil dan riwayat kontribusi
 
 
 ### ✮⋆˙ Admin
@@ -69,7 +73,7 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 - Melihat data pada dashboard (_Read_)
 - Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
 - Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
-- Mengelola data galeri (_Read_, _Delete_)
+- Mengelola galeri foto (_Read_, _Delete_)
 - Mengelola data ulasan pengunjung 
 
 
@@ -155,15 +159,8 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 ---
 
-## Struktur Project
-
-
-
----
-
-
 
 <p align="center">
-Wisata Puncak Stling <br>
+Wisata Puncak Stling Samarinda<br>
 </p>
 

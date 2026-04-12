@@ -1,18 +1,17 @@
 <?php
+/**
+ * views/admin/statistik.php
+ * Halaman statistik & analisis pengunjung
+ * Semua logika ditangani oleh AdminController
+ */
+
 session_start();
-include '../../config/koneksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../controllers/AdminController.php';
 
-if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../auth/login.php");
-    exit;
-}
-
-$rating_counts = [];
-for ($i = 1; $i <= 5; $i++) {
-    $query = mysqli_query($koneksi, "SELECT COUNT(id_ulasan) as total FROM tb_ulasan WHERE rating = $i");
-    $res = mysqli_fetch_assoc($query);
-    $rating_counts[] = (int)$res['total'];
-}
+$controller    = new AdminController($koneksi);
+$data          = $controller->statistik();
+$rating_counts = $data['rating_counts'];
 
 include '../templates/header.php';
 ?>
@@ -22,16 +21,17 @@ include '../templates/header.php';
 <div id="app-statistik" class="container-fluid px-0">
     <div class="row g-0">
         <?php include '../templates/sidebar_admin.php'; ?>
+
         <div class="col-md-10 p-3 p-md-5 bg-light min-vh-100">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-5">
                 <div>
-                    <h2 class="fw-bold text-dark mb-1 fs-3 fs-md-2">Analisis & Statistik</h2>
+                    <h2 class="fw-bold text-dark mb-1 fs-3">Analisis & Statistik</h2>
                     <p class="text-muted mb-0 small">Data performa kunjungan Puncak Steling.</p>
                 </div>
                 <div class="d-flex gap-2">
                     <div class="dropdown flex-grow-1">
                         <button class="btn btn-white shadow-sm dropdown-toggle rounded-pill px-4 w-100" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-calendar3 me-2"></i> 
+                            <i class="bi bi-calendar3 me-2"></i>
                             <span v-if="loading" class="spinner-border spinner-border-sm me-2"></span>
                             {{ filterDisplay }}
                         </button>
@@ -48,24 +48,26 @@ include '../templates/header.php';
             </div>
 
             <div class="row g-4">
+                <!-- Chart Tren Pengunjung -->
                 <div class="col-lg-8">
                     <div class="card border-0 shadow-sm p-4 rounded-4 bg-white h-100 animate__animated animate__fadeInUp">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h6 class="fw-bold mb-0 text-dark">{{ titleChart }}</h6>
-                            <span :class="loading ? 'bg-warning' : 'bg-success'" class="badge text-white border-0 px-3 py-2 rounded-pill fs-xs">
+                            <span :class="loading ? 'bg-warning' : 'bg-success'" class="badge text-white border-0 px-3 py-2 rounded-pill">
                                 {{ loading ? 'Updating...' : 'Live' }}
                             </span>
                         </div>
-                        <div class="modal-chart-height">
+                        <div style="height: 250px;">
                             <canvas id="userChart"></canvas>
                         </div>
                     </div>
                 </div>
 
+                <!-- Chart Distribusi Rating -->
                 <div class="col-lg-4">
                     <div class="card border-0 shadow-sm p-4 rounded-4 bg-white h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                         <h6 class="fw-bold mb-4 text-dark">Distribusi Kepuasan</h6>
-                        <div class="modal-chart-height-sm">
+                        <div style="height: 200px;">
                             <canvas id="ratingChart"></canvas>
                         </div>
                         <div class="mt-4 pt-3 border-top text-center">
@@ -77,6 +79,11 @@ include '../templates/header.php';
         </div>
     </div>
 </div>
+
+<style>
+    .btn-white { background: #fff; border: 1px solid #e2e8f0; color: #64748b; transition: 0.3s; }
+    .btn-white:hover { border-color: #79AE6F; color: #79AE6F; }
+</style>
 
 <script>
 const { createApp } = Vue;
@@ -101,12 +108,12 @@ createApp({
         async renderChart() {
             this.loading = true;
             try {
-                const res = await fetch(`api_stats.php?filter=${this.filter}&t=${Date.now()}`);
+                const res  = await fetch(`api_stats.php?filter=${this.filter}&t=${Date.now()}`);
                 const json = await res.json();
 
                 if (this.userChart) { this.userChart.destroy(); }
 
-                const ctx = document.getElementById('userChart').getContext('2d');
+                const ctx    = document.getElementById('userChart').getContext('2d');
                 const maxVal = Math.max(...json.values, 0);
 
                 this.userChart = new Chart(ctx, {
@@ -129,11 +136,7 @@ createApp({
                         maintainAspectRatio: false,
                         plugins: { legend: { display: false } },
                         scales: {
-                            y: { 
-                                beginAtZero: true, 
-                                max: maxVal + (maxVal < 5 ? 5 : Math.ceil(maxVal * 0.2)),
-                                ticks: { stepSize: 1 } 
-                            },
+                            y: { beginAtZero: true, max: maxVal + (maxVal < 5 ? 5 : Math.ceil(maxVal * 0.2)), ticks: { stepSize: 1 } },
                             x: { grid: { display: false } }
                         }
                     }
@@ -141,10 +144,7 @@ createApp({
             } catch (e) { console.error(e); }
             finally { this.loading = false; }
         },
-        changeFilter(f) {
-            this.filter = f;
-            this.renderChart();
-        },
+        changeFilter(f) { this.filter = f; this.renderChart(); },
         printPage() { window.print(); }
     },
     mounted() {
@@ -171,10 +171,5 @@ createApp({
     }
 }).mount('#app-statistik');
 </script>
-
-<style>
-.btn-white { background: #fff; border: 1px solid #e2e8f0; color: #64748b; transition: 0.3s; }
-.btn-white:hover { border-color: #79AE6F; color: #79AE6F; }
-</style>
 
 <?php include '../templates/footer.php'; ?>
