@@ -96,9 +96,21 @@ puncak_steling/
 
 ---
 
-
 ## Teknologi yang Digunakan
 
+| Teknologi | Keterangan |
+|----------|----------|
+| PHP | Backend untuk mengatur logika sistem dan proses data |
+| MySQL | Menyimpan data pengguna, galeri, ulasan, dan fasilitas |
+| HTML5 | Struktur halaman website |
+| CSS3 | Mengatur tampilan dan desain website |
+| Bootstrap 5 | Framework untuk membuat tampilan responsif |
+| Bootstrap Icons | Digunakan untuk icon pada tampilan |
+| JavaScript | Mengatur interaksi pada website |
+| Vue.js | Fitur interaktif seperti like dan ulasan |
+| Chart.js | Grafik statistik pada halaman admin |
+| SweetAlert2 | Menampilkan notifikasi interaktif |
+| Google Fonts | Menggunakan font *Plus Jakarta Sans* |
 
 ---
 
