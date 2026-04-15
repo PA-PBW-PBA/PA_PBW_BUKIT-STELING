@@ -26,6 +26,9 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 
 ## Struktur File
 
+<details>
+<summary>Aplikasi ini diimplementasikan dengan arsitektur MVC (Model-View-Controller)</summary>
+
 ```
 puncak_steling/
 ├── assets/
