@@ -24,8 +24,71 @@ Di dalam website ini terdapat berbagai informasi seperti deskripsi tempat, lokas
 
 Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
 
+## Struktur File
 
-
+```
+puncak_steling/
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── img/
+│   │   ├── fasilitas/
+│   │   └── galeri/
+│   └── js/
+├── config/
+│   ├── api_stats.php
+│   └── koneksi.php
+├── controllers/
+│   ├── AdminController.php
+│   ├── AuthController.php
+│   ├── FasilitasController.php
+│   ├── GaleriController.php
+│   └── UlasanController.php
+├── models/
+│   ├── FasilitasModel.php
+│   ├── GaleriModel.php
+│   ├── InformasiModel.php
+│   ├── StatistikModel.php
+│   ├── UlasanModel.php
+│   └── UserModel.php
+├── public/
+│   ├── beranda.php
+│   ├── galeri.php
+│   ├── informasi.php
+│   ├── profil.php
+│   ├── proses_like.php
+│   ├── proses_ulasan.php
+│   ├── tentang.php
+│   ├── ulasan.php
+│   └── unggah_foto.php
+├── templates/
+│   ├── footer.php
+│   ├── header.php
+│   ├── navbar_public.php
+│   └── sidebar_admin.php
+├── views/
+│   ├── admin/
+│   │   ├── aksi_balas_ulasan.php
+│   │   ├── aksi_edit_fasilitas.php
+│   │   ├── aksi_hapus_fasilitas.php
+│   │   ├── aksi_hapus_galeri.php
+│   │   ├── aksi_hapus_ulasan.php
+│   │   ├── aksi_setujui_galeri.php
+│   │   ├── aksi_tambah_fasilitas.php
+│   │   ├── api_stats.php
+│   │   ├── dashboard.php
+│   │   ├── kelola_fasilitas.php
+│   │   ├── kelola_galeri.php
+│   │   ├── kelola_informasi.php
+│   │   ├── kelola_ulasan.php
+│   │   └── statistik.php
+│   └── auth/
+│       ├── login.php
+│       ├── logout.php
+│       └── register.php
+├── db_bukit_steling.sql
+└── index.php
+```
 
 ---
 
