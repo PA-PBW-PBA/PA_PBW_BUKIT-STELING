@@ -99,15 +99,25 @@ puncak_steling/
 
 ## Teknologi yang Digunakan
 
-![PHP](https://img.shields.io/badge/PHP-8.1-blue?style=for-the-badge&logo=php)
-![MySQL](https://img.shields.io/badge/MySQL-8.4-orange?style=for-the-badge&logo=mysql)
-![HTML](https://img.shields.io/badge/HTML-5-red?style=for-the-badge&logo=html5)
-![CSS](https://img.shields.io/badge/CSS-3-blue?style=for-the-badge&logo=css3)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
-![Laragon](https://img.shields.io/badge/Laragon-Local%20Server-green?style=for-the-badge)
 
 ---
 
+## Arsitektur
+
+
+---
+
+## Alur Kerja
+
+---
+
+## Setup & Instalasi
+
+---
+
+## Struktur Database
+
+---
 
 ## Nilai Tambah
 
