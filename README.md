@@ -147,6 +147,17 @@ index.php
 
 ## Alur Kerja
 
+
+1. Menjalankan **Laragon** untuk mengaktifkan server lokal (Apache & MySQL)  
+2. Membuka website melalui browser:  
+   `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`  
+3. Sistem memproses halaman yang diakses melalui `index.php`  
+4. `koneksi.php` menghubungkan aplikasi dengan database MySQL  
+5. Controller mengatur alur sesuai request pengguna   
+6. Model mengelola data dari database  
+7. View menampilkan hasil ke halaman website  
+8. Browser menampilkan halaman kepada pengguna  
+
 ---
 
 ## Setup & Instalasi
