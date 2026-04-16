@@ -129,9 +129,74 @@ puncak_steling/
 
 ## Struktur Database
 
+### Tabel `tb_admin`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_admin | INT | Primary key (auto increment) |
+| nama_lengkap | VARCHAR(100) | Nama admin |
+| email | VARCHAR(100) | Email admin |
+| password | VARCHAR(255) | Password admin |
+| created_at | TIMESTAMP | Waktu pembuatan data |
+
+### Tabel `tb_pengunjung`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_pengunjung | INT | Primary key (auto increment) |
+| nama_lengkap | VARCHAR(100) | Nama pengguna |
+| email | VARCHAR(100) | Email pengguna |
+| password | VARCHAR(255) | Password pengguna |
+| created_at | TIMESTAMP | Waktu registrasi |
+
+### Tabel `tb_ulasan`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_ulasan | INT | Primary key (auto increment) |
+| id_pengunjung | INT | Relasi ke pengguna |
+| rating | INT | Nilai rating |
+| komentar | TEXT | Isi ulasan |
+| balasan_admin | TEXT | Balasan dari admin |
+| tanggal_ulasan | TIMESTAMP | Waktu ulasan dibuat |
+
+### Tabel `tb_fasilitas`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_fasilitas | INT | Primary key (auto increment) |
+| nama_fasilitas | VARCHAR(100) | Nama fasilitas |
+| icon | VARCHAR(50) | Icon fasilitas |
+| file_gambar | VARCHAR(255) | Gambar fasilitas |
+
+### Tabel `tb_informasi`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_info | INT | Primary key (auto increment) |
+| harga_tiket | INT | Harga tiket |
+| jam_buka | TIME | Jam buka |
+| jam_tutup | TIME | Jam tutup |
+| deskripsi | TEXT | Deskripsi wisata |
+| tata_tertib | TEXT | Aturan atau tata tertib |
+
+### Tabel `tb_like`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_like | INT | Primary key (auto increment) |
+| id_galeri | INT | Relasi ke galeri |
+| id_pengunjung | INT | Relasi ke pengguna |
+| tanggal_like | TIMESTAMP | Waktu like |
+
+
 ---
 
 ## Nilai Tambah
+
+### MVC (Model View Controller)
+
+Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program, sehingga kode lebih rapi dan mudah dikelola.
 
 ---
 
