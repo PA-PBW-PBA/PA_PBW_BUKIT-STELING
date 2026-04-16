@@ -202,7 +202,7 @@ Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, 
 
 ## Fitur Utama
 
-### ✮⋆˙ Pengguna 
+### Pengguna 
 
 - Mengakses website tanpa login
 - Melihat halaman beranda
@@ -212,7 +212,7 @@ Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, 
 - Melihat galeri foto
 - Melihat ulasan dari pengunjung lain
 
-### ✮⋆˙ Fitur Tambahan Pengunjung (Setelah Login)
+### Fitur Tambahan Pengunjung (Setelah Login)
 
 - Registrasi Akun 
 - Login ke dalam sistem
@@ -221,7 +221,7 @@ Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, 
 - Melihat profil dan riwayat kontribusi
 
 
-### ✮⋆˙ Admin
+### Admin
 
 - Login ke halaman admin
 - Melihat data pada dashboard (_Read_)
