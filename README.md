@@ -116,6 +116,32 @@ puncak_steling/
 
 ## Arsitektur
 
+```
+index.php
+├── koneksi.php                  → koneksi ke database MySQL
+├── Controller (server-side)     → menerima request & mengatur alur
+│   ├── AuthController           → proses login & registrasi
+│   ├── GaleriController         → proses upload & tampil galeri
+│   ├── UlasanController         → proses ulasan & rating
+│   └── AdminController          → pengelolaan data oleh admin
+│
+├── Model                        → mengelola data dari database
+│   ├── UserModel                → ambil & simpan data pengguna
+│   ├── GaleriModel              → ambil & simpan data galeri
+│   ├── UlasanModel              → ambil & simpan data ulasan
+│   ├── FasilitasModel           → ambil data fasilitas
+│   └── InformasiModel           → ambil data informasi wisata
+│
+├── View                         → menampilkan data ke halaman
+│   ├── beranda                  → tampilan halaman utama
+│   ├── galeri                   → tampilan foto wisata
+│   ├── ulasan                   → tampilan ulasan pengunjung
+│   ├── informasi                → tampilan harga & jam operasional
+│   └── dashboard admin          → tampilan pengelolaan data
+│
+├── Bootstrap 5                  → layout dan komponen UI
+└── style.css                    → tampilan custom website
+```
 
 ---
 
