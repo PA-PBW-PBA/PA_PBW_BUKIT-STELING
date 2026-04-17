@@ -105,7 +105,9 @@ puncak_steling/
 | HTML5 | Digunakan untuk membuat struktur halaman website |
 | CSS3 | Digunakan untuk mengatur tampilan dan desain website |
 | Bootstrap | Digunakan untuk membuat tampilan website lebih rapi dan responsif |
-| Laragon | Digunakan sebagai server lokal untuk menjalankan website |
+| Vue.js | Digunakan untuk mendukung tampilan interaktif pada beberapa fitur website |
+| JavaScript | Digunakan untuk menambahkan interaksi dan fungsi dinamis pada halaman website |
+| Figma | Digunakan untuk merancang desain antarmuka dan prototype website sebelum proses coding |
 
 ---
 
