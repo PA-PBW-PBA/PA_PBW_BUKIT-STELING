@@ -24,31 +24,225 @@ Di dalam website ini terdapat berbagai informasi seperti deskripsi tempat, lokas
 
 Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
 
+## Struktur File
 
+<details>
+<summary>Aplikasi ini diimplementasikan dengan arsitektur MVC (Model-View-Controller)</summary>
 
+```
+puncak_steling/
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── img/
+│   │   ├── fasilitas/
+│   │   └── galeri/
+│   └── js/
+├── config/
+│   ├── api_stats.php
+│   └── koneksi.php
+├── controllers/
+│   ├── AdminController.php
+│   ├── AuthController.php
+│   ├── FasilitasController.php
+│   ├── GaleriController.php
+│   └── UlasanController.php
+├── models/
+│   ├── FasilitasModel.php
+│   ├── GaleriModel.php
+│   ├── InformasiModel.php
+│   ├── StatistikModel.php
+│   ├── UlasanModel.php
+│   └── UserModel.php
+├── public/
+│   ├── beranda.php
+│   ├── galeri.php
+│   ├── informasi.php
+│   ├── profil.php
+│   ├── proses_like.php
+│   ├── proses_ulasan.php
+│   ├── tentang.php
+│   ├── ulasan.php
+│   └── unggah_foto.php
+├── templates/
+│   ├── footer.php
+│   ├── header.php
+│   ├── navbar_public.php
+│   └── sidebar_admin.php
+├── views/
+│   ├── admin/
+│   │   ├── aksi_balas_ulasan.php
+│   │   ├── aksi_edit_fasilitas.php
+│   │   ├── aksi_hapus_fasilitas.php
+│   │   ├── aksi_hapus_galeri.php
+│   │   ├── aksi_hapus_ulasan.php
+│   │   ├── aksi_setujui_galeri.php
+│   │   ├── aksi_tambah_fasilitas.php
+│   │   ├── api_stats.php
+│   │   ├── dashboard.php
+│   │   ├── kelola_fasilitas.php
+│   │   ├── kelola_galeri.php
+│   │   ├── kelola_informasi.php
+│   │   ├── kelola_ulasan.php
+│   │   └── statistik.php
+│   └── auth/
+│       ├── login.php
+│       ├── logout.php
+│       └── register.php
+├── db_bukit_steling.sql
+└── index.php
+```
+</details>
 
 ---
-
 
 ## Teknologi yang Digunakan
 
-![PHP](https://img.shields.io/badge/PHP-8.1-blue?style=for-the-badge&logo=php)
-![MySQL](https://img.shields.io/badge/MySQL-8.4-orange?style=for-the-badge&logo=mysql)
-![HTML](https://img.shields.io/badge/HTML-5-red?style=for-the-badge&logo=html5)
-![CSS](https://img.shields.io/badge/CSS-3-blue?style=for-the-badge&logo=css3)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
-![Laragon](https://img.shields.io/badge/Laragon-Local%20Server-green?style=for-the-badge)
+| Teknologi | Keterangan |
+|----------|------------|
+| PHP | Digunakan untuk menjalankan logika website dan menghubungkan ke database |
+| MySQL | Digunakan untuk menyimpan data seperti pengguna, galeri, ulasan, fasilitas, dan informasi wisata |
+| HTML5 | Digunakan untuk membuat struktur halaman website |
+| CSS3 | Digunakan untuk mengatur tampilan dan desain website |
+| Bootstrap | Digunakan untuk membuat tampilan website lebih rapi dan responsif |
+| Vue.js | Digunakan untuk mendukung tampilan interaktif pada beberapa fitur website |
+| JavaScript | Digunakan untuk menambahkan interaksi dan fungsi dinamis pada halaman website |
+| Figma | Digunakan untuk merancang desain antarmuka dan prototype website sebelum proses coding |
 
 ---
 
+## Arsitektur
+
+```
+index.php
+├── koneksi.php                  → koneksi ke database MySQL
+├── Controller (server-side)     → menerima request & mengatur alur
+│   ├── AuthController           → proses login & registrasi
+│   ├── GaleriController         → proses upload & tampil galeri
+│   ├── UlasanController         → proses ulasan & rating
+│   └── AdminController          → pengelolaan data oleh admin
+│
+├── Model                        → mengelola data dari database
+│   ├── UserModel                → ambil & simpan data pengguna
+│   ├── GaleriModel              → ambil & simpan data galeri
+│   ├── UlasanModel              → ambil & simpan data ulasan
+│   ├── FasilitasModel           → ambil data fasilitas
+│   └── InformasiModel           → ambil data informasi wisata
+│
+├── View                         → menampilkan data ke halaman
+│   ├── beranda                  → tampilan halaman utama
+│   ├── galeri                   → tampilan foto wisata
+│   ├── ulasan                   → tampilan ulasan pengunjung
+│   ├── informasi                → tampilan harga & jam operasional
+│   └── dashboard admin          → tampilan pengelolaan data
+│
+├── Bootstrap 5                  → layout dan komponen UI
+└── style.css                    → tampilan custom website
+```
+
+---
+
+## Alur Kerja
+
+
+1. Menjalankan **Laragon** untuk mengaktifkan server lokal (Apache & MySQL)  
+2. Membuka website melalui browser:  
+   `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`  
+3. Sistem memproses halaman yang diakses melalui `index.php`  
+4. `koneksi.php` menghubungkan aplikasi dengan database MySQL  
+5. Controller mengatur alur sesuai request pengguna   
+6. Model mengelola data dari database  
+7. View menampilkan hasil ke halaman website  
+8. Browser menampilkan halaman kepada pengguna  
+
+---
+
+## Setup & Instalasi
+
+### Prasyarat
+
+### Langkah-langkah
+
+### Konfigurasi Database
+
+---
+
+## Struktur Database
+
+### Tabel `tb_admin`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_admin | INT | Primary key (auto increment) |
+| nama_lengkap | VARCHAR(100) | Nama admin |
+| email | VARCHAR(100) | Email admin |
+| password | VARCHAR(255) | Password admin |
+| created_at | TIMESTAMP | Waktu pembuatan data |
+
+### Tabel `tb_pengunjung`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_pengunjung | INT | Primary key (auto increment) |
+| nama_lengkap | VARCHAR(100) | Nama pengguna |
+| email | VARCHAR(100) | Email pengguna |
+| password | VARCHAR(255) | Password pengguna |
+| created_at | TIMESTAMP | Waktu registrasi |
+
+### Tabel `tb_ulasan`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_ulasan | INT | Primary key (auto increment) |
+| id_pengunjung | INT | Relasi ke pengguna |
+| rating | INT | Nilai rating |
+| komentar | TEXT | Isi ulasan |
+| balasan_admin | TEXT | Balasan dari admin |
+| tanggal_ulasan | TIMESTAMP | Waktu ulasan dibuat |
+
+### Tabel `tb_fasilitas`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_fasilitas | INT | Primary key (auto increment) |
+| nama_fasilitas | VARCHAR(100) | Nama fasilitas |
+| icon | VARCHAR(50) | Icon fasilitas |
+| file_gambar | VARCHAR(255) | Gambar fasilitas |
+
+### Tabel `tb_informasi`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_info | INT | Primary key (auto increment) |
+| harga_tiket | INT | Harga tiket |
+| jam_buka | TIME | Jam buka |
+| jam_tutup | TIME | Jam tutup |
+| deskripsi | TEXT | Deskripsi wisata |
+| tata_tertib | TEXT | Aturan atau tata tertib |
+
+### Tabel `tb_like`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_like | INT | Primary key (auto increment) |
+| id_galeri | INT | Relasi ke galeri |
+| id_pengunjung | INT | Relasi ke pengguna |
+| tanggal_like | TIMESTAMP | Waktu like |
+
+
+---
 
 ## Nilai Tambah
+
+### MVC (Model View Controller)
+
+Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program, sehingga kode lebih rapi dan mudah dikelola.
 
 ---
 
 ## Fitur Utama
 
-### ✮⋆˙ Pengguna 
+### Pengguna 
 
 - Mengakses website tanpa login
 - Melihat halaman beranda
@@ -58,7 +252,7 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 - Melihat galeri foto
 - Melihat ulasan dari pengunjung lain
 
-### ✮⋆˙ Fitur Tambahan Pengunjung (Setelah Login)
+### Fitur Tambahan Pengunjung (Setelah Login)
 
 - Registrasi Akun 
 - Login ke dalam sistem
@@ -67,7 +261,7 @@ Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung m
 - Melihat profil dan riwayat kontribusi
 
 
-### ✮⋆˙ Admin
+### Admin
 
 - Login ke halaman admin
 - Melihat data pada dashboard (_Read_)
