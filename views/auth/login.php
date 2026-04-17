@@ -71,7 +71,13 @@ include '../templates/header.php';
                     <label class="form-label small fw-bold text-dark opacity-75">Password</label>
                     <div class="input-group shadow-sm-custom">
                         <span class="input-group-text bg-light border-end-0 rounded-start-3 text-muted border-0"><i class="bi bi-lock"></i></span>
-                        <input :type="passwordVisible ? 'text' : 'password'" name="password" class="form-control form-control-lg fs-6 bg-light border-start-0 border-0" placeholder="Password Anda" required>
+                        <input
+                            :type="passwordVisible ? 'text' : 'password'"
+                            name="password"
+                            autocomplete="current-password"
+                            class="form-control form-control-lg fs-6 bg-light border-start-0 border-0 hide-password-reveal"
+                            placeholder="Password Anda"
+                            required>
                         <span class="input-group-text bg-light border-start-0 rounded-end-3 text-muted border-0 shadow-none cursor-pointer" @click="passwordVisible = !passwordVisible">
                             <i class="bi" :class="passwordVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
                         </span>
@@ -98,6 +104,18 @@ include '../templates/header.php';
     .slide-fade-leave-to     { transform: translateX(-50px); opacity: 0; }
     .hover-scale { transition: transform 0.2s ease; }
     .hover-scale:hover { transform: translateX(-5px); }
+
+    /* Sembunyikan ikon mata bawaan browser (Chrome, Edge, IE) */
+    .hide-password-reveal::-ms-reveal,
+    .hide-password-reveal::-ms-clear {
+        display: none !important;
+    }
+    .hide-password-reveal::-webkit-credentials-auto-fill-button {
+        display: none !important;
+    }
+    input[type="password"].hide-password-reveal {
+        -webkit-text-security: disc;
+    }
 </style>
 
 <script>

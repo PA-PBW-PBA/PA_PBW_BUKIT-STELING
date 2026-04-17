@@ -1,8 +1,6 @@
 <?php
 /**
  * views/admin/kelola_fasilitas.php
- * Halaman kelola fasilitas — hanya tampilan HTML & tabel data
- * Aksi CRUD diteruskan ke file aksi masing-masing
  */
 
 session_start();
@@ -13,7 +11,6 @@ $controller = new FasilitasController($koneksi);
 $data       = $controller->index();
 $fasilitas  = $data['fasilitas'];
 
-// Cek pesan dari aksi
 $pesan_swal = "";
 if (isset($_GET['msg'])) {
     $pesan = [
@@ -77,12 +74,10 @@ include '../templates/header.php';
                                     </td>
                                     <td class="py-3 text-center">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <!-- Tombol Edit — pakai Vue bukaEdit() -->
                                             <button class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-primary-custom hover-btn"
                                                     @click="bukaEdit('<?php echo $f['id_fasilitas']; ?>', '<?php echo htmlspecialchars($f['nama_fasilitas'], ENT_QUOTES); ?>', '<?php echo htmlspecialchars($f['file_gambar'], ENT_QUOTES); ?>')">
                                                 <i class="bi bi-pencil-square fs-6"></i>
                                             </button>
-                                            <!-- Tombol Hapus -->
                                             <button class="btn btn-light btn-sm rounded-circle p-2 shadow-sm text-danger hover-btn"
                                                @click="konfirmasiHapus($event, 'aksi_hapus_fasilitas.php?id=<?php echo $f['id_fasilitas']; ?>', 'Hapus fasilitas <?php echo htmlspecialchars($f['nama_fasilitas'], ENT_QUOTES); ?>?')">
                                                 <i class="bi bi-trash fs-6"></i>
@@ -98,99 +93,99 @@ include '../templates/header.php';
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal Tambah — dengan preview gambar Vue -->
-<div class="modal fade" id="modalTambah" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-            <div class="modal-header border-0 p-4 pb-0">
-                <h5 class="fw-bold text-dark">Tambah Fasilitas Baru</h5>
-                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+    <!-- ✅ Modal Tambah — DIPINDAH ke dalam #app-fasilitas -->
+    <div class="modal fade" id="modalTambah" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+                <div class="modal-header border-0 p-4 pb-0">
+                    <h5 class="fw-bold text-dark">Tambah Fasilitas Baru</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="aksi_tambah_fasilitas.php" method="POST" enctype="multipart/form-data" @submit="submitTambah">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
+                            <input type="text" name="nama_fasilitas" v-model="namaFasilitasBaru"
+                                   class="form-control shadow-none focus-ring" placeholder="Contoh: Musholla Baru" required>
+                            <div class="d-flex justify-content-between mt-1">
+                                <small class="text-danger" v-if="namaFasilitasBaru.length > 0 && !namaBaruValid">Minimal 3 karakter.</small>
+                                <small class="text-muted nama-counter ms-auto">{{ namaFasilitasBaru.length }}/50</small>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold text-muted">Gambar Fasilitas</label>
+                            <input type="file" name="foto" class="form-control shadow-none focus-ring"
+                                   accept="image/png, image/jpeg, image/webp" @change="onFotoTambahChange" required>
+                            <small class="text-danger d-block mt-1" v-if="errorTambah">{{ errorTambah }}</small>
+                        </div>
+                        <div class="img-preview-box mt-3" v-if="previewTambah">
+                            <img :src="previewTambah" alt="Preview">
+                            <p class="text-center small text-muted py-1 mb-0">Preview gambar</p>
+                        </div>
+                        <div class="img-preview-box mt-3" v-else>
+                            <div class="img-preview-placeholder">
+                                <i class="bi bi-image fs-5"></i> Preview gambar akan muncul di sini
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" name="tambah" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm"
+                                :disabled="!namaBaruValid">Tambah Sekarang</button>
+                    </div>
+                </form>
             </div>
-            <form action="aksi_tambah_fasilitas.php" method="POST" enctype="multipart/form-data" @submit="submitTambah">
-                <div class="modal-body p-4">
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" v-model="namaFasilitasBaru"
-                               class="form-control shadow-none focus-ring" placeholder="Contoh: Musholla Baru" required>
-                        <div class="d-flex justify-content-between mt-1">
-                            <small class="text-danger" v-if="namaFasilitasBaru.length > 0 && !namaBaruValid">Minimal 3 karakter.</small>
-                            <small class="text-muted nama-counter ms-auto">{{ namaFasilitasBaru.length }}/50</small>
-                        </div>
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label small fw-bold text-muted">Gambar Fasilitas</label>
-                        <input type="file" name="foto" class="form-control shadow-none focus-ring"
-                               accept="image/png, image/jpeg, image/webp" @change="onFotoTambahChange" required>
-                        <small class="text-danger d-block mt-1" v-if="errorTambah">{{ errorTambah }}</small>
-                    </div>
-                    <div class="img-preview-box mt-3" v-if="previewTambah">
-                        <img :src="previewTambah" alt="Preview">
-                        <p class="text-center small text-muted py-1 mb-0">Preview gambar</p>
-                    </div>
-                    <div class="img-preview-box mt-3" v-else>
-                        <div class="img-preview-placeholder">
-                            <i class="bi bi-image fs-5"></i> Preview gambar akan muncul di sini
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 p-4 pt-0">
-                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="tambah" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm"
-                            :disabled="!namaBaruValid">Tambah Sekarang</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
-<!-- Modal Edit — SATU modal reaktif Vue, diisi via bukaEdit() -->
-<div class="modal fade" id="modalEdit" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-            <div class="modal-header border-0 p-4 pb-0">
-                <h5 class="fw-bold text-dark">Edit Fasilitas</h5>
-                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-            </div>
-            <form action="aksi_edit_fasilitas.php" method="POST" enctype="multipart/form-data" @submit="submitEdit">
-                <div class="modal-body p-4">
-                    <input type="hidden" name="id_fasilitas" :value="editId">
-                    <input type="hidden" name="foto_lama"    :value="editFotoLama">
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
-                        <input type="text" name="nama_fasilitas" v-model="editNama"
-                               class="form-control shadow-none focus-ring" required>
-                        <div class="d-flex justify-content-between mt-1">
-                            <small class="text-danger" v-if="editNama.length > 0 && !namaEditValid">Minimal 3 karakter.</small>
-                            <small class="text-muted nama-counter ms-auto">{{ editNama.length }}/50</small>
+    <!-- ✅ Modal Edit — DIPINDAH ke dalam #app-fasilitas -->
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+                <div class="modal-header border-0 p-4 pb-0">
+                    <h5 class="fw-bold text-dark">Edit Fasilitas</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="aksi_edit_fasilitas.php" method="POST" enctype="multipart/form-data" @submit="submitEdit">
+                    <div class="modal-body p-4">
+                        <input type="hidden" name="id_fasilitas" :value="editId">
+                        <input type="hidden" name="foto_lama"    :value="editFotoLama">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">Nama Fasilitas</label>
+                            <input type="text" name="nama_fasilitas" v-model="editNama"
+                                   class="form-control shadow-none focus-ring" required>
+                            <div class="d-flex justify-content-between mt-1">
+                                <small class="text-danger" v-if="editNama.length > 0 && !namaEditValid">Minimal 3 karakter.</small>
+                                <small class="text-muted nama-counter ms-auto">{{ editNama.length }}/50</small>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold text-muted">Ganti Gambar <span class="fw-normal text-muted">(Opsional)</span></label>
+                            <input type="file" name="foto" class="form-control shadow-none focus-ring"
+                                   accept="image/png, image/jpeg, image/webp" @change="onFotoEditChange">
+                            <small class="text-danger d-block mt-1" v-if="errorEdit">{{ errorEdit }}</small>
+                        </div>
+                        <div class="img-preview-box mt-3">
+                            <img v-if="previewEdit" :src="previewEdit" alt="Preview Baru">
+                            <img v-else :src="'../../assets/img/fasilitas/' + editFotoLama" alt="Gambar Saat Ini">
+                            <p class="text-center small py-1 mb-0"
+                               :class="previewEdit ? 'text-primary-custom fw-bold' : 'text-muted'">
+                                {{ previewEdit ? 'Gambar baru (belum disimpan)' : 'Gambar saat ini' }}
+                            </p>
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <label class="form-label small fw-bold text-muted">Ganti Gambar <span class="fw-normal text-muted">(Opsional)</span></label>
-                        <input type="file" name="foto" class="form-control shadow-none focus-ring"
-                               accept="image/png, image/jpeg, image/webp" @change="onFotoEditChange">
-                        <small class="text-danger d-block mt-1" v-if="errorEdit">{{ errorEdit }}</small>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" name="edit" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm"
+                                :disabled="!namaEditValid">Simpan Perubahan</button>
                     </div>
-                    <!-- Preview: gambar baru jika dipilih, gambar lama jika tidak -->
-                    <div class="img-preview-box mt-3">
-                        <img v-if="previewEdit" :src="previewEdit" alt="Preview Baru">
-                        <img v-else :src="'../../assets/img/fasilitas/' + editFotoLama" alt="Gambar Saat Ini">
-                        <p class="text-center small py-1 mb-0"
-                           :class="previewEdit ? 'text-primary-custom fw-bold' : 'text-muted'">
-                            {{ previewEdit ? 'Gambar baru (belum disimpan)' : 'Gambar saat ini' }}
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 p-4 pt-0">
-                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="edit" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm"
-                            :disabled="!namaEditValid">Simpan Perubahan</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+</div><!-- /app-fasilitas -->
 
 <style>
     .hover-scale  { transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -211,28 +206,23 @@ include '../templates/header.php';
 <script>
     const { createApp, ref, computed } = Vue;
 
-    // Data fasilitas dari PHP untuk Vue
     const dataFasilitas = <?php echo json_encode($fasilitas); ?>;
 
     createApp({
         setup() {
-            // ── State modal tambah ──
             const namaFasilitasBaru  = ref('');
             const previewTambah      = ref('');
             const errorTambah        = ref('');
 
-            // ── State modal edit (single modal reaktif) ──
             const editId        = ref('');
             const editNama      = ref('');
             const editFotoLama  = ref('');
             const previewEdit   = ref('');
             const errorEdit     = ref('');
 
-            // ── Computed validasi ──
             const namaBaruValid = computed(() => namaFasilitasBaru.value.trim().length >= 3);
             const namaEditValid = computed(() => editNama.value.trim().length >= 3);
 
-            // ── Preview gambar tambah ──
             function onFotoTambahChange(e) {
                 const file = e.target.files[0];
                 if (!file) { previewTambah.value = ''; return; }
@@ -247,7 +237,6 @@ include '../templates/header.php';
                 reader.readAsDataURL(file);
             }
 
-            // ── Preview gambar edit ──
             function onFotoEditChange(e) {
                 const file = e.target.files[0];
                 if (!file) { previewEdit.value = ''; return; }
@@ -262,7 +251,6 @@ include '../templates/header.php';
                 reader.readAsDataURL(file);
             }
 
-            // ── Buka modal edit dan isi data ──
             function bukaEdit(id, nama, fotoLama) {
                 editId.value       = id;
                 editNama.value     = nama;
@@ -273,7 +261,6 @@ include '../templates/header.php';
                 modal.show();
             }
 
-            // ── Submit tambah — validasi Vue sebelum kirim ──
             function submitTambah(e) {
                 if (!namaBaruValid.value) {
                     e.preventDefault();
@@ -287,7 +274,6 @@ include '../templates/header.php';
                 }
             }
 
-            // ── Submit edit — validasi Vue sebelum kirim ──
             function submitEdit(e) {
                 if (!namaEditValid.value) {
                     e.preventDefault();
@@ -295,7 +281,6 @@ include '../templates/header.php';
                 }
             }
 
-            // ── Konfirmasi hapus ──
             function konfirmasiHapus(event, href, pesan) {
                 event.preventDefault();
                 Swal.fire({
