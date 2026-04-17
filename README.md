@@ -159,6 +159,12 @@ index.php
 
 ## Setup & Instalasi
 
+### Prasyarat
+
+### Langkah-langkah
+
+### Konfigurasi Database
+
 ---
 
 ## Struktur Database
