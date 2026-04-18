@@ -43,18 +43,18 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 
 - Registrasi Akun 
 - Login ke dalam sistem
-- Menambahkan ulasan dan rating (_Create_)
-- Mengunggah foto ke galeri (_Create_)
+- Menambahkan ulasan dan rating 
+- Mengunggah foto ke galeri 
 - Melihat profil dan riwayat kontribusi
 
 
 ### Admin
 
 - Login ke halaman admin
-- Melihat data pada dashboard (_Read_)
-- Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
-- Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
-- Mengelola galeri foto (_Read_, _Delete_)
+- Melihat data pada dashboard 
+- Mengelola informasi wisata 
+- Mengelola fasilitas 
+- Mengelola galeri foto 
 - Mengelola data ulasan pengunjung 
 
 ---
