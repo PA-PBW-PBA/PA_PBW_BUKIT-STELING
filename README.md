@@ -264,7 +264,7 @@ index.php
 
 ### ✮ MVC (Model View Controller)
 
-Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program, sehingga kode lebih rapi dan mudah dikelola.
+Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program.
 
 ```
 puncak_steling/
