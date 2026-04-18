@@ -155,49 +155,6 @@ index.php
 7. View menampilkan hasil ke halaman website  
 8. Browser menampilkan halaman kepada pengguna  
 
----
-
-## Setup & Instalasi
-
-### Prasyarat
-
-- Laragon Full (Apache, MySQL, PHP) 
-
-### Langkah-langkah
-
-1. Letakkan file di folder Laragon:
-
-  ```
-     C:\laragon\www\puncak_steling\
-      ├── assets/
-      │   ├── css/
-      │   │   └── style.css
-      │   ├── img/
-      │   │   ├── fasilitas/
-      │   │   └── galeri/
-      │   └── js/
-      ├── config/
-      │   ├── api_stats.php
-      │   └── koneksi.php
-      ├── controllers/
-      ├── models/
-      ├── public/
-      ├── templates/
-      ├── views/
-      ├── db_bukit_steling.sql
-      └── index.php
-  ```
-
-2. Import database:
-   - Pastikan Laragon sudah running
-   - Buka `http://localhost/phpmyadmin`
-   - Login dengan username root (password kosong)
-   - Klik Import → pilih file db_bukit_steling.sql → klik Execute
-
-   
-4. Buka Website:
-
-   `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`
 
 ---
 
