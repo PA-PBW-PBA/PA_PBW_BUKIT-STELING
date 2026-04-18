@@ -7,7 +7,7 @@
 
 </p>
 
-### Kelompok Alakadarnya
+**Kelompok Alakadarnya**
 
 | **Nama**                         | **NIM**     | **Kelas**            |
 |----------------------------------|------------|----------------------|
@@ -18,9 +18,9 @@
 
 ## Deskripsi Project
 
-Website Puncak Stelling Samarinda merupakan sebuah website yang dibuat untuk memberikan informasi tentang salah satu tempat wisata alam yang ada di Samarinda, yaitu Puncak Stelling. Website ini dibuat agar masyarakat bisa lebih mudah mendapatkan informasi mengenai tempat wisata tersebut tanpa harus datang langsung ke lokasi.
+Website Puncak Stelling Samarinda merupakan sebuah website yang dibuat untuk memberikan informasi tentang salah satu tempat wisata alam yang ada di Samarinda, yaitu Puncak Stelling. Website ini dibuat agar masyarakat bisa lebih mudah mendapatkan informasi tentang tempat wisata ini tanpa harus datang langsung ke lokasi.
 
-Di dalam website ini terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Puncak Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
+Di dalam website, terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Puncak Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
 
 Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
 
@@ -140,20 +140,22 @@ index.php
 └── style.css                    → tampilan custom website
 ```
 
----
-
 ## Alur Kerja
 
+1. Pengguna membuka website melalui browser  
+   `https://bukitsteling.rf.gd`
 
-1. Menjalankan **Laragon** untuk mengaktifkan server lokal (Apache & MySQL)  
-2. Membuka website melalui browser:  
-   `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`  
-3. Sistem memproses halaman yang diakses melalui `index.php`  
-4. `koneksi.php` menghubungkan aplikasi dengan database MySQL  
-5. Controller mengatur alur sesuai request pengguna   
-6. Model mengelola data dari database  
-7. View menampilkan hasil ke halaman website  
-8. Browser menampilkan halaman kepada pengguna  
+2. Server hosting menerima request dan menjalankan file `index.php`
+
+3. `koneksi.php` menghubungkan aplikasi dengan database MySQL
+
+4. Controller mengatur alur sistem sesuai request pengguna
+
+5. Model mengambil, menyimpan, atau mengubah data pada database
+
+6. View menampilkan hasil ke halaman website
+
+7. Browser menerima halaman yang sudah lengkap dan menampilkannya ke pengguna
 
 
 ---
@@ -230,6 +232,8 @@ index.php
 Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program, sehingga kode lebih rapi dan mudah dikelola.
 
 ### Hosting
+
+Akses website melalui link berikut:
 
 https://bukitsteling.rf.gd 
 
