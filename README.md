@@ -1,4 +1,4 @@
-<h1 align="center">Puncak Steling Samarinda</h2>
+<h1 align="center">Website Puncak Steling Samarinda</h2>
 
 <p align="center"><em>Nikmati Senja di Puncak Steling 🔆</em></p>
 
@@ -18,11 +18,11 @@
 
 ## Deskripsi Project
 
-Website Puncak Stelling Samarinda merupakan sebuah website yang dibuat untuk memberikan informasi tentang salah satu tempat wisata alam yang ada di Samarinda, yaitu Puncak Stelling. Website ini dibuat agar masyarakat bisa lebih mudah mendapatkan informasi tentang tempat wisata ini tanpa harus datang langsung ke lokasi.
+Website Puncak Steling Samarinda adalah website yang berisi informasi seputar wisata Puncak Steling, seperti gambaran tempat, fasilitas, serta informasi lain yang dibutuhkan oleh pengunjung.
 
-Di dalam website, terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Puncak Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
+Website ini dibuat untuk membantu pengelola dalam menyebarkan informasi dengan lebih mudah, karena sebelumnya informasi hanya tersedia di media sosial dan tidak selalu diperbarui. Hal ini membuat pengunjung kesulitan mendapatkan informasi yang jelas.
 
-Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
+Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Puncak Steling sebelum datang langsung ke lokasi.
 
 ---
 
@@ -262,11 +262,18 @@ index.php
 
 ## Nilai Tambah
 
-### MVC (Model View Controller)
+### ✮ MVC (Model View Controller)
 
 Struktur folder disusun menggunakan konsep MVC untuk memisahkan data, tampilan, dan logika program, sehingga kode lebih rapi dan mudah dikelola.
 
-### Hosting
+```
+puncak_steling/
+├───controllers
+├───models
+└───views
+```
+
+### ✮ Hosting
 
 Akses website melalui link berikut:
 
@@ -277,7 +284,7 @@ https://bukitsteling.rf.gd
 
 ## Slide Deck
 
-Akses slide presentasi melalui link berikut:
+Slide presentasi dapat diakses melalui link berikut:
 
 https://canva.link/qwgoi7d9799anba
 
