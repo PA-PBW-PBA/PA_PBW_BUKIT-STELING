@@ -1,6 +1,6 @@
 <h1 align="center">Puncak Steling Samarinda</h2>
 
-<p align="center"><em>Nikmati Senja di Puncak Steling</em></p>
+<p align="center"><em>Nikmati Senja di Puncak Steling 🔆</em></p>
 
 <p align="center">
   <img width="1535" height="606" alt="Nikmati senja di Puncak Steling" src="https://github.com/user-attachments/assets/d1f620cb-03d4-41e1-a9f9-c48a7c6cdaf1" />
@@ -23,6 +23,41 @@ Website Puncak Stelling Samarinda merupakan sebuah website yang dibuat untuk mem
 Di dalam website, terdapat berbagai informasi seperti deskripsi tempat, lokasi, harga tiket, jam operasional, dan fasilitas yang tersedia. Selain itu, terdapat juga fitur galeri yang menampilkan foto-foto Puncak Stelling sehingga pengunjung bisa melihat gambaran suasana tempat wisata tersebut.
 
 Website ini dapat diakses tanpa perlu login, sehingga siapa saja bisa langsung melihat informasi yang tersedia. Pengunjung juga dapat memberikan ulasan, kritik, dan saran melalui fitur yang telah disediakan. Selain itu, terdapat halaman khusus admin yang digunakan untuk mengelola isi website. Admin dapat menambahkan, mengubah, dan menghapus data wisata, mengelola galeri, serta menghapus ulasan yang tidak sesuai. 
+
+---
+
+
+## Fitur Utama
+
+### Pengguna 
+
+- Mengakses website tanpa login
+- Melihat halaman beranda
+- Melihat informasi wisata (deskripsi, harga tiket, jam operasional)
+- Melihat fasilitas yang tersedia
+- Melihat struktur organisasi Puncak Steling
+- Melihat galeri foto
+- Melihat ulasan dari pengunjung lain
+
+### Fitur Tambahan Pengunjung (Setelah Login)
+
+- Registrasi Akun 
+- Login ke dalam sistem
+- Menambahkan ulasan dan rating (_Create_)
+- Mengunggah foto ke galeri (_Create_)
+- Melihat profil dan riwayat kontribusi
+
+
+### Admin
+
+- Login ke halaman admin
+- Melihat data pada dashboard (_Read_)
+- Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
+- Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
+- Mengelola galeri foto (_Read_, _Delete_)
+- Mengelola data ulasan pengunjung 
+
+---
 
 ## Struktur File
 
@@ -139,11 +174,11 @@ index.php
 ├── Bootstrap 5                  → layout dan komponen UI
 └── style.css                    → tampilan custom website
 ```
+---
 
 ## Alur Kerja
 
-1. Pengguna membuka website melalui browser  
-   `https://bukitsteling.rf.gd`
+1. Pengguna membuka website melalui browser `https://bukitsteling.rf.gd`
 
 2. Server hosting menerima request dan menjalankan file `index.php`
 
@@ -237,39 +272,14 @@ Akses website melalui link berikut:
 
 https://bukitsteling.rf.gd 
 
+
 ---
 
-## Fitur Utama
+## Slide Deck
 
-### Pengguna 
+Akses slide presentasi melalui link berikut:
 
-- Mengakses website tanpa login
-- Melihat halaman beranda
-- Melihat informasi wisata (deskripsi, harga tiket, jam operasional)
-- Melihat fasilitas yang tersedia
-- Melihat struktur organisasi Puncak Steling
-- Melihat galeri foto
-- Melihat ulasan dari pengunjung lain
-
-### Fitur Tambahan Pengunjung (Setelah Login)
-
-- Registrasi Akun 
-- Login ke dalam sistem
-- Menambahkan ulasan dan rating (_Create_)
-- Mengunggah foto ke galeri (_Create_)
-- Melihat profil dan riwayat kontribusi
-
-
-### Admin
-
-- Login ke halaman admin
-- Melihat data pada dashboard (_Read_)
-- Mengelola informasi wisata (_Create_,_Read_, _Update_, _Delete_)
-- Mengelola fasilitas (_Create_, _Read_, _Update_, _Delete_)
-- Mengelola galeri foto (_Read_, _Delete_)
-- Mengelola data ulasan pengunjung 
-
-
+https://canva.link/qwgoi7d9799anba
 
 ---
 
@@ -296,7 +306,7 @@ https://bukitsteling.rf.gd
 
 
 ### ✧˖°. Halaman Galeri
-  > <img width="1794" height="2421" alt="image" src="https://github.com/user-attachments/assets/4ced6238-d7ce-467c-8cd6-1451a40209a0" />
+  > <img width="1900" height="942" alt="Screenshot 2026-04-15 082803" src="https://github.com/user-attachments/assets/dd7e9889-dbb5-408d-adac-f3a8f7562dd7" />
 
   > Halaman galeri merupakan halaman yang menampilkan kumpulan foto atau dokumentasi dari Puncak Steling. Halaman ini bisa diakses oleh semua pengunjung. Pengguna bisa melihat berbagai foto yang telah diunggah serta filter tampilan berdasarkan kategori yang tersedia. Disini, pengunjung jadi bisa melihat suasana dan kondisi Puncak Steling secara lebih jelas.
 
@@ -342,7 +352,7 @@ https://bukitsteling.rf.gd
 
 
 ### ✧˖°. Upload Foto (Pengunjung)
-  > <img width="1887" height="938" alt="image" src="https://github.com/user-attachments/assets/94680496-4c98-42ba-899f-0bb8dea968be" />
+  > <img width="1920" height="932" alt="Screenshot (1122)" src="https://github.com/user-attachments/assets/9801e0a8-afec-4ea9-a498-fc7dee2d0aaa" />
   > Halaman ini digunakan oleh pengunjung untuk membagikan foto ke galeri Puncak Steling. Pengguna bisa mengunggah foto yang dimiliki, namun foto tersebut tidak langsung ditampilkan. Foto akan masuk ke antrean terlebih dahulu untuk ditinjau oleh admin. Jika sudah disetujui, barulah foto akan muncul di galeri.
 
 ### ✧˖°. Ulasan Pengunjung (Pengunjung)
