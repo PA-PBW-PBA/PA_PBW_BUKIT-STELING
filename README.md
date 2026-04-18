@@ -9,12 +9,12 @@
 
 **Kelompok Alakadarnya**
 
-| **Nama**                         | **NIM**     | **Kelas**            |
-|----------------------------------|------------|----------------------|
-| Rizqy                            | 2409116039 | Sistem Informasi A   |
-| Jen Agresia Misti                | 2409116007 | Sistem Informasi A   |
-| Maifariza Aulia Dyas             | 2409116032 | Sistem Informasi A   |
-| Yardan Raditya Rafi’ Widyadhana  | 2409116037 | Sistem Informasi A   |
+| **Nama**                         | **NIM**    | **Kelas**            |    **Tugas**                        |
+|----------------------------------|------------|----------------------|-------------------------------------|
+| Rizqy                            | 2409116039 | Sistem Informasi A   | Backend Developer & Project Manager |
+| Jen Agresia Misti                | 2409116007 | Sistem Informasi A   | UI/UX Designer                      |
+| Maifariza Aulia Dyas             | 2409116032 | Sistem Informasi A   | Database Engineer                   |
+| Yardan Raditya Rafi’ Widyadhana  | 2409116037 | Sistem Informasi A   | Frontend Developer                  |
 
 ## Deskripsi Website
 
