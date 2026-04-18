@@ -161,24 +161,13 @@ index.php
 
 ### Prasyarat
 
-- Laragon Full (Apache, MySQL, PHP) (opsional untuk menjalankan secara lokal)
-
-- Browser (Chrome, Edge)
+- Laragon Full (Apache, MySQL, PHP) 
 
 ### Langkah-langkah
 
-1. Menjalankan Website (Hosting)
+1. Letakkan file di folder Laragon:
 
-   Website dapat langsung diakses melalui link berikut:
-   
-   https://bukitsteling.rf.gd
-
-
-2. Menjalankan Website (Lokal)
-
-   a. Letakkan file di folder Laragon:
-
-    ```
+  ```
      C:\laragon\www\puncak_steling\
       ├── assets/
       │   ├── css/
@@ -197,25 +186,19 @@ index.php
       ├── views/
       ├── db_bukit_steling.sql
       └── index.php
-    ```
+  ```
 
-   b. Import database:
+2. Import database:
 
    - Pastikan Laragon sudah running
-   
-   - Buka http://localhost/phpmyadmin
-   
+   - Buka `http://localhost/phpmyadmin`
    - Login dengan username root (password kosong)
-   
    - Klik Import → pilih file db_bukit_steling.sql → klik Execute
 
    
-   c. Buka Website:
+3. Buka Website:
 
-
-
-
-### Konfigurasi Database
+   `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`
 
 ---
 
