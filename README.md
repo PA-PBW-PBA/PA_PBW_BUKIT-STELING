@@ -321,12 +321,12 @@ https://bukitsteling.rf.gd
 
 
 ### ✧˖°. Halaman Login
-  > <img width="1895" height="943" alt="Screenshot 2026-04-11 093532" src="https://github.com/user-attachments/assets/7d6884f2-ed8f-40c3-b19f-df8e65a3821e" />
+  > <img width="1888" height="937" alt="Screenshot 2026-04-15 082718" src="https://github.com/user-attachments/assets/dcc3ea6b-0f4a-47e8-a029-f382f9205c8b" />
   > Halaman login digunakan pengguna untuk masuk ke dalam website menggunakan akun yang sudah terdaftar. Disini, pengguna diminta memasukkan email serta password. Setelah data dimasukkan dengan benar, pengguna bisa langsung masuk ke website dan mengakses fitur sesuai dengan perannya, seperti admin atau pengunjung.
 
 
 ### ✧˖°. Halaman Register
-  > <img width="1897" height="942" alt="Screenshot 2026-04-11 093554" src="https://github.com/user-attachments/assets/04bb8d18-3153-40e7-b905-6bc2f8468f66" />
+  > <img width="1893" height="941" alt="Screenshot 2026-04-15 082546" src="https://github.com/user-attachments/assets/106db520-d5f6-4e4a-ae91-946eba7dbd4b" />
   > Halaman register merupakan halaman yang digunakan untuk membuat akun baru. Pengguna yang ingin mengakses fitur dalam website perlu mendaftar terlebih dahulu dengan mengisi data seperti nama, email, dan password. Setelah itu, pengguna dapat menekan tombol daftar untuk menyelesaikan proses pendaftaran.
 
   
@@ -372,7 +372,7 @@ https://bukitsteling.rf.gd
 
 
 ### ✧˖°. Halaman Manajemen Galeri
-  > <img width="1911" height="945" alt="image" src="https://github.com/user-attachments/assets/0ad1cd92-6529-4e32-a5f8-c4d8de374899" />
+  > <img width="1906" height="944" alt="Screenshot (1159)" src="https://github.com/user-attachments/assets/87edacd2-0691-4964-bcd8-3b7aeff3daba" />
   > Halaman manajemen galeri digunakan oleh admin untuk mengelola foto yang diunggah oleh pengunjung. Admin bisa melihat antrean foto yang masih menunggu persetujuan. Lalu, Admin menyetujui foto agar ditampilkan di galeri atau menghapus foto jika tidak sesuai. Selain itu, admin juga dapat melihat daftar foto yang sudah dipublikasikan.
 
 
