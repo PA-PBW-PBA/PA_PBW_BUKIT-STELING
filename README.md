@@ -189,14 +189,13 @@ index.php
   ```
 
 2. Import database:
-
    - Pastikan Laragon sudah running
    - Buka `http://localhost/phpmyadmin`
    - Login dengan username root (password kosong)
    - Klik Import → pilih file db_bukit_steling.sql → klik Execute
 
    
-3. Buka Website:
+4. Buka Website:
 
    `http://localhost:4466/PA_PBW_BUKIT-STELING-main/views/public/beranda.php`
 
