@@ -16,7 +16,7 @@
 | Maifariza Aulia Dyas             | 2409116032 | Sistem Informasi A   |
 | Yardan Raditya Rafi’ Widyadhana  | 2409116037 | Sistem Informasi A   |
 
-## Deskripsi Project
+## Deskripsi Website
 
 Website Puncak Steling Samarinda adalah website yang berisi informasi seputar wisata Puncak Steling, seperti gambaran tempat, fasilitas, serta informasi lain yang dibutuhkan oleh pengunjung.
 
@@ -27,7 +27,7 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 ---
 
 
-## Fitur Utama
+## Fitur Website
 
 ### Pengguna 
 
