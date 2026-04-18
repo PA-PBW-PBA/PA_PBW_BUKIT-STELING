@@ -20,7 +20,7 @@
 
 Website Puncak Steling Samarinda adalah website yang berisi informasi seputar wisata Puncak Steling, seperti gambaran tempat, fasilitas, serta informasi lain yang dibutuhkan oleh pengunjung.
 
-Website ini dibuat untuk membantu pengelola dalam menyebarkan informasi dengan lebih mudah, karena sebelumnya informasi hanya tersedia di media sosial dan tidak selalu diperbarui. Hal ini membuat pengunjung kesulitan mendapatkan informasi yang jelas.
+Website ini dibuat untuk membantu pengelola dalam menyebarkan informasi dengan mudah, karena sebelumnya informasi hanya tersedia di media sosial dan tidak selalu diperbarui. Hal ini membuat pengunjung kesulitan mendapatkan informasi yang jelas.
 
 Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Puncak Steling sebelum datang langsung ke lokasi.
 
