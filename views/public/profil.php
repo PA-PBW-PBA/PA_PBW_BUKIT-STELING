@@ -1,20 +1,28 @@
 <?php 
 session_start();
 include '../../config/koneksi.php'; 
+require_once __DIR__ . '/../../controllers/AuthController.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'pengunjung') {
     header("Location: ../auth/login.php");
     exit;
 }
 
+$authController = new AuthController($koneksi);
 $id_user = $_SESSION['id'];
 $nama_user = $_SESSION['user'];
+
+if (isset($_POST['ganti_password'])) {
+    $hasil = $authController->gantiPassword($id_user, $_POST['pass_lama'], $_POST['pass_baru'], $_POST['pass_konf']);
+    $_SESSION['alert'] = ['icon' => $hasil['status'], 'title' => ($hasil['status'] == 'success' ? 'Berhasil!' : 'Gagal!'), 'text' => $hasil['message']];
+    header("Location: profil.php");
+    exit;
+}
 
 if (isset($_GET['proses_hapus'])) {
     $id_ulasan_hapus = mysqli_real_escape_string($koneksi, $_GET['proses_hapus']);
     $sql_hapus = "DELETE FROM tb_ulasan WHERE id_ulasan = '$id_ulasan_hapus' AND id_pengunjung = '$id_user'";
     $eksekusi_hapus = mysqli_query($koneksi, $sql_hapus);
-
     if ($eksekusi_hapus) {
         $_SESSION['alert'] = ['icon' => 'success', 'title' => 'Dihapus!', 'text' => 'Ulasan berhasil dihapus.'];
     } else {
@@ -52,7 +60,7 @@ include '../templates/navbar_public.php';
     <div class="container py-5">
         <div class="row g-4">
             <div class="col-lg-3 animate__animated animate__fadeInUp">
-                <div class="card card-custom border-0 shadow-sm p-4 bg-white text-center hover-up">
+                <div class="card card-custom border-0 shadow-sm p-4 bg-white text-center hover-up mb-4">
                     <h6 class="fw-bold text-muted small text-uppercase mb-4">Statistik Saya</h6>
                     <div class="row">
                         <div class="col-6 border-end">
@@ -65,6 +73,9 @@ include '../templates/navbar_public.php';
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-white w-100 rounded-pill shadow-sm fw-bold py-2 hover-up" data-bs-toggle="modal" data-bs-target="#modalPassword">
+                    <i class="bi bi-shield-lock me-2"></i> Ganti Password
+                </button>
             </div>
 
             <div class="col-lg-9">
@@ -147,10 +158,40 @@ include '../templates/navbar_public.php';
     </div>
 </div>
 
+<div class="modal fade" id="modalPassword" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
+            <div class="modal-header border-0 p-4">
+                <h5 class="fw-bold mb-0">Ganti Password Akun</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body p-4 pt-0">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Password Lama</label>
+                        <input type="password" name="pass_lama" class="form-control rounded-3 bg-light border-0 py-2" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Password Baru</label>
+                        <input type="password" name="pass_baru" class="form-control rounded-3 bg-light border-0 py-2" placeholder="Minimal 8 karakter" required>
+                    </div>
+                    <div class="mb-0">
+                        <label class="form-label small fw-bold text-muted">Konfirmasi Password Baru</label>
+                        <input type="password" name="pass_konf" class="form-control rounded-3 bg-light border-0 py-2" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="ganti_password" class="btn btn-primary-custom rounded-pill px-4 fw-bold shadow-sm">Simpan Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const { createApp } = Vue;
-
     createApp({
         data() {
             return {

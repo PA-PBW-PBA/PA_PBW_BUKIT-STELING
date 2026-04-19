@@ -39,11 +39,11 @@ include '../templates/navbar_public.php';
 
         <div class="filter-bar rounded-4 mb-4 mb-md-5 animate__animated animate__fadeInUp" style="animation-delay: 0.15s;">
 
-            <div class="filter-row">
+            <div class="filter-row d-none d-md-flex">
                 <span class="filter-label">
                     <i class="bi bi-camera2 me-1 opacity-50"></i> Momen
                 </span>
-                <div class="d-flex gap-2 overflow-auto hide-scrollbar flex-grow-1 py-2" style="margin-top: -4px; margin-bottom: -4px;">
+                <div class="d-flex gap-2 overflow-auto hide-scrollbar flex-grow-1 py-2">
                     <button v-for="cat in categories" :key="cat"
                         @click="activeCategory = cat; currentPage = 1"
                         class="filter-btn text-nowrap flex-shrink-0"
@@ -60,13 +60,11 @@ include '../templates/navbar_public.php';
                 </span>
             </div>
 
-            <div class="filter-divider"></div>
-
-            <div class="filter-row">
+            <div class="filter-row d-none d-md-flex mt-2">
                 <span class="filter-label">
                     <i class="bi bi-sort-down me-1 opacity-50"></i> Urutkan
                 </span>
-                <div class="d-flex gap-2 overflow-auto hide-scrollbar py-2" style="margin-top: -4px; margin-bottom: -4px;">
+                <div class="d-flex gap-2 overflow-auto hide-scrollbar py-2">
                     <button type="button"
                         class="filter-btn text-nowrap flex-shrink-0"
                         :class="sortBy === 'newest' ? 'filter-btn-active' : 'filter-btn-idle'"
@@ -103,7 +101,45 @@ include '../templates/navbar_public.php';
                 </div>
             </div>
 
+            <div class="d-md-none p-1">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <label class="x-small fw-bold text-muted text-uppercase mb-1 ms-1">Momen</label>
+                        <select v-model="activeCategory" @change="currentPage = 1" class="form-select form-select-sm rounded-pill border-0 shadow-sm px-3 py-2 fw-bold text-muted bg-white">
+                            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="x-small fw-bold text-muted text-uppercase mb-1 ms-1">Urutan</label>
+                        <select v-model="sortBy" @change="currentPage = 1" class="form-select form-select-sm rounded-pill border-0 shadow-sm px-3 py-2 fw-bold text-muted bg-white">
+                            <option value="newest">Terbaru</option>
+                            <option value="oldest">Terlama</option>
+                            <option value="liked">Paling Disukai</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-3">
+                         <?php if (isset($_SESSION['login']) && $_SESSION['role'] === 'pengunjung') : ?>
+                            <a href="unggah_foto.php" class="btn btn-primary-custom w-100 rounded-pill py-2 fw-bold shadow-sm small">
+                                <i class="bi bi-cloud-arrow-up-fill me-1"></i> Upload Foto
+                            </a>
+                        <?php elseif (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') : ?>
+                            <a href="../admin/kelola_galeri.php" class="btn btn-primary-custom w-100 rounded-pill py-2 fw-bold shadow-sm small">
+                                <i class="bi bi-gear-fill me-1"></i> Kelola Galeri
+                            </a>
+                        <?php else : ?>
+                            <a href="javascript:void(0)" onclick="alertLogin()" class="btn btn-primary-custom w-100 rounded-pill py-2 fw-bold shadow-sm small">
+                                <i class="bi bi-lock-fill me-1"></i> Upload Foto
+                            </a>
+                        <?php endif; ?>
+                        <div class="text-center mt-2">
+                            <span class="filter-count-badge">{{ filteredGaleri.length }} foto ditemukan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <transition-group name="fade-list" tag="div" class="row g-3 g-md-4 position-relative min-h-300px">
             <div class="col-6 col-md-4" v-for="g in paginatedGaleri" :key="g.id_galeri">
                 <div class="card card-custom h-100 bg-white border-0 shadow-sm overflow-hidden group position-relative hover-up animate__animated animate__fadeInUp">
@@ -291,7 +327,6 @@ include '../templates/navbar_public.php';
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* ===== FILTER BAR ===== */
     .filter-bar {
         background: linear-gradient(135deg, #f8fdf7 0%, #f0f7ee 100%);
         border: 1.5px solid #d4ead0;
@@ -301,12 +336,7 @@ include '../templates/navbar_public.php';
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 4px 0; /* Memberikan ruang sedikit lebih besar antar baris */
-    }
-    .filter-divider {
-        height: 1px;
-        background: linear-gradient(to right, transparent, #c8e0c4, transparent);
-        margin: 2px 0;
+        padding: 4px 0;
     }
     .filter-label {
         font-size: 0.75rem;
@@ -336,7 +366,7 @@ include '../templates/navbar_public.php';
         background: #fff;
         border-color: #79AE6F;
         color: #79AE6F;
-        transform: translateY(-2px); /* Disesuaikan agar tetap aman */
+        transform: translateY(-2px);
         box-shadow: 0 4px 10px rgba(121,174,111,0.15);
     }
     .filter-btn-active {
@@ -344,7 +374,7 @@ include '../templates/navbar_public.php';
         color: #fff;
         border-color: #79AE6F;
         box-shadow: 0 4px 12px rgba(121,174,111,0.35);
-        transform: translateY(-2px); /* Disesuaikan agar tetap aman */
+        transform: translateY(-2px);
     }
     .filter-count-badge {
         font-size: 0.72rem;
