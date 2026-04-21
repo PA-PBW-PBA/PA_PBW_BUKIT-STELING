@@ -44,21 +44,7 @@
   - [Hosting](#-hosting)
 - [Slide Deck](#slide-deck)
 - [Tampilan Website](#tampilan-website)
-  - [Halaman Beranda](#-halaman-beranda)
-  - [Halaman Login](#-halaman-login)
-  - [Halaman Register](#-halaman-register)
-  - [Halaman Informasi Wisata](#-halaman-informasi-wisata)
-  - [Halaman Galeri](#-halaman-galeri)
-  - [Halaman Ulasan](#-halaman-ulasan)
-  - [Halaman Tentang](#-halaman-tentang)
-  - [Halaman Dashboard Admin](#-halaman-dashboard-admin)
-  - [Halaman Analisis Wisata](#-halaman-analisis-wisata)
-  - [Halaman Kelola Informasi Wisata](#-halaman-kelola-informasi-wisata-admin)
-  - [Halaman Manajemen Fasilitas](#-halaman-manajemen-fasilitas)
-  - [Halaman Manajemen Galeri](#-halaman-manajemen-galeri)
-  - [Halaman Manajemen Ulasan](#-halaman-manajemen-ulasan)
-  - [Upload Foto](#-upload-foto-pengunjung)
-  - [Ulasan Pengunjung](#-ulasan-pengunjung-pengunjung)
+
 
 ---
 
