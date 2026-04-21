@@ -210,6 +210,42 @@ index.php
 | password | VARCHAR(255) | Password admin |
 | created_at | TIMESTAMP | Waktu pembuatan data |
 
+
+### Tabel `tb_fasilitas`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_fasilitas | INT | Primary key (auto increment) |
+| nama_fasilitas | VARCHAR(100) | Nama fasilitas |
+| icon | VARCHAR(50) | Icon fasilitas |
+| file_gambar | VARCHAR(255) | Gambar fasilitas |
+
+
+### Tabel `tb_galeri`
+
+| Kolom           | Tipe              | Keterangan |
+|----------------|------------------|-----------|
+| id_galeri      | INT              | Primary key (auto increment) |
+| id_pengunjung  | INT              | Relasi ke tabel pengunjung |
+| kategori       | VARCHAR(50)      | Kategori foto |
+| caption        | TEXT             | Deskripsi atau keterangan foto |
+| file_foto      | VARCHAR(255)     | Nama file foto yang diupload |
+| status         | ENUM             | Status foto (pending, approved, rejected) |
+| tanggal_upload | TIMESTAMP        | Waktu upload foto |
+
+
+### Tabel `tb_informasi`
+
+| Kolom | Tipe | Keterangan |
+|------|------|-----------|
+| id_info | INT | Primary key (auto increment) |
+| harga_tiket | INT | Harga tiket |
+| jam_buka | TIME | Jam buka |
+| jam_tutup | TIME | Jam tutup |
+| deskripsi | TEXT | Deskripsi wisata |
+| tata_tertib | TEXT | Aturan atau tata tertib |
+
+
 ### Tabel `tb_pengunjung`
 
 | Kolom | Tipe | Keterangan |
@@ -231,25 +267,6 @@ index.php
 | balasan_admin | TEXT | Balasan dari admin |
 | tanggal_ulasan | TIMESTAMP | Waktu ulasan dibuat |
 
-### Tabel `tb_fasilitas`
-
-| Kolom | Tipe | Keterangan |
-|------|------|-----------|
-| id_fasilitas | INT | Primary key (auto increment) |
-| nama_fasilitas | VARCHAR(100) | Nama fasilitas |
-| icon | VARCHAR(50) | Icon fasilitas |
-| file_gambar | VARCHAR(255) | Gambar fasilitas |
-
-### Tabel `tb_informasi`
-
-| Kolom | Tipe | Keterangan |
-|------|------|-----------|
-| id_info | INT | Primary key (auto increment) |
-| harga_tiket | INT | Harga tiket |
-| jam_buka | TIME | Jam buka |
-| jam_tutup | TIME | Jam tutup |
-| deskripsi | TEXT | Deskripsi wisata |
-| tata_tertib | TEXT | Aturan atau tata tertib |
 
 ### Tabel `tb_like`
 
