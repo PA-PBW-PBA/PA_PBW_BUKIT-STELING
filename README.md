@@ -16,6 +16,62 @@
 | Maifariza Aulia Dyas             | 2409116032 | Sistem Informasi A   | Database Engineer                   |
 | Yardan Raditya Rafi’ Widyadhana  | 2409116037 | Sistem Informasi A   | Frontend Developer                  |
 
+---
+
+
+## Daftar Isi ✨
+
+- [Informasi Wisata](#informasi-wisata)
+- [Deskripsi Website](#deskripsi-website)
+- [Fitur Website](#fitur-website)
+  - [Pengguna](#pengguna)
+  - [Fitur Tambahan Pengunjung (Setelah Login)](#fitur-tambahan-pengunjung-setelah-login)
+  - [Admin](#admin)
+- [Struktur File](#struktur-file)
+- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
+- [Arsitektur](#arsitektur)
+- [Alur Kerja](#alur-kerja)
+- [Struktur Database](#struktur-database)
+  - [Tabel tb_admin](#tabel-tb_admin)
+  - [Tabel tb_fasilitas](#tabel-tb_fasilitas)
+  - [Tabel tb_galeri](#tabel-tb_galeri)
+  - [Tabel tb_informasi](#tabel-tb_informasi)
+  - [Tabel tb_pengunjung](#tabel-tb_pengunjung)
+  - [Tabel tb_ulasan](#tabel-tb_ulasan)
+  - [Tabel tb_like](#tabel-tb_like)
+- [Nilai Tambah](#nilai-tambah)
+  - [MVC (Model View Controller)](#-mvc-model-view-controller)
+  - [Hosting](#-hosting)
+- [Slide Deck](#slide-deck)
+- [Tampilan Website](#tampilan-website)
+  - [Halaman Beranda](#-halaman-beranda)
+  - [Halaman Login](#-halaman-login)
+  - [Halaman Register](#-halaman-register)
+  - [Halaman Informasi Wisata](#-halaman-informasi-wisata)
+  - [Halaman Galeri](#-halaman-galeri)
+  - [Halaman Ulasan](#-halaman-ulasan)
+  - [Halaman Tentang](#-halaman-tentang)
+  - [Halaman Dashboard Admin](#-halaman-dashboard-admin)
+  - [Halaman Analisis Wisata](#-halaman-analisis-wisata)
+  - [Halaman Kelola Informasi Wisata](#-halaman-kelola-informasi-wisata-admin)
+  - [Halaman Manajemen Fasilitas](#-halaman-manajemen-fasilitas)
+  - [Halaman Manajemen Galeri](#-halaman-manajemen-galeri)
+  - [Halaman Manajemen Ulasan](#-halaman-manajemen-ulasan)
+  - [Upload Foto](#-upload-foto-pengunjung)
+  - [Ulasan Pengunjung](#-ulasan-pengunjung-pengunjung)
+
+---
+
+## Informasi Wisata
+
+Puncak Steling merupakan salah satu tempat wisata alam yang berada di Samarinda, tepatnya di daerah Sungai Dama. Tempat ini cukup dikenal karena menawarkan pemandangan kota dari ketinggian, dengan suasana yang sejuk sehingga sering dikunjungi untuk bersantai atau sekadar menikmati pemandangan.
+
+Namun, dari hasil yang kami temukan, masih ada beberapa permasalahan. Informasi tentang Puncak Steling belum tersampaikan dengan baik karena masih tersebar di media sosial dan tidak selalu update. Selain itu, belum ada media resmi yang bisa memberikan informasi lengkapnya.
+
+Pengunjung juga belum memiliki wadah untuk berbagi pengalaman, seperti mengunggah foto atau memberikan ulasan. Akibatnya, calon pengunjung lain cukup kesulitan mendapatkan gambaran tentang tempat ini sebelum datang langsung.
+
+---
+
 ## Deskripsi Website
 
 Website Puncak Steling Samarinda adalah website yang berisi informasi seputar wisata Puncak Steling, seperti gambaran tempat, fasilitas, serta informasi lain yang dibutuhkan oleh pengunjung.
@@ -295,7 +351,10 @@ puncak_steling/
 
 ### ✮ Hosting
 
-Akses website melalui link berikut:
+Website Puncak Steling telah di-hosting sehingga dapat diakses secara langsung melalui browser tanpa perlu instalasi.
+
+
+Link akses website:
 
 https://bukitsteling.rf.gd 
 
@@ -304,7 +363,7 @@ https://bukitsteling.rf.gd
 
 ## Slide Deck
 
-Slide presentasi dapat diakses melalui link berikut:
+Slide presentasi proyek ini dapat diakses melalui link berikut:
 
 https://canva.link/qwgoi7d9799anba
 
@@ -390,7 +449,9 @@ https://canva.link/qwgoi7d9799anba
 ---
 
 
+
 <p align="center">
-Wisata Puncak Stling Samarinda<br>
+© 2026 Website Puncak Steling Samarinda <br>
 </p>
+
 
