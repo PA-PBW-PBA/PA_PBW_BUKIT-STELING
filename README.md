@@ -31,6 +31,7 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 
 ### Pengguna 
 
+
 - Mengakses website tanpa login
 - Melihat halaman beranda
 - Melihat informasi wisata (deskripsi, harga tiket, jam operasional)
@@ -38,10 +39,11 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 - Melihat struktur organisasi Puncak Steling
 - Melihat galeri foto
 - Melihat ulasan dari pengunjung lain
+- Registrasi Akun 
 
 ### Fitur Tambahan Pengunjung (Setelah Login)
 
-- Registrasi Akun 
+
 - Login ke dalam sistem
 - Menambahkan ulasan dan rating 
 - Mengunggah foto ke galeri 
@@ -51,8 +53,9 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 ### Admin
 
 - Login ke halaman admin
-- Melihat data pada dashboard 
-- Mengelola informasi wisata 
+- Melihat data pada dashboard
+- Melihat analisis dan statistik kunjungan wisata
+- Mengelola informasi tiket wisata 
 - Mengelola fasilitas 
 - Mengelola galeri foto 
 - Mengelola data ulasan pengunjung 
