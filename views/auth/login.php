@@ -137,5 +137,3 @@ include '../templates/header.php';
         }
     }).mount('#app-login');
 </script>
-
-<?php include '../templates/footer.php'; ?>

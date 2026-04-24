@@ -44,7 +44,7 @@ $is_admin = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
                         <li class="d-flex align-items-center gap-3">
                             <i class="bi bi-whatsapp text-primary-custom flex-shrink-0 fs-6"></i> 
                             <a href="https://wa.me/6281234567890" target="_blank" class="text-secondary text-decoration-none custom-hover">
-                                <span>+62 812-3456-7890 (Bapak La Riamu)</span>
+                                <span>Hubungi Pengelola (Bapak La Riamu)</span>
                             </a>
                         </li>
                     </ul>

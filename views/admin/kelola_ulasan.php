@@ -112,8 +112,13 @@ include '../templates/header.php';
                                     </div>
                                 </td>
                                 <td class="text-muted small">
-                                    <div @click="showFullComment(u.nama_lengkap, u.komentar)" class="cursor-pointer text-truncate-2" style="max-width: 220px;">
-                                        {{ u.komentar }}
+                                    <div @click="showFullComment(u.nama_lengkap, u.komentar)" class="cursor-pointer">
+                                        <span class="d-md-none">
+                                            {{ u.komentar.length > 10 ? u.komentar.substring(0, 10) + '...' : u.komentar }}
+                                        </span>
+                                        <span class="d-none d-md-inline">
+                                            {{ u.komentar.length > 30 ? u.komentar.substring(0, 30) + '...' : u.komentar }}
+                                        </span>
                                     </div>
                                 </td>
                                 <td class="text-center">
@@ -194,7 +199,6 @@ include '../templates/header.php';
 
 <style>
     .x-small { font-size: 0.65rem; }
-    .text-truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .fade-list-move, .fade-list-enter-active, .fade-list-leave-active { transition: all 0.4s ease; }
     .fade-list-enter-from, .fade-list-leave-to { opacity: 0; transform: translateX(30px); }
     .fade-list-leave-active { position: absolute; }
@@ -213,17 +217,26 @@ include '../templates/header.php';
                 filterRating: 'all',
                 currentPage: 1,
                 itemsPerPage: 10,
+                keywords: [
+                    'jelek', 'rusak', 'hancur', 'bobrok', 'kotor', 'bau', 'kumuh', 'licin', 
+                    'gelap', 'pengap', 'panas', 'berdebu', 'usang', 'sempit', 'berisik',
+                    'lambat', 'lelet', 'lama', 'antri', 'cuek', 'kasar', 'galak', 'buruk', 
+                    'payah', 'mengecewakan', 'kecewa', 'parah', 'ngaco', 'mahal', 'rugi', 
+                    'boros', 'pungli', 'getok', 'bahaya', 'rawan', 'seram', 'susah', 
+                    'sulit', 'macet', 'jauh', 'nyesel', 'kapok', 'sedih', 'kesal', 
+                    'kesel', 'marah', 'ogah'
+                ],
                 statusOptions: [
                     { label: 'Semua Status', value: 'all' },
                     { label: 'Pending', value: 'pending' },
-                    { label: 'Dibalas', value: 'dibalas' }
+                    { label: 'Dibalas', value: 'dibalas' },
+                    { label: 'Isu Negatif', value: 'isu' }
                 ]
             }
         },
         computed: {
             alertKeywordsCount() {
-                const keywords = ['parkir', 'jalan', 'licin', 'gelap', 'kotor', 'sampah', 'fasilitas', 'tangga', 'toilet', 'akses','jelek'];
-                return this.allUlasan.filter(u => keywords.some(k => u.komentar.toLowerCase().includes(k))).length;
+                return this.allUlasan.filter(u => this.keywords.some(k => u.komentar.toLowerCase().includes(k))).length;
             },
             responseRate() {
                 if (!this.allUlasan.length) return 0;
@@ -232,7 +245,16 @@ include '../templates/header.php';
             filteredData() {
                 return this.allUlasan.filter(u => {
                     const matchRating = this.filterRating === 'all' || parseInt(u.rating) === parseInt(this.filterRating);
-                    const matchStatus = this.filterStatus === 'all' || (this.filterStatus === 'dibalas' ? u.balasan_admin : !u.balasan_admin);
+                    
+                    let matchStatus = true;
+                    if (this.filterStatus === 'dibalas') {
+                        matchStatus = u.balasan_admin;
+                    } else if (this.filterStatus === 'pending') {
+                        matchStatus = !u.balasan_admin;
+                    } else if (this.filterStatus === 'isu') {
+                        matchStatus = this.keywords.some(k => u.komentar.toLowerCase().includes(k));
+                    }
+                    
                     return matchRating && matchStatus;
                 });
             },

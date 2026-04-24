@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
     <div class="container">
@@ -14,11 +15,21 @@ if (session_status() === PHP_SESSION_NONE) {
         
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto text-uppercase small fw-bold ls-normal">
-                <li class="nav-item"><a class="nav-link px-3" href="beranda.php">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="informasi.php">Informasi</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="galeri.php">Galeri</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="ulasan.php">Ulasan</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="tentang.php">Tentang</a></li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 <?= ($current_page == 'beranda.php') ? 'active-nav' : '' ?>" href="beranda.php">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 <?= ($current_page == 'informasi.php') ? 'active-nav' : '' ?>" href="informasi.php">Informasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 <?= ($current_page == 'galeri.php') ? 'active-nav' : '' ?>" href="galeri.php">Galeri</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 <?= ($current_page == 'ulasan.php') ? 'active-nav' : '' ?>" href="ulasan.php">Ulasan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 <?= ($current_page == 'tentang.php') ? 'active-nav' : '' ?>" href="tentang.php">Tentang</a>
+                </li>
             </ul>
 
             <div class="d-flex align-items-center gap-3">
@@ -47,9 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     </a>
                                 </li>
                             <?php endif; ?>
-                            
                             <li><hr class="dropdown-divider mx-2"></li>
-                            
                             <li>
                                 <a class="dropdown-item py-2 text-danger fw-bold" href="../auth/logout.php">
                                     <i class="bi bi-box-arrow-right me-2"></i> Keluar
@@ -65,3 +74,19 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </div>
 </nav>
+
+<style>
+    .active-nav {
+        color: #79AE6F !important;
+        position: relative;
+    }
+    .active-nav::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        right: 1rem;
+        height: 2px;
+        background-color: #79AE6F;
+    }
+</style>

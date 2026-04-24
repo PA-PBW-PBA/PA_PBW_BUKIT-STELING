@@ -128,5 +128,3 @@ include '../templates/header.php';
         }
     }).mount('#app-register');
 </script>
-
-<?php include '../templates/footer.php'; ?>
