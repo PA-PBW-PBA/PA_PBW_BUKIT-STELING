@@ -428,7 +428,7 @@ https://canva.link/qwgoi7d9799anba
   > Halaman ini digunakan oleh pengunjung untuk membagikan foto ke galeri Puncak Steling. Pengguna bisa mengunggah foto yang dimiliki, namun foto tersebut tidak langsung ditampilkan. Foto akan masuk ke antrean terlebih dahulu untuk ditinjau oleh admin. Jika sudah disetujui, barulah foto akan muncul di galeri.
 
 ### ✧˖°. Ulasan Pengunjung (Pengunjung)
-  > <img width="1909" height="942" alt="image" src="https://github.com/user-attachments/assets/cc6b388b-7aa5-4c68-bbaf-d7b893a6d920" />
+  > <img width="1897" height="938" alt="Screenshot 2026-04-24 222617" src="https://github.com/user-attachments/assets/b34f13bd-ef41-496b-954d-bdb15f93c6b1" />
   > Halaman ini digunakan oleh pengunjung untuk melihat dan memberikan ulasan terkait Puncak Steling. Pengunjung bisa melihat berbagai ulasan yang sudah ada, lengkap dengan rating dan komentar. Selain itu, pengguna yang sudah login juga bisa menuliskan ulasan mereka sendiri untuk dibagikan kepada pengunjung lainnya.
 
 
