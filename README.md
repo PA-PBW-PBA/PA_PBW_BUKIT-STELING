@@ -88,7 +88,8 @@ Dengan adanya website ini, masyarakat bisa mengetahui informasi dan gambaran Pun
 
 - Login ke dalam sistem
 - Menambahkan ulasan dan rating 
-- Mengunggah foto ke galeri 
+- Mengunggah foto ke galeri
+- Memberikan like pada foto di galeri
 - Melihat profil dan riwayat kontribusi
 
 
@@ -358,7 +359,7 @@ https://canva.link/qwgoi7d9799anba
 ## Tampilan _Website_
 
 ### ✧˖°. Halaman Beranda
-  > <img width="1905" height="941" alt="Screenshot 2026-04-11 093459" src="https://github.com/user-attachments/assets/ec58eae7-24ea-43fc-9227-4970cc33479c" />
+  > <img width="1889" height="899" alt="Screenshot 2026-04-24 221823" src="https://github.com/user-attachments/assets/b1b39da1-261e-42bd-8809-ddf0c31cd73f" />
   > Halaman beranda adalah halaman pertama yang muncul saat website dibuka. Di halaman ini, pengguna bisa langsung melihat tampilan utama website serta menu navigasi di bagian atas yang memudahkan pengguna pindah ke halaman lain. Selain itu, tersedia juga tombol yang membantu pengguna untuk mulai menjelajahi fitur atau melihat informasi yang tersedia di dalam website steling ini.
 
 
@@ -373,28 +374,27 @@ https://canva.link/qwgoi7d9799anba
 
   
 ### ✧˖°. Halaman Informasi Wisata
-  > <img width="1794" height="2271" alt="image" src="https://github.com/user-attachments/assets/8741865b-b306-46a0-92db-1c246cb40370" />
+  > <img width="1896" height="944" alt="Screenshot 2026-04-24 222202" src="https://github.com/user-attachments/assets/465a9453-df50-4aa3-84ce-54173245af25" />
   > Halaman informasi wisata merupakan halaman yang menampilkan informasi lengkap terkait tempat wisata yang tersedia. Halaman ini bisa diakses oleh semua pengunjung, baik yang sudah memiliki akun maupun yang belum. Pengguna bisa melihat informasi seperti harga tiket, lokasi, deskripsi, serta fasilitas yang tersedia. Di dalam fitur ini, pengunjung jadi bisa mengetahui informasi wisata secara lebih jelas sebelum berkunjung.
 
 
 ### ✧˖°. Halaman Galeri
-  > <img width="1900" height="942" alt="Screenshot 2026-04-15 082803" src="https://github.com/user-attachments/assets/dd7e9889-dbb5-408d-adac-f3a8f7562dd7" />
-
+  > <img width="1900" height="940" alt="Screenshot 2026-04-24 222256" src="https://github.com/user-attachments/assets/8188a909-82d1-485e-9f5d-09a9de763a65" />
   > Halaman galeri merupakan halaman yang menampilkan kumpulan foto atau dokumentasi dari Puncak Steling. Halaman ini bisa diakses oleh semua pengunjung. Pengguna bisa melihat berbagai foto yang telah diunggah serta filter tampilan berdasarkan kategori yang tersedia. Disini, pengunjung jadi bisa melihat suasana dan kondisi Puncak Steling secara lebih jelas.
 
 
 ### ✧˖°. Halaman Ulasan
-  > <img width="1794" height="1728" alt="image" src="https://github.com/user-attachments/assets/79e96b25-b643-4506-ba54-4c8312e2dec3" />
+  > <img width="1890" height="944" alt="Screenshot 2026-04-24 222732" src="https://github.com/user-attachments/assets/1b32fff7-c509-403b-a881-7bc39d72cb89" />
   > Halaman ulasan merupakan halaman yang menampilkan penilaian dan komentar dari pengunjung Puncak Steling. Halaman ini bisa diakses oleh semua pengunjung, namun untuk memberikan ulasan, pengguna harus melakukan login terlebih dahulu.
 
 
 ### ✧˖°. Halaman Tentang
-  > <img width="1794" height="2225" alt="image" src="https://github.com/user-attachments/assets/7eda034b-9cd3-40d7-b9b4-e69233bd1c66" />
+  > <img width="1902" height="938" alt="Screenshot 2026-04-24 221932" src="https://github.com/user-attachments/assets/1a71f39b-73b0-40ae-bb95-2c2bc1971c73" />
   > Halaman tentang merupakan halaman yang menampilkan informasi umum mengenai Puncak Steling. Pengunjung bisa melihat deskripsi, lokasi, serta informasi lain yang berkaitan dengan tempat wisata ini. Selain itu, pengunjung juga bisa melihat struktur organisasi pengelola Puncak Steling.
 
 
 ### ✧˖°. Halaman Dashboard Admin
-  > <img width="1910" height="887" alt="image" src="https://github.com/user-attachments/assets/43e2796a-568d-4704-b3ee-0c6b4f643e65" />
+  > <img width="1903" height="936" alt="Screenshot 2026-04-24 220917" src="https://github.com/user-attachments/assets/3e4ebb23-caa4-4e7f-9186-631c75981a17" />
   > Halaman dashboard admin merupakan halaman utama yang ditampilkan setelah admin login ke dalam website. Di halaman ini, admin bisa melihat ringkasan informasi seperti rating, jumlah foto, dan jumlah pengguna baru. Selain itu, admin juga bisa langsung mengakses fitur untuk mengelola data yang ada. Di dashboard ini, admin bisa memantau kondisi sistem dengan lebih mudah.
 
 
@@ -414,12 +414,12 @@ https://canva.link/qwgoi7d9799anba
 
 
 ### ✧˖°. Halaman Manajemen Galeri
-  > <img width="1906" height="944" alt="Screenshot (1159)" src="https://github.com/user-attachments/assets/87edacd2-0691-4964-bcd8-3b7aeff3daba" />
+  > <img width="1899" height="930" alt="Screenshot 2026-04-24 221225" src="https://github.com/user-attachments/assets/b9b06feb-1893-429f-8af7-c3740ff8a686" />
   > Halaman manajemen galeri digunakan oleh admin untuk mengelola foto yang diunggah oleh pengunjung. Admin bisa melihat antrean foto yang masih menunggu persetujuan. Lalu, Admin menyetujui foto agar ditampilkan di galeri atau menghapus foto jika tidak sesuai. Selain itu, admin juga dapat melihat daftar foto yang sudah dipublikasikan.
 
 
 ### ✧˖°. Halaman Manajemen Ulasan
-  > <img width="1910" height="944" alt="image" src="https://github.com/user-attachments/assets/35d11cce-5a6b-4965-bc26-3c5a48267cdf" />
+  > <img width="1912" height="945" alt="Screenshot 2026-04-24 220815" src="https://github.com/user-attachments/assets/8d6f1d90-07cd-4e88-beee-683c241cc130" />
   > Halaman manajemen ulasan ini digunakan oleh admin untuk mengelola komentar dari pengunjung. Admin bisa melihat daftar ulasan yang masuk beserta rating dan komentar yang diberikan. Di sini admin bisa membalas ulasan pengunjung, melihat status ulasan, serta menghapus ulasan yang tidak sesuai atau melanggar aturan (kelewatan).
 
 
