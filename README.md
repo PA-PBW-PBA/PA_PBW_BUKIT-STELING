@@ -117,8 +117,10 @@ puncak_steling/
 │   │   └── style.css
 │   ├── img/
 │   │   ├── fasilitas/
-│   │   └── galeri/
+│   │   ├── uploads/
+│   │   └── Puncak Steling.JPG
 │   └── js/
+│       └── script.js
 ├── config/
 │   ├── api_stats.php
 │   └── koneksi.php
@@ -135,21 +137,6 @@ puncak_steling/
 │   ├── StatistikModel.php
 │   ├── UlasanModel.php
 │   └── UserModel.php
-├── public/
-│   ├── beranda.php
-│   ├── galeri.php
-│   ├── informasi.php
-│   ├── profil.php
-│   ├── proses_like.php
-│   ├── proses_ulasan.php
-│   ├── tentang.php
-│   ├── ulasan.php
-│   └── unggah_foto.php
-├── templates/
-│   ├── footer.php
-│   ├── header.php
-│   ├── navbar_public.php
-│   └── sidebar_admin.php
 ├── views/
 │   ├── admin/
 │   │   ├── aksi_balas_ulasan.php
@@ -166,12 +153,28 @@ puncak_steling/
 │   │   ├── kelola_informasi.php
 │   │   ├── kelola_ulasan.php
 │   │   └── statistik.php
-│   └── auth/
-│       ├── login.php
-│       ├── logout.php
-│       └── register.php
+│   ├── auth/
+│   │   ├── login.php
+│   │   ├── logout.php
+│   │   └── register.php
+│   └── public/
+│       ├── beranda.php
+│       ├── galeri.php
+│       ├── informasi.php
+│       ├── profil.php
+│       ├── proses_like.php
+│       ├── proses_ulasan.php
+│       ├── tentang.php
+│       ├── ulasan.php
+│       └── unggah_foto.php
+├── templates/
+│   ├── footer.php
+│   ├── header.php
+│   ├── navbar_public.php
+│   └── sidebar_admin.php
 ├── db_bukit_steling.sql
-└── index.php
+├── index.php
+└── README.md
 ```
 </details>
 
