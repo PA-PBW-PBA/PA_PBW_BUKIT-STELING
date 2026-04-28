@@ -397,7 +397,7 @@ https://canva.link/qwgoi7d9799anba
 
 
 ### ✧˖°. Halaman Dashboard Admin
-  > <img width="1903" height="936" alt="Screenshot 2026-04-24 220917" src="https://github.com/user-attachments/assets/3e4ebb23-caa4-4e7f-9186-631c75981a17" />
+  > <img width="1911" height="926" alt="image" src="https://github.com/user-attachments/assets/bcc90b93-e583-4227-971e-6ec6d4aedbf4" />
   > Halaman dashboard admin merupakan halaman utama yang ditampilkan setelah admin login ke dalam website. Di halaman ini, admin bisa melihat ringkasan informasi seperti rating, jumlah foto, dan jumlah pengguna baru. Selain itu, admin juga bisa langsung mengakses fitur untuk mengelola data yang ada. Di dashboard ini, admin bisa memantau kondisi sistem dengan lebih mudah.
 
 
