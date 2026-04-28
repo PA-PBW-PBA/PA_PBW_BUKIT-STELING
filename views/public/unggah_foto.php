@@ -1,11 +1,21 @@
 <?php
-/**
- * views/public/unggah_foto.php
- * Halaman unggah foto pengunjung — hanya tampilan HTML
- * Semua logika ditangani oleh GaleriController
- */
-
 session_start();
+
+if (isset($_SESSION['login'])) {
+    $timeout = 3600;
+    
+    if (isset($_SESSION['last_activity'])) {
+        $duration = time() - $_SESSION['last_activity'];
+        if ($duration > $timeout) {
+            session_unset();
+            session_destroy();
+            header("Location: ../auth/login.php?msg=session_expired");
+            exit;
+        }
+    }
+    $_SESSION['last_activity'] = time();
+}
+
 require_once __DIR__ . '/../../config/koneksi.php';
 require_once __DIR__ . '/../../controllers/GaleriController.php';
 

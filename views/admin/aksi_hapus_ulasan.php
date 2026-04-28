@@ -1,11 +1,4 @@
 <?php
-/**
- * aksi_hapus_ulasan.php
- * File aksi untuk menghapus ulasan pengunjung (admin)
- * Menerima GET ?id=... dari: kelola_ulasan.php
- * Diproses oleh: UlasanController::hapus()
- */
-
 session_start();
 require_once __DIR__ . '/../../config/koneksi.php';
 require_once __DIR__ . '/../../controllers/UlasanController.php';
