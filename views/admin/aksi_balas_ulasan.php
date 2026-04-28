@@ -1,11 +1,4 @@
 <?php
-/**
- * aksi_balas_ulasan.php
- * File aksi untuk membalas ulasan pengunjung (admin)
- * Menerima POST dari: kelola_ulasan.php
- * Diproses oleh: UlasanController::balas()
- */
-
 session_start();
 require_once __DIR__ . '/../../config/koneksi.php';
 require_once __DIR__ . '/../../controllers/UlasanController.php';

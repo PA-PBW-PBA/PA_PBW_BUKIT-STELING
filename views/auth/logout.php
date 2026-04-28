@@ -1,9 +1,4 @@
 <?php
-/**
- * views/auth/logout.php
- * Proses logout — hancurkan session via AuthController
- */
-
 session_start();
 require_once __DIR__ . '/../../controllers/AuthController.php';
 require_once __DIR__ . '/../../config/koneksi.php';
